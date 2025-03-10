@@ -1,8 +1,8 @@
-const AT_75_DENSITY = 75;  // Extreme foot traffic
-const AT_50_DENSITY = 50;  // Very high foot traffic
-const AT_35_DENSITY = 35;  // High foot traffic
-const AT_25_DENSITY = 25;  // Medium-high traffic
-const AT_15_DENSITY = 15;  // Moderate traffic
+const AT_75_DENSITY = 65;  // Extreme foot traffic
+const AT_50_DENSITY = 40;  // Very high foot traffic
+const AT_35_DENSITY = 30;  // High foot traffic
+const AT_25_DENSITY = 20;  // Medium-high traffic
+const AT_15_DENSITY = 10;  // Moderate traffic
 const LOW_DENSITY = 1;     // Low traffic
 
 // Function to calculate business density (businesses per square meter)
@@ -39,32 +39,37 @@ function processBuildingData(building, businessesResponse, calculateArea, buildi
     // Get center of the polygon
     const polygonCenter = polygon.getBounds().getCenter();
 
-    // Count businesses within 100m and 200m radius
     let businessesWithin100m = 0;
     let businessesWithin200m = 0;
+    let businessesWithin300m = 0;
 
     businessesResponse.elements.forEach(business => {
         const distance = polygonCenter.distanceTo([business.lat, business.lon]);
-        if (distance <= 100) {
+        if (distance <= 90) {
             businessesWithin100m++;
         }
-        if (distance <= 200) {
+        if (distance <= 180) {
             businessesWithin200m++;
+        }
+        if (distance <= 300) {
+            businessesWithin300m++;
         }
     });
 
     // Define coefficients for weighting each density factor
-    const coefBuildingDensity = 0.6;
+    const coefBuildingDensity = 0.1;
     const coef100mDensity = 1;
     const coef200mDensity = 1;
+    const coef300mDensity = 0.5;
     
     // Calculate people passing by using a weighted model
-    const densityWeightSum = coefBuildingDensity + coef100mDensity + coef200mDensity;
+    const densityWeightSum = coefBuildingDensity + coef100mDensity + coef200mDensity + coef300mDensity;
     let peoplePassingBy = (
         (businessDensity * 2000 * coefBuildingDensity) + 
         (businessesWithin100m * coef100mDensity) + 
-        (businessesWithin200m * coef200mDensity)
-    ) * 0.15 * (3 / densityWeightSum);
+        (businessesWithin200m * coef200mDensity) + 
+        (businessesWithin300m * coef300mDensity)
+    ) * 0.25 * (3 / densityWeightSum);
 
     peoplePassingBy = Math.round(peoplePassingBy); // Round to avoid excessive decimals
 
@@ -83,10 +88,10 @@ function processBuildingData(building, businessesResponse, calculateArea, buildi
 
         polygon.bindPopup(`
             <b>People passing by:</b> ${peoplePassingBy} <br>
-            <b>Businesses per m²:</b> ${fraction} <br>
-            <b>Businesses within 100m:</b> ${businessesWithin100m} <br>
-            <b>Businesses within 200m:</b> ${businessesWithin200m}
         `);
+        // <b>Businesses per m²:</b> ${fraction} <br>
+        // <b>Businesses within 100m:</b> ${businessesWithin100m} <br>
+        // <b>Businesses within 200m:</b> ${businessesWithin200m}
         
         buildingsLayer.addLayer(polygon);
         return true;

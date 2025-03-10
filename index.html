@@ -11,7 +11,7 @@
 
 <body>
     <div id="map"></div>
-    <div id="loading">Loading data...</div> <!-- Loading indicator -->
+    <div id="loading">Calculating Foot Traffic in the Area...</div> <!-- Loading indicator -->
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script type="module">
@@ -19,16 +19,16 @@
         import { processBuildingData } from './businessDensity.js';
 
         var mapConfig = {
-            // center: [50.398, 30.619], // osokorky
-            center: [50.398, 30.630], // pozniaky
-            // center: [50.403, 30.650], // kharkivska
             // center: [50.177, 30.318], // vasylkiv
             // center: [50.079, 29.909], // Fastiv
-            // center: [52.383, 4.632], // haarlem
-            // center: [50.398, 30.603], // slavutych
-            // center: [51.508, -0.128], // london
+            // center: [50.398, 30.619], // osokorky
+            // center: [50.398, 30.630], // pozniaky
+            // center: [50.403, 30.650], // kharkivska
+            center: [50.398, 30.603], // slavutych
             // center: [50.450, 30.510], // zoloti vorota
             // center: [50.440, 30.520], // besarabka
+            // center: [52.383, 4.632], // haarlem
+            // center: [51.508, -0.128], // london
             zoom: 16,
             maxZoom: 18,
             minZoom: 14,
@@ -124,7 +124,7 @@
             }
         }
 
-        const debouncedFetchData = debounce(fetchData, 500); // 500 miliseconds 
+        const debouncedFetchData = debounce(fetchData, 5*1000);
 
         function onMapMoveStart() {
             loadingIndicator.style.display = 'block'; // Show loading as soon as map starts moving
