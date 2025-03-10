@@ -14,7 +14,11 @@
     <div id="loading">Loading data...</div> <!-- Loading indicator -->
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script>
+    <script type="module">
+        import { calculateArea } from './calculateArea.js';
+        import { processBuildingData } from './businessDensity.js';
+
+
         var mapConfig = {
             center: [50.398, 30.617],
             zoom: 15,
@@ -34,38 +38,19 @@
         }).addTo(map);
 
         let buildingsLayer = L.geoJSON(null, {
-            style: { color: 'yellow', weight: 1, fillOpacity: 0.6 }
+            style: (feature) => {
+                return {
+                    color: 'red',        // Border color of the building
+                    fillColor: feature.properties.fillColor || 'red', // Dynamic fill color
+                    weight: 1,           // Border weight
+                    fillOpacity: 0.6     // Fill opacity
+                };
+            }
         }).addTo(map);
 
         let lastBounds = null;
         let currentRequestController = null; // Used to cancel ongoing fetch
         let loadingIndicator = document.getElementById('loading');
-
-        // Function to calculate the area of a polygon in square meters using the Shoelace Theorem
-        function calculateArea(polygon) {
-            let latLngs = polygon.getLatLngs()[0];
-            let area = 0;
-
-            for (let i = 0; i < latLngs.length; i++) {
-                let j = (i + 1) % latLngs.length; // next point, wrapping around
-                let lat1 = latLngs[i].lat;
-                let lon1 = latLngs[i].lng;
-                let lat2 = latLngs[j].lat;
-                let lon2 = latLngs[j].lng;
-
-                area += lon1 * lat2 - lon1 * lat1 - lon2 * lat1 + lon2 * lat2;
-            }
-
-            area = Math.abs(area) / 2;
-
-            // Convert the area from degrees² to square meters (approximate conversion)
-            // This is a rough approximation and may vary with latitudes and the Earth's curvature
-            const latLngAreaFactor = 111319; // 1 degree of latitude is approx 111.319 km
-            let areaInSquareMeters = area * latLngAreaFactor * latLngAreaFactor;
-
-            return areaInSquareMeters;
-        }
-
 
         async function fetchData(bounds) {
             if (currentRequestController) {
@@ -109,23 +94,8 @@
 
                 buildingsResponse.elements.forEach(building => {
                     if (building.type === "way" && building.geometry) {
-                        let coords = building.geometry.map(pt => [pt.lat, pt.lon]);
-                        let polygon = L.polygon(coords);
-
-                        // Calculate the area of the building in square meters
-                        let buildingArea = calculateArea(polygon);
-
-                        // Count businesses inside the building's bounds
-                        let businessesInBuilding = businessesResponse.elements.filter(business => {
-                            return polygon.getBounds().contains([business.lat, business.lon]);
-                        }).length;
-
-                        // Calculate business density (businesses per square meter)
-                        let businessDensity = buildingArea > 0 ? businessesInBuilding / buildingArea : 0;
-
-                        if (businessDensity >= 0.001) { // Set your own threshold for density here
-                            polygon.bindPopup(`Businesses per m²: ${businessDensity.toFixed(4)}`);
-                            buildingsLayer.addLayer(polygon);
+                        const isBuildingProcessed = processBuildingData(building, businessesResponse, calculateArea, buildingsLayer);
+                        if (isBuildingProcessed) {
                             foundBuildings = true;
                         }
                     }
