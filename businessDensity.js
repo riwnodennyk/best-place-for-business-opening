@@ -24,12 +24,12 @@ function getBuildingAddress(building) {
     if (!building.tags) return null;
 
     const street = building.tags["addr:street"] || "";
-    const housenumber = building.tags["addr:housenumber"] || "";
-    const city = building.tags["addr:city"] || "";
-    const postcode = building.tags["addr:postcode"] || "";
+    if (!street) return null;
 
-    let address = `${housenumber} ${street}`.trim();
-    if (city) address += `, ${city}`;
+    const housenumber = building.tags["addr:housenumber"] || "";
+    let address = `${street}, ${housenumber}`.trim();
+
+    const postcode = building.tags["addr:postcode"] || "";
     if (postcode) address += ` (${postcode})`;
 
     return address || null;
@@ -67,7 +67,7 @@ async function processBuildingData(building, businessesResponse, calculateArea, 
         if (distance <= 180) {
             businessesWithin200m++;
         }
-        if (distance <= 300) {
+        if (distance <= 290) {
             businessesWithin300m++;
         }
     });
@@ -75,7 +75,7 @@ async function processBuildingData(building, businessesResponse, calculateArea, 
     // Define coefficients for weighting each density factor
     const coefBuildingDensity = 0.1;
     const coef100mDensity = 1;
-    const coef200mDensity = 1;
+    const coef200mDensity = 0.9;
     const coef300mDensity = 0.5;
     
     // Calculate people passing by using a weighted model
@@ -85,7 +85,7 @@ async function processBuildingData(building, businessesResponse, calculateArea, 
         (businessesWithin100m * coef100mDensity) + 
         (businessesWithin200m * coef200mDensity) + 
         (businessesWithin300m * coef300mDensity)
-    ) * 0.25 * (3 / densityWeightSum);
+    ) * 0.6 / densityWeightSum;
 
     peoplePassingBy = Math.round(peoplePassingBy); // Round to avoid excessive decimals
 
@@ -107,7 +107,7 @@ async function processBuildingData(building, businessesResponse, calculateArea, 
 
         polygon.bindPopup(`
             <b>People passing by:</b> ${peoplePassingBy} <br>
-             ${address ? `<b>Address:</b> ${address} <br>` : ""}
+             ${address ? `${address} <br>` : ""}
         `);
         // <b>Businesses per m²:</b> ${fraction} <br>
         // <b>Businesses within 100m:</b> ${businessesWithin100m} <br>

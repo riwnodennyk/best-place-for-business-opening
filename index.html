@@ -19,15 +19,15 @@
         import { processBuildingData } from './businessDensity.js';
 
         var mapConfig = {
-            // center: [50.177, 30.318], // vasylkiv
+            // center: [50.177, 30.318], // Vasylkiv
             // center: [50.079, 29.909], // Fastiv
             // center: [50.398, 30.619], // osokorky
             // center: [50.398, 30.630], // pozniaky
             // center: [50.403, 30.650], // kharkivska
-            center: [50.398, 30.603], // slavutych
-            // center: [50.450, 30.510], // zoloti vorota
-            // center: [50.440, 30.520], // besarabka
-            // center: [52.383, 4.632], // haarlem
+            // center: [50.398, 30.603], // Slavutych
+            // center: [50.450, 30.510], // Zoloti vorota
+            // center: [50.440, 30.520], // Besarabka
+            center: [52.383, 4.632], // Haarlem
             // center: [51.508, -0.128], // london
             zoom: 16,
             maxZoom: 18,
@@ -84,7 +84,7 @@
                     node["office"](${bbox});
                     node["tourism"~"museum|attraction|gallery"](${bbox});
                     node["leisure"~"park|garden"](${bbox});
-                    node[railway~"station|subway_entrance|tram_stop"](${bbox});
+                    node[railway~"station|subway_entrance"](${bbox});
                     node[amenity~"restaurant|cafe|fast_food|pub|bar|marketplace|school|university|cinema|theatre|pharmacy|supermarket|mall|bank|bureau_de_change"](${bbox});                );
                 out body;
             `;
