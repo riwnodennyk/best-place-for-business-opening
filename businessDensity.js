@@ -1,7 +1,7 @@
 // businessDensity.js
-const DENSITY_COLOR_RED_THRESHOLD = 1/200;  // less than 1/200 // approximate 30 people passing
-const DENSITY_COLOR_ORANGE_THRESHOLD = 1/400;  // 1/200 to 1/400 // approximate 20 people passing
-const BUSINESS_DENSITY_GREEN_THRESHOLD = 1/500; // 1/300 to 1/500 // approximate 15 people passing
+const TOP_DENSITY = 1/200;  // less than 1/200 // approximate 30 people passing
+const MID_DENSITY = 1/400;  // 1/200 to 1/400 // approximate 20 people passing
+const LOW_DENSITY = 1/500; // 1/300 to 1/500 // approximate 15 people passing
 
 // Function to calculate business density (businesses per square meter)
 function calculateBusinessDensity(buildingArea, businessesInBuilding) {
@@ -10,7 +10,7 @@ function calculateBusinessDensity(buildingArea, businessesInBuilding) {
 
 // Function to get the color based on business density
 function getColorByDensity(density) {
-    return density > DENSITY_COLOR_RED_THRESHOLD ? 'red' : density > DENSITY_COLOR_ORANGE_THRESHOLD ? 'orange' : 'green';
+    return density > TOP_DENSITY ? "#811963" : density > MID_DENSITY ? '#cd3ea4' : '#f497d9';
 }
 
 // Function to process building and business data, calculate density, and determine if the building should be shown on the map
@@ -29,7 +29,7 @@ function processBuildingData(building, businessesResponse, calculateArea, buildi
     // Calculate business density
     let businessDensity = calculateBusinessDensity(buildingArea, businessesInBuilding);
 
-    if (businessDensity >= BUSINESS_DENSITY_GREEN_THRESHOLD) { // Set your own threshold for density here
+    if (businessDensity >= LOW_DENSITY) { // Set your own threshold for density here
         const fractionDenominator = (1 / businessDensity).toFixed(0); // Convert density to fraction form
         const fraction = `1/${fractionDenominator}`; // Format it as "1/200"
 
@@ -37,7 +37,7 @@ function processBuildingData(building, businessesResponse, calculateArea, buildi
         var color = getColorByDensity(businessDensity)
         polygon.setStyle({
             fillColor: color,
-            fillOpacity:0.5,
+            fillOpacity: 1,
             color: color,
             opacity: 1,
             lineJoin: "round",

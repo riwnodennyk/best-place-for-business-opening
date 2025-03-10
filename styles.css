@@ -17,7 +17,7 @@
 
 /* Target all GeoJSON polygons (your buildings) */
 .leaflet-interactive {
-    stroke-width: 7px; /* Border width */
+    stroke-width: 5px; /* Border width */
 }
 
 /* More specific targeting based on the layer type or ID */
