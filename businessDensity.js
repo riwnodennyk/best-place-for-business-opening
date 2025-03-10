@@ -19,9 +19,25 @@ function getColorByPeoplePassingBy(people) {
            people > AT_15_DENSITY ? "#cd3ea4" :  // Lighter magenta (Moderate traffic)
                                     "#f497d9";   // Soft pink (Low traffic)
 }
+// Function to get the building's address from OSM tags
+function getBuildingAddress(building) {
+    if (!building.tags) return null;
+
+    const street = building.tags["addr:street"] || "";
+    const housenumber = building.tags["addr:housenumber"] || "";
+    const city = building.tags["addr:city"] || "";
+    const postcode = building.tags["addr:postcode"] || "";
+
+    let address = `${housenumber} ${street}`.trim();
+    if (city) address += `, ${city}`;
+    if (postcode) address += ` (${postcode})`;
+
+    return address || null;
+}
+
 
 // Function to process building and business data, calculate density, and determine if the building should be shown on the map
-function processBuildingData(building, businessesResponse, calculateArea, buildingsLayer) {
+async function processBuildingData(building, businessesResponse, calculateArea, buildingsLayer) {
     const coords = building.geometry.map(pt => [pt.lat, pt.lon]);
     const polygon = L.polygon(coords);
 
@@ -86,13 +102,17 @@ function processBuildingData(building, businessesResponse, calculateArea, buildi
             lineJoin: "round",
         });
 
+        // Fetch the address
+        const address = await getBuildingAddress(building);
+
         polygon.bindPopup(`
             <b>People passing by:</b> ${peoplePassingBy} <br>
+             ${address ? `<b>Address:</b> ${address} <br>` : ""}
         `);
         // <b>Businesses per m²:</b> ${fraction} <br>
         // <b>Businesses within 100m:</b> ${businessesWithin100m} <br>
         // <b>Businesses within 200m:</b> ${businessesWithin200m}
-        
+
         buildingsLayer.addLayer(polygon);
         return true;
     }

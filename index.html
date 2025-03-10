@@ -69,7 +69,7 @@
             const { signal } = currentRequestController;
 
             let bbox = `${bounds.getSouth()},${bounds.getWest()},${bounds.getNorth()},${bounds.getEast()}`;
-            console.log("Fetching data for bbox:", bbox);
+            console.log("Start fetching data for bbox:", bbox);
 
             const buildingsQuery = `
                 [out:json][timeout:25];
@@ -124,10 +124,13 @@
             }
         }
 
-        const debouncedFetchData = debounce(fetchData, 5*1000);
+        const debouncedFetchData = debounce(fetchData, 500);
 
         function onMapMoveStart() {
             loadingIndicator.style.display = 'block'; // Show loading as soon as map starts moving
+            if (currentRequestController) {
+                currentRequestController.abort(); // Cancel previous request
+            }
         }
 
         function onMapMoveEnd() {
