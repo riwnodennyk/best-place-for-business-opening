@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estimate Foot Traffic for your business for free. Map. Start business. Plan a New Location for a Store</title>
+    <title>Estimate Foot Traffic for Your Business | Free Map Tool</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="styles.css" /> <!-- External CSS -->
 </head>
-
 <body>
     <div id="map"></div>
     <div id="loading">Loading data...</div> <!-- Loading indicator -->
@@ -20,13 +18,13 @@
 
         var mapConfig = {
             // center: [50.398, 30.619], // osokorky
-            // center: [50.398, 30.630], // pozniaky
+            center: [50.398, 30.630], // pozniaky
             // center: [50.403, 30.650], // kharkivska
             // center: [50.177, 30.318], // vasylkiv
             // center: [50.079, 29.909], // Fastiv
             // center: [52.383, 4.632], // haarlem
             // center: [50.398, 30.603], // slavutych
-            center: [51.508, -0.128], // london
+            // center: [51.508, -0.128], // london
             // center: [50.450, 30.510], // zoloti vorota
             // center: [50.440, 30.520], // besarabka
             zoom: 16,
@@ -34,7 +32,7 @@
             minZoom: 14,
         };
 
-        var map = L.map('map', {
+        const map = L.map('map', {
             center: mapConfig.center,
             zoom: mapConfig.zoom,
             minZoom: mapConfig.minZoom,
@@ -44,30 +42,40 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
-        console.log("loaded");
 
-        let buildingsLayer = L.geoJSON(null,null).addTo(map);
+        console.log("Map loaded");
 
+        let buildingsLayer = L.geoJSON(null).addTo(map);
         let lastBounds = null;
-        let currentRequestController = null; // Used to cancel ongoing fetch
+        let currentRequestController = null;
         let loadingIndicator = document.getElementById('loading');
+
+        function debounce(func, delay) {
+            let timer;
+            return function (...args) {
+                clearTimeout(timer);
+                timer = setTimeout(() => func.apply(this, args), delay);
+            };
+        }
 
         async function fetchData(bounds) {
             if (currentRequestController) {
-                currentRequestController.abort(); // Cancel previous request if it exists
+                currentRequestController.abort(); // Cancel previous request
             }
 
-            currentRequestController = new AbortController(); // Create a new controller
+            currentRequestController = new AbortController();
             const { signal } = currentRequestController;
 
             let bbox = `${bounds.getSouth()},${bounds.getWest()},${bounds.getNorth()},${bounds.getEast()}`;
 
-            let buildingsQuery = `
+            console.log("fetch started");
+            const buildingsQuery = `
                 [out:json][timeout:25];
                 way["building"](${bbox});
                 out body geom;
             `;
-            let businessesQuery = `
+
+            const businessesQuery = `
                 [out:json][timeout:25];
                 (
                     node["shop"](${bbox});
@@ -80,32 +88,29 @@
                 out body;
             `;
 
-            let buildingsUrl = "https://overpass-api.de/api/interpreter?data=" + encodeURIComponent(buildingsQuery);
-            let businessesUrl = "https://overpass-api.de/api/interpreter?data=" + encodeURIComponent(businessesQuery);
+            const buildingsUrl = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(buildingsQuery)}`;
+            const businessesUrl = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(businessesQuery)}`;
 
             try {
                 loadingIndicator.style.display = 'block'; // Show loading indicator
 
-                let [buildingsResponse, businessesResponse] = await Promise.all([
+                const [buildingsResponse, businessesResponse] = await Promise.all([
                     fetch(buildingsUrl, { signal }).then(res => res.json()),
                     fetch(businessesUrl, { signal }).then(res => res.json())
                 ]);
 
-                buildingsLayer.clearLayers(); // Remove previous data
-
+                buildingsLayer.clearLayers(); // Remove old data
                 let foundBuildings = false;
 
                 buildingsResponse.elements.forEach(building => {
                     if (building.type === "way" && building.geometry) {
                         const isBuildingProcessed = processBuildingData(building, businessesResponse, calculateArea, buildingsLayer);
-                        if (isBuildingProcessed) {
-                            foundBuildings = true;
-                        }
+                        if (isBuildingProcessed) foundBuildings = true;
                     }
                 });
 
                 if (!foundBuildings) {
-                    console.warn("No buildings with sufficient business density found in this viewport.");
+                    console.warn("No buildings with sufficient business density found.");
                 }
 
             } catch (error) {
@@ -117,17 +122,18 @@
             }
         }
 
+        const debouncedFetchData = debounce(fetchData, 2 * 1000); // 2 seconds
+
         function onMapMoveEnd() {
-            let bounds = map.getBounds();
-            let currentBoundsString = bounds.toBBoxString();
+            const bounds = map.getBounds();
+            const currentBoundsString = bounds.toBBoxString();
 
             if (lastBounds !== currentBoundsString) {
                 lastBounds = currentBoundsString;
-                fetchData(bounds);
+                debouncedFetchData(bounds);
             }
         }
 
-        // Load data immediately on launch
         map.whenReady(() => {
             fetchData(map.getBounds());
         });

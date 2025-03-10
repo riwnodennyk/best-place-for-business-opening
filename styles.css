@@ -1,6 +1,4 @@
-#map {
-    height: 100vh;
-}
+
 
 #loading {
     position: absolute;
@@ -8,11 +6,16 @@
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 8px 12px;
+    color: #fff;
+    padding: 8px 16px;
     border-radius: 5px;
+    display: none;
     font-size: 14px;
-    display: none; /* Initially hidden */
+    z-index: 1000;
+}
+#map {
+    width: 100%;
+    height: 100vh;
 }
 
 /* Target all GeoJSON polygons (your buildings) */
