@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Density Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map { height: 100vh; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([50.4501, 30.5234], 13); // Centered on Kyiv
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        
+        async function fetchBusinessData() {
+            let query = `
+                [out:json][timeout:25];
+                (
+                    node["shop"](around:50000,50.4501,30.5234);
+                    node["office"](around:50000,50.4501,30.5234);
+                    node["amenity"="restaurant"](around:50000,50.4501,30.5234);
+                );
+                out body;
+                >;
+                out skel qt;
+            `;
+            let url = "https://overpass-api.de/api/interpreter?data=" + encodeURIComponent(query);
+            let response = await fetch(url);
+            let data = await response.json();
+            
+            let buildingCounts = {};
+            
+            data.elements.forEach(element => {
+                if (element.tags && element.tags["addr:housenumber"] && element.tags["addr:street"]) {
+                    let address = `${element.tags["addr:housenumber"]} ${element.tags["addr:street"]}`;
+                    buildingCounts[address] = (buildingCounts[address] || 0) + 1;
+                }
+            });
+            
+            for (let address in buildingCounts) {
+                if (buildingCounts[address] >= 3) {
+                    let matchingNode = data.elements.find(el => el.tags && `${el.tags["addr:housenumber"]} ${el.tags["addr:street"]}` === address);
+                    if (matchingNode) {
+                        L.circleMarker([matchingNode.lat, matchingNode.lon], {
+                            color: 'red',
+                            radius: 8,
+                            fillOpacity: 0.6
+                        }).addTo(map).bindPopup(`Address: ${address}<br>Businesses: ${buildingCounts[address]}`);
+                    }
+                }
+            }
+        }
+        
+        fetchBusinessData();
+    </script>
+</body>
+</html>
