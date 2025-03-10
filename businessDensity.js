@@ -1,6 +1,8 @@
-const AT_25_DENSITY = 25;
-const AT_15_DENSITY = 15;
-const LOW_DENSITY = 1;
+const AT_50_DENSITY = 50;  // Very high foot traffic
+const AT_35_DENSITY = 35;  // High foot traffic
+const AT_25_DENSITY = 25;  // Medium-high traffic
+const AT_15_DENSITY = 15;  // Moderate traffic
+const LOW_DENSITY = 1;     // Low traffic
 
 // Function to calculate business density (businesses per square meter)
 function calculateBusinessDensity(buildingArea, businessesInBuilding) {
@@ -9,7 +11,11 @@ function calculateBusinessDensity(buildingArea, businessesInBuilding) {
 
 // Function to get the color based on people passing by
 function getColorByPeoplePassingBy(people) {
-    return people > AT_25_DENSITY ? "#811963" : people > AT_15_DENSITY ? '#cd3ea4' : '#f497d9';
+    return people > AT_50_DENSITY ? "#4b0f3d" :  // Dark purple (Very high traffic)
+           people > AT_35_DENSITY ? "#630f4f" :  // Deep magenta (High traffic)
+           people > AT_25_DENSITY ? "#811963" :  // Strong purple (Medium-high traffic)
+           people > AT_15_DENSITY ? "#cd3ea4" :  // Lighter magenta (Moderate traffic)
+                                    "#f497d9";   // Soft pink (Low traffic)
 }
 
 // Function to process building and business data, calculate density, and determine if the building should be shown on the map
