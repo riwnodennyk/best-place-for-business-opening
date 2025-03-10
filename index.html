@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="styles.css" /> <!-- External CSS -->
 </head>
+
 <body>
     <div id="map"></div>
     <div id="loading">Loading data...</div> <!-- Loading indicator -->
@@ -14,10 +16,10 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         var mapConfig = {
-            center: [50.397, 30.612],
-            zoom: 16, 
-            maxZoom: 16,
-            minZoom: 14, 
+            center: [50.398, 30.617],
+            zoom: 15,
+            maxZoom: 20,
+            minZoom: 14,
         };
 
         var map = L.map('map', {
@@ -32,12 +34,38 @@
         }).addTo(map);
 
         let buildingsLayer = L.geoJSON(null, {
-            style: { color: 'red', weight: 1, fillOpacity: 0.6 }
+            style: { color: 'yellow', weight: 1, fillOpacity: 0.6 }
         }).addTo(map);
 
         let lastBounds = null;
         let currentRequestController = null; // Used to cancel ongoing fetch
         let loadingIndicator = document.getElementById('loading');
+
+        // Function to calculate the area of a polygon in square meters using the Shoelace Theorem
+        function calculateArea(polygon) {
+            let latLngs = polygon.getLatLngs()[0];
+            let area = 0;
+
+            for (let i = 0; i < latLngs.length; i++) {
+                let j = (i + 1) % latLngs.length; // next point, wrapping around
+                let lat1 = latLngs[i].lat;
+                let lon1 = latLngs[i].lng;
+                let lat2 = latLngs[j].lat;
+                let lon2 = latLngs[j].lng;
+
+                area += lon1 * lat2 - lon1 * lat1 - lon2 * lat1 + lon2 * lat2;
+            }
+
+            area = Math.abs(area) / 2;
+
+            // Convert the area from degrees² to square meters (approximate conversion)
+            // This is a rough approximation and may vary with latitudes and the Earth's curvature
+            const latLngAreaFactor = 111319; // 1 degree of latitude is approx 111.319 km
+            let areaInSquareMeters = area * latLngAreaFactor * latLngAreaFactor;
+
+            return areaInSquareMeters;
+        }
+
 
         async function fetchData(bounds) {
             if (currentRequestController) {
@@ -84,12 +112,19 @@
                         let coords = building.geometry.map(pt => [pt.lat, pt.lon]);
                         let polygon = L.polygon(coords);
 
-                        let count = businessesResponse.elements.filter(business => {
+                        // Calculate the area of the building in square meters
+                        let buildingArea = calculateArea(polygon);
+
+                        // Count businesses inside the building's bounds
+                        let businessesInBuilding = businessesResponse.elements.filter(business => {
                             return polygon.getBounds().contains([business.lat, business.lon]);
                         }).length;
 
-                        if (count >= 3) {
-                            polygon.bindPopup(`Businesses: ${count}`);
+                        // Calculate business density (businesses per square meter)
+                        let businessDensity = buildingArea > 0 ? businessesInBuilding / buildingArea : 0;
+
+                        if (businessDensity >= 0.001) { // Set your own threshold for density here
+                            polygon.bindPopup(`Businesses per m²: ${businessDensity.toFixed(4)}`);
                             buildingsLayer.addLayer(polygon);
                             foundBuildings = true;
                         }
@@ -97,7 +132,7 @@
                 });
 
                 if (!foundBuildings) {
-                    console.warn("No buildings with 3+ businesses found in this viewport.");
+                    console.warn("No buildings with sufficient business density found in this viewport.");
                 }
 
             } catch (error) {
