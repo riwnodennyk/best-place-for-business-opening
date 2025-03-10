@@ -75,8 +75,8 @@ async function processBuildingData(building, businessesResponse, calculateArea, 
     // Define coefficients for weighting each density factor
     const coefBuildingDensity = 0.1;
     const coef100mDensity = 1;
-    const coef200mDensity = 0.9;
-    const coef300mDensity = 0.5;
+    const coef200mDensity = 1;
+    const coef300mDensity = 1;
     
     // Calculate people passing by using a weighted model
     const densityWeightSum = coefBuildingDensity + coef100mDensity + coef200mDensity + coef300mDensity;
@@ -85,7 +85,7 @@ async function processBuildingData(building, businessesResponse, calculateArea, 
         (businessesWithin100m * coef100mDensity) + 
         (businessesWithin200m * coef200mDensity) + 
         (businessesWithin300m * coef300mDensity)
-    ) * 0.6 / densityWeightSum;
+    ) * 0.25 / densityWeightSum;
 
     peoplePassingBy = Math.round(peoplePassingBy); // Round to avoid excessive decimals
 

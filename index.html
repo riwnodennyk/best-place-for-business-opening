@@ -11,43 +11,14 @@
 
 <body>
     <div id="map"></div>
-    <div id="loading">Calculating Foot Traffic in the Area...</div> <!-- Loading indicator -->
-
+    <div id="loading">Calculating Foot Traffic in the Area...</div>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script type="module">
         import { calculateArea } from './calculateArea.js';
         import { processBuildingData } from './businessDensity.js';
 
-        var mapConfig = {
-            // center: [50.177, 30.318], // Vasylkiv
-            // center: [50.079, 29.909], // Fastiv
-            // center: [50.398, 30.619], // osokorky
-            // center: [50.398, 30.630], // pozniaky
-            // center: [50.403, 30.650], // kharkivska
-            // center: [50.398, 30.603], // Slavutych
-            // center: [50.450, 30.510], // Zoloti vorota
-            // center: [50.440, 30.520], // Besarabka
-            center: [52.383, 4.632], // Haarlem
-            // center: [51.508, -0.128], // london
-            zoom: 16,
-            maxZoom: 18,
-            minZoom: 14,
-        };
-
-        const map = L.map('map', {
-            center: mapConfig.center,
-            zoom: mapConfig.zoom,
-            minZoom: mapConfig.minZoom,
-            maxZoom: mapConfig.maxZoom
-        });
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
-
-        console.log("Map loaded");
-
-        let buildingsLayer = L.geoJSON(null).addTo(map);
+        let map;
+        let buildingsLayer;
         let lastBounds = null;
         let currentRequestController = null;
         let loadingIndicator = document.getElementById('loading');
@@ -58,6 +29,50 @@
                 clearTimeout(timer);
                 timer = setTimeout(() => func.apply(this, args), delay);
             };
+        }
+        async function getUserLocation() {
+            // return {lat: 50.177,lon:  30.318}; // Vasylkiv
+            // return {lat: 50.079,lon:  29.909}; // Fastiv
+            // return {lat: 50.398,lon: 30.619}; // osokorky
+            // return {lat: 50.398, lon: 30.630}; // pozniaky
+            // return {lat: 50.403,lon:  30.650}; // kharkivska
+            // return {lat: 50.398,lon:  30.603}; // Slavutych
+            // return {lat: 50.450,lon:  30.510}; // Zoloti vorota
+            // return {lat: 50.440, lon: 30.520}; // Besarabka
+            // return {lat: 52.383, lon: 4.632}; // Haarlem
+            // return {lat: 51.508, lon: -0.128}; // london
+           
+            try {
+                const response = await fetch("https://geolocation-db.com/json/");
+                const data = await response.json();
+
+                console.log("User Location: ", data.latitude, data.longitude);
+                return { lat: data.latitude, lon: data.longitude };
+            } catch (error) {
+                console.warn("Could not fetch user location, using default:", error);
+                return { lat: 1, lon: 1 }; // Default location
+            }
+        }
+
+        async function initializeMap() {
+            const userLocation = await getUserLocation();
+
+            map = L.map('map', {
+                center: [userLocation.lat, userLocation.lon],
+                zoom: 16,
+                minZoom: 15,
+                maxZoom: 18
+            });
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            buildingsLayer = L.geoJSON(null).addTo(map);
+            map.whenReady(() => fetchData(map.getBounds()));
+
+            map.on("movestart", onMapMoveStart);
+            map.on("moveend", onMapMoveEnd);
         }
 
         async function fetchData(bounds) {
@@ -93,14 +108,14 @@
             const businessesUrl = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(businessesQuery)}`;
 
             try {
-                loadingIndicator.style.display = 'block'; // Keep loading indicator visible
+                loadingIndicator.style.display = 'block';
 
                 const [buildingsResponse, businessesResponse] = await Promise.all([
                     fetch(buildingsUrl, { signal }).then(res => res.json()),
                     fetch(businessesUrl, { signal }).then(res => res.json())
                 ]);
 
-                buildingsLayer.clearLayers(); // Remove old data
+                buildingsLayer.clearLayers();
                 let foundBuildings = false;
 
                 buildingsResponse.elements.forEach(building => {
@@ -127,9 +142,9 @@
         const debouncedFetchData = debounce(fetchData, 500);
 
         function onMapMoveStart() {
-            loadingIndicator.style.display = 'block'; // Show loading as soon as map starts moving
+            loadingIndicator.style.display = 'block';
             if (currentRequestController) {
-                currentRequestController.abort(); // Cancel previous request
+                currentRequestController.abort();
             }
         }
 
@@ -143,12 +158,7 @@
             }
         }
 
-        map.whenReady(() => {
-            fetchData(map.getBounds());
-        });
-
-        map.on("movestart", onMapMoveStart); // Show "loading" when moving starts
-        map.on("moveend", onMapMoveEnd);     // Fetch data when moving stops
+        initializeMap(); // Start the map initialization
     </script>
 </body>
 
