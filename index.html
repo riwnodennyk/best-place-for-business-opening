@@ -67,8 +67,8 @@
             const { signal } = currentRequestController;
 
             let bbox = `${bounds.getSouth()},${bounds.getWest()},${bounds.getNorth()},${bounds.getEast()}`;
+            console.log("Fetching data for bbox:", bbox);
 
-            console.log("fetch started");
             const buildingsQuery = `
                 [out:json][timeout:25];
                 way["building"](${bbox});
@@ -82,8 +82,8 @@
                     node["office"](${bbox});
                     node["tourism"~"museum|attraction|gallery"](${bbox});
                     node["leisure"~"park|garden"](${bbox});
-                    node[railway~"station|subway_entrance|tram_stop"](${bbox});
-                    node[amenity~"restaurant|cafe|fast_food|pub|bar|marketplace|school|university|cinema|theatre|pharmacy|supermarket|mall|bank|bureau_de_change"](${bbox});
+                    node["railway"~"station|subway_entrance|tram_stop"](${bbox});
+                    node[amenity"~"restaurant|cafe|fast_food|pub|bar|marketplace|school|university|cinema|theatre|pharmacy|supermarket|mall|bank|bureau_de_change"](${bbox});
                 );
                 out body;
             `;
@@ -92,7 +92,7 @@
             const businessesUrl = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(businessesQuery)}`;
 
             try {
-                loadingIndicator.style.display = 'block'; // Show loading indicator
+                loadingIndicator.style.display = 'block'; // Keep loading indicator visible
 
                 const [buildingsResponse, businessesResponse] = await Promise.all([
                     fetch(buildingsUrl, { signal }).then(res => res.json()),
@@ -118,11 +118,15 @@
                     console.error("Error fetching data:", error);
                 }
             } finally {
-                loadingIndicator.style.display = 'none'; // Hide loading indicator
+                loadingIndicator.style.display = 'none'; // Hide loading indicator once fetching completes
             }
         }
 
-        const debouncedFetchData = debounce(fetchData, 2 * 1000); // 2 seconds
+        const debouncedFetchData = debounce(fetchData, 2000); // 2-second debounce delay
+
+        function onMapMoveStart() {
+            loadingIndicator.style.display = 'block'; // Show loading as soon as map starts moving
+        }
 
         function onMapMoveEnd() {
             const bounds = map.getBounds();
@@ -138,7 +142,8 @@
             fetchData(map.getBounds());
         });
 
-        map.on("moveend", onMapMoveEnd);
+        map.on("movestart", onMapMoveStart); // Show "loading" when moving starts
+        map.on("moveend", onMapMoveEnd);     // Fetch data when moving stops
     </script>
 </body>
 </html>
