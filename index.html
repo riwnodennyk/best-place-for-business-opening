@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="styles.css" /> <!-- External CSS -->
 </head>
+
 <body>
     <div id="map"></div>
     <div id="loading">Loading data...</div> <!-- Loading indicator -->
@@ -115,13 +117,14 @@
             } catch (error) {
                 if (error.name !== "AbortError") {
                     console.error("Error fetching data:", error);
-                }else{
-                console.error("Other Error");
-            }} finally {
+                } else {
+                    console.error("AbortError");
+                }
+            } finally {
             }
         }
 
-        const debouncedFetchData = debounce(fetchData, 2000); // 2-second debounce delay
+        const debouncedFetchData = debounce(fetchData, 500); // 500 miliseconds 
 
         function onMapMoveStart() {
             loadingIndicator.style.display = 'block'; // Show loading as soon as map starts moving
@@ -145,4 +148,5 @@
         map.on("moveend", onMapMoveEnd);     // Fetch data when moving stops
     </script>
 </body>
+
 </html>
