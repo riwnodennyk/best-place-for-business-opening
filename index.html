@@ -13,52 +13,84 @@
     <div id="map"></div>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        var map = L.map('map').setView([50.4501, 30.5234], 13); // Centered on Kyiv
-        
+        var mapConfig = {
+            center: [50.4501, 30.5234],  // Kyiv
+            zoom: 15 // Default zoom level
+        };
+
+        var map = L.map('map').setView(mapConfig.center, mapConfig.zoom);
+
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
-        
-        async function fetchBusinessData() {
-            let query = `
+
+        let buildingsLayer = L.geoJSON(null, {
+            style: { color: 'red', weight: 1, fillOpacity: 0.6 }
+        }).addTo(map);
+
+        let lastBounds = null;
+
+        async function fetchData(bounds) {
+            let bbox = `${bounds.getSouth()},${bounds.getWest()},${bounds.getNorth()},${bounds.getEast()}`;
+
+            let buildingsQuery = `
+                [out:json][timeout:25];
+                way["building"](${bbox});
+                out body geom;
+            `;
+            let businessesQuery = `
                 [out:json][timeout:25];
                 (
-                    node["shop"](around:50000,50.4501,30.5234);
-                    node["office"](around:50000,50.4501,30.5234);
-                    node["amenity"="restaurant"](around:50000,50.4501,30.5234);
+                    node["shop"](${bbox});
+                    node["office"](${bbox});
+                    node["amenity"="restaurant"](${bbox});
                 );
                 out body;
-                >;
-                out skel qt;
             `;
-            let url = "https://overpass-api.de/api/interpreter?data=" + encodeURIComponent(query);
-            let response = await fetch(url);
-            let data = await response.json();
-            
-            let buildingCounts = {};
-            
-            data.elements.forEach(element => {
-                if (element.tags && element.tags["addr:housenumber"] && element.tags["addr:street"]) {
-                    let address = `${element.tags["addr:housenumber"]} ${element.tags["addr:street"]}`;
-                    buildingCounts[address] = (buildingCounts[address] || 0) + 1;
-                }
-            });
-            
-            for (let address in buildingCounts) {
-                if (buildingCounts[address] >= 3) {
-                    let matchingNode = data.elements.find(el => el.tags && `${el.tags["addr:housenumber"]} ${el.tags["addr:street"]}` === address);
-                    if (matchingNode) {
-                        L.circleMarker([matchingNode.lat, matchingNode.lon], {
-                            color: 'red',
-                            radius: 8,
-                            fillOpacity: 0.6
-                        }).addTo(map).bindPopup(`Address: ${address}<br>Businesses: ${buildingCounts[address]}`);
+
+            let buildingsUrl = "https://overpass-api.de/api/interpreter?data=" + encodeURIComponent(buildingsQuery);
+            let businessesUrl = "https://overpass-api.de/api/interpreter?data=" + encodeURIComponent(businessesQuery);
+
+            try {
+                let [buildingsResponse, businessesResponse] = await Promise.all([
+                    fetch(buildingsUrl).then(res => res.json()),
+                    fetch(businessesUrl).then(res => res.json())
+                ]);
+
+                buildingsLayer.clearLayers(); // Remove previous data
+
+                buildingsResponse.elements.forEach(building => {
+                    if (building.type === "way" && building.geometry) {
+                        let coords = building.geometry.map(pt => [pt.lat, pt.lon]);
+                        let polygon = L.polygon(coords);
+
+                        let count = businessesResponse.elements.filter(business => {
+                            return polygon.getBounds().contains([business.lat, business.lon]);
+                        }).length;
+
+                        if (count >= 3) {
+                            polygon.bindPopup(`Businesses: ${count}`);
+                            buildingsLayer.addLayer(polygon);
+                        }
                     }
-                }
+                });
+            } catch (error) {
+                console.error("Error fetching data:", error);
             }
         }
-        
-        fetchBusinessData();
+
+        function onMapMoveEnd() {
+            let bounds = map.getBounds();
+            let currentBoundsString = bounds.toBBoxString();
+
+            if (lastBounds !== currentBoundsString) {
+                lastBounds = currentBoundsString;
+                fetchData(bounds);
+            }
+        }
+
+        map.on("moveend", onMapMoveEnd);
+        fetchData(map.getBounds()); // Load initial data
     </script>
 </body>
 </html>
