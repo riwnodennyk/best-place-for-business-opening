@@ -1,6 +1,7 @@
 // businessDensity.js
-
-const BUSINESS_DENSITY_THRESHOLD = 1/500;
+const BUSINESS_DENSITY_GREEN_THRESHOLD = 1/500;
+const DENSITY_COLOR_ORANGE_THRESHOLD = 1/200; 
+const DENSITY_COLOR_RED_THRESHOLD = 1/100;  
 
 // Function to calculate business density (businesses per square meter)
 function calculateBusinessDensity(buildingArea, businessesInBuilding) {
@@ -9,7 +10,7 @@ function calculateBusinessDensity(buildingArea, businessesInBuilding) {
 
 // Function to get the color based on business density
 function getColorByDensity(density) {
-    return density > 0.01 ? 'red' : density > 0.005 ? 'orange' : 'green';
+    return density > DENSITY_COLOR_RED_THRESHOLD ? 'red' : density > DENSITY_COLOR_ORANGE_THRESHOLD ? 'orange' : 'green';
 }
 
 // Function to process building and business data, calculate density, and determine if the building should be shown on the map
@@ -28,7 +29,7 @@ function processBuildingData(building, businessesResponse, calculateArea, buildi
     // Calculate business density
     let businessDensity = calculateBusinessDensity(buildingArea, businessesInBuilding);
 
-    if (businessDensity >= BUSINESS_DENSITY_THRESHOLD) { // Set your own threshold for density here
+    if (businessDensity >= BUSINESS_DENSITY_GREEN_THRESHOLD) { // Set your own threshold for density here
         const fractionDenominator = (1 / businessDensity).toFixed(0); // Convert density to fraction form
         const fraction = `1/${fractionDenominator}`; // Format it as "1/200"
 
