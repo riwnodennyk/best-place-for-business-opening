@@ -82,9 +82,8 @@
                     node["office"](${bbox});
                     node["tourism"~"museum|attraction|gallery"](${bbox});
                     node["leisure"~"park|garden"](${bbox});
-                    node["railway"~"station|subway_entrance|tram_stop"](${bbox});
-                    node[amenity"~"restaurant|cafe|fast_food|pub|bar|marketplace|school|university|cinema|theatre|pharmacy|supermarket|mall|bank|bureau_de_change"](${bbox});
-                );
+                    node[railway~"station|subway_entrance|tram_stop"](${bbox});
+                    node[amenity~"restaurant|cafe|fast_food|pub|bar|marketplace|school|university|cinema|theatre|pharmacy|supermarket|mall|bank|bureau_de_change"](${bbox});                );
                 out body;
             `;
 
@@ -112,13 +111,13 @@
                 if (!foundBuildings) {
                     console.warn("No buildings with sufficient business density found.");
                 }
-
+                loadingIndicator.style.display = 'none'; // Hide loading indicator once fetching completes
             } catch (error) {
                 if (error.name !== "AbortError") {
                     console.error("Error fetching data:", error);
-                }
-            } finally {
-                loadingIndicator.style.display = 'none'; // Hide loading indicator once fetching completes
+                }else{
+                console.error("Other Error");
+            }} finally {
             }
         }
 
