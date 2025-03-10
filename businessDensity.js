@@ -1,7 +1,7 @@
 // businessDensity.js
-const TOP_DENSITY = 1/200;  // less than 1/200 // approximate 30 people passing
-const MID_DENSITY = 1/400;  // 1/200 to 1/400 // approximate 20 people passing
-const LOW_DENSITY = 1/500; // 1/300 to 1/500 // approximate 15 people passing
+const AT_25_DENSITY = 25;
+const AT_15_DENSITY = 15;
+const LOW_DENSITY = 1;
 
 // Function to calculate business density (businesses per square meter)
 function calculateBusinessDensity(buildingArea, businessesInBuilding) {
@@ -9,8 +9,8 @@ function calculateBusinessDensity(buildingArea, businessesInBuilding) {
 }
 
 // Function to get the color based on business density
-function getColorByDensity(density) {
-    return density > TOP_DENSITY ? "#811963" : density > MID_DENSITY ? '#cd3ea4' : '#f497d9';
+function getColorByPeoplePassingBy(people) {
+    return people > AT_25_DENSITY ? "#811963" : people > AT_15_DENSITY ? '#cd3ea4' : '#f497d9';
 }
 
 // Function to process building and business data, calculate density, and determine if the building should be shown on the map
@@ -29,12 +29,33 @@ function processBuildingData(building, businessesResponse, calculateArea, buildi
     // Calculate business density
     let businessDensity = calculateBusinessDensity(buildingArea, businessesInBuilding);
 
-    if (businessDensity >= LOW_DENSITY) { // Set your own threshold for density here
+    // Count businesses within a 100-meter radius
+    let businessesNearby = businessesResponse.elements.filter(business => {
+        let distance = polygon.getBounds().getCenter().distanceTo([business.lat, business.lon]);
+        return distance <= 100;
+    }).length;
+
+    let businessesWithin200Meters = businessesResponse.elements.filter(business => {
+        let distance = polygon.getBounds().getCenter().distanceTo([business.lat, business.lon]);
+        return distance <= 200;
+    }).length;
+
+    // Main Formula 
+    var coefBuildingBusinessDensity = 0.6;
+    var coef100meterDensity = 1;
+    var coef200meterDensity = 1;
+
+    var peoplePassingBy = (businessDensity * 2000 * coefBuildingBusinessDensity
+         + businessesNearby  *coef100meterDensity
+        + businessesWithin200Meters* coef200meterDensity) * 0.15 * (3/(coefBuildingBusinessDensity+
+            coef100meterDensity+coef200meterDensity
+        ));
+
+    if (peoplePassingBy >= LOW_DENSITY) { // Set your own threshold for density here
         const fractionDenominator = (1 / businessDensity).toFixed(0); // Convert density to fraction form
         const fraction = `1/${fractionDenominator}`; // Format it as "1/200"
 
-        // Set the fillColor based on density
-        var color = getColorByDensity(businessDensity)
+        var color = getColorByPeoplePassingBy(peoplePassingBy);
         polygon.setStyle({
             fillColor: color,
             fillOpacity: 1,
@@ -42,14 +63,19 @@ function processBuildingData(building, businessesResponse, calculateArea, buildi
             opacity: 1,
             lineJoin: "round",
         });
-        console.log("color set ", color);
-        polygon.bindPopup(`Businesses per m²: ${fraction}`);
-        buildingsLayer.addLayer(polygon);
 
+        polygon.bindPopup(
+            `People passing by: ${peoplePassingBy} <br>
+            Businesses per m²: ${fraction} <br>
+             Businesses within 100m: ${businessesNearby} <br>
+             Businesses within 200m: ${businessesWithin200Meters}`
+        );
+        
+        buildingsLayer.addLayer(polygon);
         return true;
     }
 
     return false;
 }
 
-export { processBuildingData, calculateBusinessDensity, getColorByDensity };
+export { processBuildingData, calculateBusinessDensity, getColorByPeoplePassingBy };

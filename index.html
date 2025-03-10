@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Density Map</title>
+    <title>Estimate Foot Traffic for your business for free. Map. Start business. Plan a New Location for a Store</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="styles.css" /> <!-- External CSS -->
 </head>
@@ -20,8 +20,15 @@
 
         var mapConfig = {
             // center: [50.398, 30.619], // osokorky
+            // center: [50.398, 30.630], // pozniaky
+            // center: [50.403, 30.650], // kharkivska
+            // center: [50.177, 30.318], // vasylkiv
+            // center: [50.079, 29.909], // Fastiv
+            // center: [52.383, 4.632], // haarlem
+            // center: [50.398, 30.603], // slavutych
+            center: [51.508, -0.128], // london
             // center: [50.450, 30.510], // zoloti vorota
-            center: [50.440, 30.520], // besarabka
+            // center: [50.440, 30.520], // besarabka
             zoom: 16,
             maxZoom: 18,
             minZoom: 14,
@@ -65,7 +72,10 @@
                 (
                     node["shop"](${bbox});
                     node["office"](${bbox});
-                    node["amenity"="restaurant"](${bbox});
+                    node["tourism"~"museum|attraction|gallery"](${bbox});
+                    node["leisure"~"park|garden"](${bbox});
+                    node[railway~"station|subway_entrance|tram_stop"](${bbox});
+                    node[amenity~"restaurant|cafe|fast_food|pub|bar|marketplace|school|university|cinema|theatre|pharmacy|supermarket|mall|bank|bureau_de_change"](${bbox});
                 );
                 out body;
             `;
