@@ -1,7 +1,7 @@
 // businessDensity.js
-const BUSINESS_DENSITY_GREEN_THRESHOLD = 1/500;
-const DENSITY_COLOR_ORANGE_THRESHOLD = 1/200; 
-const DENSITY_COLOR_RED_THRESHOLD = 1/100;  
+const DENSITY_COLOR_RED_THRESHOLD = 1/200;  // less than 1/200 // approximate 30 people passing
+const DENSITY_COLOR_ORANGE_THRESHOLD = 1/400;  // 1/200 to 1/400 // approximate 20 people passing
+const BUSINESS_DENSITY_GREEN_THRESHOLD = 1/500; // 1/300 to 1/500 // approximate 15 people passing
 
 // Function to calculate business density (businesses per square meter)
 function calculateBusinessDensity(buildingArea, businessesInBuilding) {
@@ -34,8 +34,15 @@ function processBuildingData(building, businessesResponse, calculateArea, buildi
         const fraction = `1/${fractionDenominator}`; // Format it as "1/200"
 
         // Set the fillColor based on density
-        polygon.options.fillColor = getColorByDensity(businessDensity);
-
+        var color = getColorByDensity(businessDensity)
+        polygon.setStyle({
+            fillColor: color,
+            fillOpacity:0.5,
+            color: color,
+            opacity: 1,
+            lineJoin: "round",
+        });
+        console.log("color set ", color);
         polygon.bindPopup(`Businesses per m²: ${fraction}`);
         buildingsLayer.addLayer(polygon);
 

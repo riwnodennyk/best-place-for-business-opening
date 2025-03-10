@@ -14,3 +14,19 @@
     font-size: 14px;
     display: none; /* Initially hidden */
 }
+
+/* Target all GeoJSON polygons (your buildings) */
+.leaflet-interactive {
+    stroke-width: 7px; /* Border width */
+}
+
+/* More specific targeting based on the layer type or ID */
+#building-layer {
+}
+
+/* Targeting individual buildings based on properties set in JavaScript */
+.leaflet-geojson .leaflet-interactive {
+}
+
+.building-feature {
+}

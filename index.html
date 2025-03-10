@@ -18,11 +18,11 @@
         import { calculateArea } from './calculateArea.js';
         import { processBuildingData } from './businessDensity.js';
 
-
         var mapConfig = {
-            center: [50.398, 30.617],
-            zoom: 15,
-            maxZoom: 20,
+            // center: [50.398, 30.619], // osokorky
+            center: [50.450, 30.510], // zoloti vorota
+            zoom: 16,
+            maxZoom: 18,
             minZoom: 14,
         };
 
@@ -36,17 +36,9 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
+        console.log("loaded");
 
-        let buildingsLayer = L.geoJSON(null, {
-            style: (feature) => {
-                return {
-                    color: 'red',        // Border color of the building
-                    fillColor: feature.properties.fillColor || 'red', // Dynamic fill color
-                    weight: 1,           // Border weight
-                    fillOpacity: 0.6     // Fill opacity
-                };
-            }
-        }).addTo(map);
+        let buildingsLayer = L.geoJSON(null,null).addTo(map);
 
         let lastBounds = null;
         let currentRequestController = null; // Used to cancel ongoing fetch
