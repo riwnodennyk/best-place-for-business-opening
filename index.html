@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Density Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-        #map { height: 100vh; }
-    </style>
+    <link rel="stylesheet" href="styles.css" /> <!-- Link to external CSS -->
 </head>
 <body>
     <div id="map"></div>
+    <div id="loading">Loading data...</div> <!-- Loading indicator -->
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         var mapConfig = {
@@ -29,8 +29,17 @@
         }).addTo(map);
 
         let lastBounds = null;
+        let currentRequestController = null; // Used to cancel ongoing fetch
+        let loadingIndicator = document.getElementById('loading');
 
         async function fetchData(bounds) {
+            if (currentRequestController) {
+                currentRequestController.abort(); // Cancel previous request if it exists
+            }
+
+            currentRequestController = new AbortController(); // Create a new controller
+            const { signal } = currentRequestController;
+
             let bbox = `${bounds.getSouth()},${bounds.getWest()},${bounds.getNorth()},${bounds.getEast()}`;
 
             let buildingsQuery = `
@@ -52,9 +61,11 @@
             let businessesUrl = "https://overpass-api.de/api/interpreter?data=" + encodeURIComponent(businessesQuery);
 
             try {
+                loadingIndicator.style.display = 'block'; // Show loading indicator
+
                 let [buildingsResponse, businessesResponse] = await Promise.all([
-                    fetch(buildingsUrl).then(res => res.json()),
-                    fetch(businessesUrl).then(res => res.json())
+                    fetch(buildingsUrl, { signal }).then(res => res.json()),
+                    fetch(businessesUrl, { signal }).then(res => res.json())
                 ]);
 
                 buildingsLayer.clearLayers(); // Remove previous data
@@ -74,8 +85,13 @@
                         }
                     }
                 });
+
             } catch (error) {
-                console.error("Error fetching data:", error);
+                if (error.name !== "AbortError") {
+                    console.error("Error fetching data:", error);
+                }
+            } finally {
+                loadingIndicator.style.display = 'none'; // Hide loading indicator
             }
         }
 
@@ -89,8 +105,12 @@
             }
         }
 
+        // Load data immediately on launch
+        map.whenReady(() => {
+            fetchData(map.getBounds());
+        });
+
         map.on("moveend", onMapMoveEnd);
-        fetchData(map.getBounds()); // Load initial data
     </script>
 </body>
 </html>
