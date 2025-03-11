@@ -13,38 +13,38 @@ html, body, #map {
     padding: 0;
 }
 
-/* ✅ Glassmorphism Title Block at Bottom */
+/* ✅ High-Contrast Title Block at Bottom */
 .header-overlay {
     position: absolute;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
+    background: rgba(0, 0, 0, 0.8); /* Darker contrast */
     backdrop-filter: blur(10px);
-    color: white;
-    padding: 15px 20px;
-    border-radius: 12px;
+    color: #fff;
+    padding: 18px 24px;
+    border-radius: 14px;
     text-align: center;
     width: 90%;
     max-width: 600px;
     z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     transition: opacity 0.5s ease-in-out;
 }
 
-/* ✅ Text Styling */
+/* ✅ Improved Text Contrast */
 .header-overlay h1 {
     font-size: 24px;
-    font-weight: 600;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    font-weight: 700;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
 }
 
 .header-overlay p {
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 400;
     margin-top: 8px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* ✅ Fade-out effect for hiding the title block */
@@ -59,12 +59,12 @@ html, body, #map {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
     color: white;
-    padding: 12px 24px;
-    border-radius: 6px;
+    padding: 14px 28px;
+    border-radius: 8px;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 500;
     z-index: 1000;
     display: none;
     animation: fadein 0.3s ease-in-out;
@@ -86,7 +86,7 @@ html, body, #map {
 @media (max-width: 600px) {
     .header-overlay {
         width: 95%;
-        padding: 12px;
+        padding: 15px;
     }
     .header-overlay h1 {
         font-size: 20px;
