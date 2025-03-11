@@ -57,29 +57,34 @@
             ]
           }
     </script>
-
+    
     <!-- ✅ External Stylesheets -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 </head>
 
 <body>
-    <!-- ✅ Structured Headings for SEO -->
-    <header>
+
+    <!-- ✅ Header Overlay -->
+    <header class="header-overlay" id="title-block">
         <h1>Estimate Foot Traffic for Your Business</h1>
-        <p>Use our free map tool to analyze foot traffic and find the best location for your store, restaurant, or
-            office.</p>
+        <p>Analyze foot traffic and find the best location for your store, restaurant, or office.</p>
     </header>
 
-    <!-- ✅ Map Section -->
+    <!-- ✅ Fullscreen Map -->
     <div id="map"></div>
+
+    <!-- ✅ Loading Indicator -->
     <div id="loading">Calculating Foot Traffic in the Area...</div>
 
     <!-- ✅ JavaScript Dependencies -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.76.0/L.Control.Locate.min.js"></script>
+
+    <!-- ✅ External JavaScript File -->
     <script type="module" src="map-script.js"></script>
 </body>
 

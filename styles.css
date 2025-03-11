@@ -1,35 +1,104 @@
-#loading {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 5px;
-    display: none;
-    font-size: 14px;
-    z-index: 1000;
-}
-#map {
-    width: 100%;
-    height: 100vh;
+/* ✅ Global Styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
-body{margin: 0;}
+/* ✅ Fullscreen Map */
+html, body, #map {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* ✅ Glassmorphism Title Block at Bottom */
+.header-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* ✅ Text Styling */
+.header-overlay h1 {
+    font-size: 24px;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.header-overlay p {
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 8px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ✅ Fade-out effect for hiding the title block */
+.hide-title {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* ✅ Loading Indicator */
+#loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 400;
+    z-index: 1000;
+    display: none;
+    animation: fadein 0.3s ease-in-out;
+}
+
+/* ✅ Fade-in Animation */
+@keyframes fadein {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -55%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 600px) {
+    .header-overlay {
+        width: 95%;
+        padding: 12px;
+    }
+    .header-overlay h1 {
+        font-size: 20px;
+    }
+    .header-overlay p {
+        font-size: 14px;
+    }
+}
+
 
 /* Target all GeoJSON polygons (your buildings) */
 .leaflet-interactive {
     stroke-width: 5px; /* Border width */
 }
 
-/* More specific targeting based on the layer type or ID */
-#building-layer {
-}
-
-/* Targeting individual buildings based on properties set in JavaScript */
-.leaflet-geojson .leaflet-interactive {
-}
-
-.building-feature {
-}

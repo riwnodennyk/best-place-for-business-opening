@@ -157,3 +157,20 @@ function onMapMoveEnd() {
 }
 
 initializeMap(); // Start the map initialization
+
+document.addEventListener("DOMContentLoaded", () => {
+    let titleBlock = document.getElementById("title-block");
+    let mapElement = document.getElementById("map");
+
+    function hideTitleBlock() {
+        titleBlock.classList.add("hide-title");
+        setTimeout(() => {
+            titleBlock.style.display = "none";
+        }, 500); // Matches fade-out duration
+    }
+
+    mapElement.addEventListener("click", hideTitleBlock, { once: true });
+    mapElement.addEventListener("touchstart", hideTitleBlock, { once: true });
+    mapElement.addEventListener("wheel", hideTitleBlock, { once: true });
+    mapElement.addEventListener("mousedown", hideTitleBlock, { once: true });
+});
