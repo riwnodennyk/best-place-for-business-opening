@@ -1,4 +1,4 @@
-const AT_75_DENSITY = 65;  // Extreme foot traffic
+const AT_75_DENSITY = 55;  // Extreme foot traffic
 const AT_50_DENSITY = 40;  // Very high foot traffic
 const AT_35_DENSITY = 30;  // High foot traffic
 const AT_25_DENSITY = 20;  // Medium-high traffic
