@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://riwnodennyk.github.io/best-place-for-business-opening/sitemap.xml
