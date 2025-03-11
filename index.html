@@ -4,26 +4,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estimate Foot Traffic for Your Business | Free Map Tool</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="styles.css" /> <!-- External CSS -->
+
+    <meta http-equiv="Cache-Control" content="max-age=31536000">
+
+    <!-- ✅ SEO-Optimized Title -->
+    <title>Free Foot Traffic Estimator | Plan Your New Business Location</title>
+
+    <!-- ✅ Meta Description for Better Google Ranking -->
+    <meta name="description"
+        content="Estimate foot traffic for your business location using our free interactive map. Plan your store, restaurant, or office based on real-world data.">
+
+    <!-- ✅ Meta Keywords (Not as important as before, but still useful) -->
+    <meta name="keywords"
+        content="foot traffic, business location, customer flow, store planning, retail site selection, commercial real estate">
+
+    <!-- ✅ Open Graph (Facebook & LinkedIn) -->
+    <meta property="og:title" content="Best Place for Business Opening | Foot Traffic Estimator">
+    <meta property="og:description"
+        content="Discover the best locations for your business with our foot traffic estimation tool.">
+    <meta property="og:image" content="https://riwnodennyk.github.io/best-place-for-business-opening/og-image.webp">
+    <meta property="og:url" content="https://riwnodennyk.github.io/best-place-for-business-opening/">
+    <meta property="og:type" content="website">
+
+    <!-- ✅ Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Best Place for Business Opening">
+    <meta name="twitter:description" content="Plan your new business with foot traffic analysis.">
+    <meta name="twitter:image"
+        content="https://riwnodennyk.github.io/best-place-for-business-opening/og-image.webp">
+    <!-- ✅ Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Foot Traffic Estimator",
+            "url": "https://riwnodennyk.github.io/best-place-for-business-opening/",
+            "logo": "https://riwnodennyk.github.io/best-place-for-business-opening/favicon.png",
+            "description": "A free tool to estimate foot traffic for businesses and retail locations.",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "browserRequirements": "Requires JavaScript",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "UAH"
+            },
+            "sameAs": [
+              "https://www.facebook.com/riwnodennyk",
+              "https://twitter.com/riwnodennyk"
+            ]
+          }
+    </script>
+
+    <!-- ✅ External Stylesheets -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
 
 <body>
+    <!-- ✅ Structured Headings for SEO -->
+    <header>
+        <h1>Estimate Foot Traffic for Your Business</h1>
+        <p>Use our free map tool to analyze foot traffic and find the best location for your store, restaurant, or
+            office.</p>
+    </header>
+
+    <!-- ✅ Map Section -->
     <div id="map"></div>
     <div id="loading">Calculating Foot Traffic in the Area...</div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- ✅ JavaScript Dependencies -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.76.0/L.Control.Locate.min.js"></script>
     <script type="module">
         import { calculateArea } from './calculateArea.js';
         import { processBuildingData } from './businessDensity.js';
 
-        let map;
-        let buildingsLayer;
-        let lastBounds = null;
-        let currentRequestController = null;
+        let map, buildingsLayer, lastBounds = null, currentRequestController = null;
         let loadingIndicator = document.getElementById('loading');
 
         function debounce(func, delay) {
@@ -45,7 +106,7 @@
             // return {lat: 52.383, lon: 4.632}; // Haarlem
             // return {lat: 51.508, lon: -0.128}; // london
             // return {lat: 40.7552275, lon: -73.9787606}; // new york
-            
+
 
             try {
                 const response = await fetch("https://geolocation-db.com/json/");
@@ -55,7 +116,7 @@
                 return { lat: data.latitude, lon: data.longitude };
             } catch (error) {
                 console.warn("Could not fetch user location, using default:", error);
-                return { lat: 1, lon: 1 }; // Default location
+                return { lat: 51.508, lon: -0.128 }; // fallback
             }
         }
 
