@@ -7,6 +7,7 @@
     <title>Estimate Foot Traffic for Your Business | Free Map Tool</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="styles.css" /> <!-- External CSS -->
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 
 <body>
@@ -43,6 +44,8 @@
             // return {lat: 50.440, lon: 30.520}; // Besarabka
             // return {lat: 52.383, lon: 4.632}; // Haarlem
             // return {lat: 51.508, lon: -0.128}; // london
+            // return {lat: 40.7552275, lon: -73.9787606}; // new york
+            
 
             try {
                 const response = await fetch("https://geolocation-db.com/json/");
