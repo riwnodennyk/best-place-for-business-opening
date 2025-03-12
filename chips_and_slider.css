@@ -33,7 +33,7 @@
     height: 10px;
     -webkit-appearance: none;
     appearance: none;
-    background: linear-gradient(to right, #6b48ff, #00ddeb);
+    background: linear-gradient(to right, #f497d9, #30071e);
     border-radius: 5px;
     outline: none;
     cursor: pointer;
@@ -45,7 +45,7 @@
     width: 22px;
     height: 22px;
     background: #fff;
-    border: 3px solid #6b48ff;
+    border: 3px solid #811963;
     border-radius: 50%;
     box-shadow: 0 3px 10px rgba(107, 72, 255, 0.3);
     cursor: pointer;
@@ -85,7 +85,7 @@
 #slider-value {
     font-size: 14px;
     font-weight: 500;
-    color: #6b48ff;
+    color: #30071e;
     background: rgba(255, 255, 255, 0.8);
     padding: 4px 10px;
     border-radius: 12px;
