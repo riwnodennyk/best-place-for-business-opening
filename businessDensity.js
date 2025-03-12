@@ -5,10 +5,9 @@ const AT_50_DENSITY = 40;
 const AT_35_DENSITY = 30;
 const AT_25_DENSITY = 20;
 const AT_15_DENSITY = 10;
-const LOW_DENSITY = 1;
 
 
-let minThreshold = LOW_DENSITY;
+let minThreshold = 1;
 let buildingsLayer;
 let peoplePassingByTranslated = translate("peoplePassingBy");
 
@@ -72,7 +71,7 @@ async function processBuildingData(building, businessesResponse, calculateArea, 
 
     polygon.feature = { properties: { peoplePassingBy } };
 
-    if (peoplePassingBy >= minThreshold) {
+    if (peoplePassingBy >= 1) {
         const color = getColorByPeoplePassingBy(peoplePassingBy);
         polygon.setStyle({
             fillColor: color,

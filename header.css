@@ -89,6 +89,6 @@
 
 /* Target all GeoJSON polygons (your buildings) */
 .leaflet-interactive {
-    stroke-width: 5px;
+    stroke-width: 1px;
     /* Border width */
 }
