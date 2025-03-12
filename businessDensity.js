@@ -10,6 +10,7 @@ const LOW_DENSITY = 1;
 const userLang = navigator.language.substring(0, 2);
 const langStrings = setLanguage(userLang);
 let minThreshold = LOW_DENSITY;
+let buildingsLayer;
 
 function calculateBusinessDensity(buildingArea, businessesInBuilding) {
     return buildingArea > 0 ? businessesInBuilding / buildingArea : 0;
@@ -17,11 +18,11 @@ function calculateBusinessDensity(buildingArea, businessesInBuilding) {
 
 function getColorByPeoplePassingBy(people) {
     return people > AT_75_DENSITY ? "#1a0510" :
-           people > AT_50_DENSITY ? "#30071e" :
-           people > AT_35_DENSITY ? "#4a0b30" :
-           people > AT_25_DENSITY ? "#811963" :
-           people > AT_15_DENSITY ? "#cd3ea4" :
-                                    "#f497d9";
+        people > AT_50_DENSITY ? "#30071e" :
+            people > AT_35_DENSITY ? "#4a0b30" :
+                people > AT_25_DENSITY ? "#811963" :
+                    people > AT_15_DENSITY ? "#cd3ea4" :
+                        "#f497d9";
 }
 
 async function getBuildingAddress(building) {
@@ -35,11 +36,12 @@ async function getBuildingAddress(building) {
     return address || null;
 }
 
-async function processBuildingData(building, businessesResponse, calculateArea, buildingsLayer) {
+async function processBuildingData(building, businessesResponse, calculateArea, buildingsLayerInstance) {
+    buildingsLayer = buildingsLayerInstance;
     const coords = building.geometry.map(pt => [pt.lat, pt.lon]);
     const polygon = L.polygon(coords);
     const buildingArea = calculateArea(polygon);
-    const businessesInBuilding = businessesResponse.elements.filter(business => 
+    const businessesInBuilding = businessesResponse.elements.filter(business =>
         polygon.getBounds().contains([business.lat, business.lon])
     ).length;
     const businessDensity = calculateBusinessDensity(buildingArea, businessesInBuilding);
@@ -61,12 +63,14 @@ async function processBuildingData(building, businessesResponse, calculateArea, 
     const coef300mDensity = 0.5;
     const densityWeightSum = coefBuildingDensity + coef100mDensity + coef200mDensity + coef300mDensity;
     let peoplePassingBy = (
-        (businessDensity * 2000 * coefBuildingDensity) + 
-        (businessesWithin100m * coef100mDensity) + 
-        (businessesWithin200m * coef200mDensity) + 
+        (businessDensity * 2000 * coefBuildingDensity) +
+        (businessesWithin100m * coef100mDensity) +
+        (businessesWithin200m * coef200mDensity) +
         (businessesWithin300m * coef300mDensity)
     ) * 0.6 / densityWeightSum;
     peoplePassingBy = Math.round(peoplePassingBy);
+
+    polygon.feature = { properties: { peoplePassingBy } };
 
     if (peoplePassingBy >= minThreshold) {
         const color = getColorByPeoplePassingBy(peoplePassingBy);
@@ -89,12 +93,25 @@ async function processBuildingData(building, businessesResponse, calculateArea, 
     return false;
 }
 
+function updateMapVisibility() {
+    buildingsLayer?.eachLayer(layer => {
+        if (layer.feature.properties.peoplePassingBy < minThreshold) {
+            layer.setStyle({ fillOpacity: 0, opacity: 0 });
+        } else {
+            layer.setStyle({ fillOpacity: 1, opacity: 1 });
+        }
+    });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const slider = document.getElementById("traffic-slider");
+    const sliderValue = document.getElementById("slider-value");
     slider.addEventListener("input", (event) => {
         minThreshold = parseInt(event.target.value);
         console.log("threshold ", minThreshold);
+        sliderValue.textContent = minThreshold == 1 ? langStrings.trafficSliderLabelAny : minThreshold;
+        updateMapVisibility();
     });
 });
 
-export { processBuildingData, calculateBusinessDensity, getColorByPeoplePassingBy };
+export { processBuildingData, calculateBusinessDensity, getColorByPeoplePassingBy, updateMapVisibility };
