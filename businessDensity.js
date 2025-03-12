@@ -1,9 +1,14 @@
+import { setLanguage } from './translations.js';
+
 const AT_75_DENSITY = 55;  // Extreme foot traffic
 const AT_50_DENSITY = 40;  // Very high foot traffic
 const AT_35_DENSITY = 30;  // High foot traffic
 const AT_25_DENSITY = 20;  // Medium-high traffic
 const AT_15_DENSITY = 10;  // Moderate traffic
 const LOW_DENSITY = 1;     // Low traffic
+
+const userLang = navigator.language.substring(0, 2);
+const langStrings = setLanguage(userLang);
 
 // Function to calculate business density (businesses per square meter)
 function calculateBusinessDensity(buildingArea, businessesInBuilding) {
@@ -106,7 +111,7 @@ async function processBuildingData(building, businessesResponse, calculateArea, 
         const address = await getBuildingAddress(building);
 
         polygon.bindPopup(`
-            <b>People passing by:</b> ${peoplePassingBy} <br>
+            <b>${langStrings.peoplePassingBy}:</b> ${peoplePassingBy} <br>
              ${address ? `${address} <br>` : ""}
         `);
         // <b>Businesses per m²:</b> ${fraction} <br>
