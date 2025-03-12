@@ -7,117 +7,17 @@
 }
 
 /* ✅ Fullscreen Map */
-html, body, #map {
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
-}
-
-/* ✅ High-Contrast Title Block at Bottom */
-.header-overlay {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8); /* Darker contrast */
-    backdrop-filter: blur(10px);
-    color: #fff;
-    padding: 18px 24px;
-    border-radius: 14px;
-    text-align: center;
-    width: 90%;
-    max-width: 600px;
-    z-index: 1000;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    transition: opacity 0.5s ease-in-out;
-}
-
-/* ✅ Improved Text Contrast */
-.header-overlay h1 {
-    font-size: 24px;
-    font-weight: 700;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
-}
-
-.header-overlay p {
-    font-size: 16px;
-    font-weight: 400;
-    margin-top: 8px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* ✅ Fade-out effect for hiding the title block */
-.hide-title {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-/* ✅ Loading Indicator */
-#loading {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.85);
-    color: white;
-    padding: 14px 28px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    z-index: 1000;
-    display: none;
-    animation: fadein 0.3s ease-in-out;
-}
-
-/* ✅ Fade-in Animation */
-@keyframes fadein {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -55%);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
-}
-
-/* ✅ Responsive Design */
-@media (max-width: 600px) {
-    .header-overlay {
-        width: 95%;
-        padding: 15px;
-    }
-    .header-overlay h1 {
-        font-size: 20px;
-    }
-    .header-overlay p {
-        font-size: 14px;
-    }
-}
-
-
-/* Target all GeoJSON polygons (your buildings) */
-.leaflet-interactive {
-    stroke-width: 5px; /* Border width */
-}
-
-#slider-container {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.8);
-    padding: 8px 15px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-    font-family: 'Sofia Sans', sans-serif;
-    z-index: 1000;
     display: flex;
-    align-items: center;
-    gap: 10px;
+    flex-direction: column;
 }
 
-#traffic-slider {
-    width: 150px;
+#map {
+    flex-grow: 1;
+    width: 100%;
+    height: calc(100vh - 180px); /* Adjusted height to prevent overlap */
 }

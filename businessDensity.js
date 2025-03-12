@@ -1,4 +1,4 @@
-import { setLanguage } from './foot_traffic_translation.js';
+import { translate } from './foot_traffic_translation.js';
 
 const AT_75_DENSITY = 55;
 const AT_50_DENSITY = 40;
@@ -7,10 +7,10 @@ const AT_25_DENSITY = 20;
 const AT_15_DENSITY = 10;
 const LOW_DENSITY = 1;
 
-const userLang = navigator.language.substring(0, 2);
-const langStrings = setLanguage(userLang);
+
 let minThreshold = LOW_DENSITY;
 let buildingsLayer;
+let peoplePassingByTranslated = translate("peoplePassingBy");
 
 function calculateBusinessDensity(buildingArea, businessesInBuilding) {
     return buildingArea > 0 ? businessesInBuilding / buildingArea : 0;
@@ -84,7 +84,7 @@ async function processBuildingData(building, businessesResponse, calculateArea, 
 
         const address = await getBuildingAddress(building);
         polygon.bindPopup(`
-            <b>${langStrings.peoplePassingBy}:</b> ${peoplePassingBy} <br>
+            <b>${peoplePassingByTranslated}:</b> ${peoplePassingBy} <br>
              ${address ? `${address} <br>` : ""}
         `);
         buildingsLayer.addLayer(polygon);
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     slider.addEventListener("input", (event) => {
         minThreshold = parseInt(event.target.value);
         console.log("threshold ", minThreshold);
-        sliderValue.textContent = minThreshold == 1 ? langStrings.trafficSliderLabelAny : minThreshold;
+        sliderValue.textContent = minThreshold;
         updateMapVisibility();
     });
 });

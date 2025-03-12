@@ -7,13 +7,11 @@
 
     <meta http-equiv="Cache-Control" content="max-age=31536000">
 
-    <!-- ✅ SEO-Optimized Title -->
-    <title id="page-title">Free Foot Traffic Estimator | Plan Your New Business Location</title>
-
+    <!-- ✅ SEO-Optimized Title and Meta Description -->
+    <title id="page-title" data-translate="pageTitle"></title>
     <!-- ✅ Meta Description for Better Google Ranking -->
     <meta name="description"
         content="Estimate foot traffic for your business location using our free interactive map. Plan your store, restaurant, or office based on real-world data.">
-
     <!-- ✅ Meta Keywords (Not as important as before, but still useful) -->
     <meta name="keywords"
         content="foot traffic, free, tool, business location, customer flow, store planning, retail site selection, commercial real estate, Deutschland, Україна, France, UK, Polska">
@@ -67,31 +65,61 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="chips_and_slider.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- ✅ External Translations File -->
-    <script src="translations.js" type="module"></script>
+    <script src="foot_traffic_translation.js" type="module"></script>
 </head>
 
 <body>
     <!-- ✅ Header Overlay -->
     <header class="header-overlay" id="title-block">
-        <h1>Estimate Foot Traffic for Your Business. For FREE</h1>
-        <p>Analyze foot traffic and find the best location for your store, restaurant, or office.</p>
+        <h1 data-translate="headerTitle"></h1>
+        <p data-translate="headerSubtitle"></p>
     </header>
-    
-<!-- ✅ Foot Traffic Threshold Slider -->
-<div id="slider-container">
-    <label for="traffic-slider" id="traffic-slider-label"></label>
-    <input type="range" id="traffic-slider" min="1" max="55" value="1">
-    <span id="slider-value">1</span>
-</div>
+    <div id="controls-container">
+        <!-- Foot Traffic Threshold Slider -->
+        <div id="slider-container">
+            <label for="traffic-slider" id="traffic-slider-label" data-translate="trafficSliderLabel"></label>
+            <input type="range" id="traffic-slider" min="1" max="55" value="1" aria-label="Foot Traffic Threshold">
+            <span id="slider-value">1</span>
+        </div>
+        <!-- City Chips Scroll Buttons & Container -->
+        <div id="chips-wrapper">
+            <button id="scroll-left" class="scroll-btn left" aria-label="Scroll Left">&lt;</button>
+            <div id="city-chips-container" role="listbox">
+                <button class="city-chip" data-lat="40.7128" data-lon="-74.0060" data-translate="newYork"
+                    role="option"></button>
+                <button class="city-chip" data-lat="51.5074" data-lon="-0.1278" data-translate="london"
+                    role="option"></button>
+                <button class="city-chip" data-lat="35.6895" data-lon="139.6917" data-translate="tokyo"
+                    role="option"></button>
+                <button class="city-chip" data-lat="48.8566" data-lon="2.3522" data-translate="paris"
+                    role="option"></button>
+                <button class="city-chip" data-lat="52.5200" data-lon="13.4050" data-translate="berlin"
+                    role="option"></button>
+                <button class="city-chip" data-lat="-33.8688" data-lon="151.2093" data-translate="sydney"
+                    role="option"></button>
+                <button class="city-chip" data-lat="25.276987" data-lon="55.296249" data-translate="dubai"
+                    role="option"></button>
+                <button class="city-chip" data-lat="43.65107" data-lon="-79.347015" data-translate="toronto"
+                    role="option"></button>
+                <button class="city-chip" data-lat="34.0522" data-lon="-118.2437" data-translate="losAngeles"
+                    role="option"></button>
+                <button class="city-chip" data-lat="1.3521" data-lon="103.8198" data-translate="singapore"
+                    role="option"></button>
+            </div>
+            <button id="scroll-right" class="scroll-btn right" aria-label="Scroll Right">&gt;</button>
+        </div>
+    </div>
 
     <!-- ✅ Fullscreen Map -->
     <div id="map"></div>
 
     <!-- ✅ Loading Indicator -->
-    <div id="loading">Calculating Foot Traffic in the Area...</div>
+    <div id="loading" data-translate="loadingText"></div>
 
     <!-- ✅ JavaScript Dependencies -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>

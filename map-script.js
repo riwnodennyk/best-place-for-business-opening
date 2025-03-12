@@ -1,6 +1,7 @@
 
 import { calculateArea } from './calculateArea.js';
 import { processBuildingData } from './businessDensity.js';
+import { translate } from './foot_traffic_translation.js';
 
 let map, buildingsLayer, lastBounds = null, currentRequestController = null;
 let loadingIndicator = document.getElementById('loading');
@@ -133,7 +134,6 @@ async function fetchData(bounds) {
         } else {
             console.error("AbortError");
         }
-    } finally {
     }
 }
 
@@ -158,6 +158,13 @@ function onMapMoveEnd() {
 
 initializeMap(); // Start the map initialization
 
+
+function panToCity(lat, lon) {
+    if (map) {
+        map.setView([lat, lon], 15);
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     let titleBlock = document.getElementById("title-block");
     let mapElement = document.getElementById("map");
@@ -173,4 +180,61 @@ document.addEventListener("DOMContentLoaded", () => {
     mapElement.addEventListener("touchstart", hideTitleBlock, { once: true });
     mapElement.addEventListener("wheel", hideTitleBlock, { once: true });
     mapElement.addEventListener("mousedown", hideTitleBlock, { once: true });
+
+
+    document.querySelectorAll("[data-translate]").forEach(element => {
+        const key = element.dataset.translate;
+
+        element.textContent = translate(key);
+
+    });
+
+    document.querySelectorAll(".city-chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+            const lat = parseFloat(chip.dataset.lat);
+            const lon = parseFloat(chip.dataset.lon);
+            panToCity(lat, lon);
+        });
+    });
+
+
+    const chipsContainer = document.getElementById("city-chips-container");
+    const scrollLeftBtn = document.getElementById("scroll-left");
+    const scrollRightBtn = document.getElementById("scroll-right");
+
+
+    function checkScrollButtons() {
+         // Check if scrolled to the leftmost position
+         if (chipsContainer.scrollLeft <= 0) {
+            scrollLeftBtn.style.opacity = "0"; // Hide left button
+            scrollLeftBtn.style.pointerEvents = "none"; // Disable interactions
+        } else {
+            scrollLeftBtn.style.opacity = "1"; // Show left button
+            scrollLeftBtn.style.pointerEvents = "auto"; // Enable interactions
+        }
+
+        // Check if scrolled to the rightmost position
+        if (chipsContainer.scrollLeft + chipsContainer.clientWidth >= chipsContainer.scrollWidth) {
+            scrollRightBtn.style.opacity = "0"; // Hide right button
+            scrollRightBtn.style.pointerEvents = "none"; // Disable interactions
+        } else {
+            scrollRightBtn.style.opacity = "1"; // Show right button
+            scrollRightBtn.style.pointerEvents = "auto"; // Enable interactions
+        }
+    }
+
+    // Scroll buttons functionality
+    scrollLeftBtn.addEventListener("click", () => {
+        chipsContainer.scrollBy({ left: -150, behavior: "smooth" });
+    });
+
+    scrollRightBtn.addEventListener("click", () => {
+        chipsContainer.scrollBy({ left: 150, behavior: "smooth" });
+    });
+
+    // Listen for scroll event and update button visibility
+    chipsContainer.addEventListener("scroll", checkScrollButtons);
+
+    // Run once on page load to check initial state
+    checkScrollButtons();
 });

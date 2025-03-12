@@ -1,0 +1,240 @@
+#controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 20px;
+
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(230, 240, 255, 0.85));
+    box-shadow: 0 10px 30px rgba(0, 0, 50, 0.1), inset 0 1px 3px rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+/* Slider Container */
+#slider-container {
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    backdrop-filter: blur(10px);
+    max-width: 400px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-shrink: 0; /* Prevents it from shrinking */
+}
+
+
+/* Custom Slider Styling */
+#traffic-slider {
+    width: 220px;
+    height: 10px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(to right, #6b48ff, #00ddeb);
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#traffic-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    background: #fff;
+    border: 3px solid #6b48ff;
+    border-radius: 50%;
+    box-shadow: 0 3px 10px rgba(107, 72, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#traffic-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+    box-shadow: 0 5px 15px rgba(107, 72, 255, 0.5);
+}
+
+#traffic-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    background: #fff;
+    border: 3px solid #6b48ff;
+    border-radius: 50%;
+    box-shadow: 0 3px 10px rgba(107, 72, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#traffic-slider::-moz-range-thumb:hover {
+    transform: scale(1.15);
+    box-shadow: 0 5px 15px rgba(107, 72, 255, 0.5);
+}
+
+/* Label Styling */
+#slider-container label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2a2a50;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#slider-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b48ff;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 4px 10px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(107, 72, 255, 0.2);
+}
+
+/* Chips Wrapper */
+#chips-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0px 20px;
+    flex: 1; /* Takes only the available remaining space */
+    overflow: hidden; /* Prevents overflowing */
+    min-width: 0; /* Allows shrinking */
+}
+
+/* City Chips Container */
+#city-chips-container {
+    flex: 1; /* Makes it expand to available space */
+    min-width: 0; /* Ensures it doesn’t push other elements */
+    padding: 12px;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    white-space: nowrap;
+    backdrop-filter: blur(10px);
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    transition: all 0.3s ease;
+    -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+}
+
+/* Hide Scrollbar */
+#city-chips-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Custom City Chips */
+.city-chip {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #007bff, #00d4ff);
+    /* Gradient background */
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+
+    /* ✅ Snap Alignment */
+    scroll-snap-align: center;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.city-chip:hover {
+    background: linear-gradient(45deg, #5436cc, #00b8c9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(107, 72, 255, 0.5);
+}
+
+.city-chip:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 8px rgba(107, 72, 255, 0.3);
+}
+
+/* Scroll Buttons Container */
+#chips-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 15px;
+    max-width: 100%; /* Ensures it doesn’t exceed screen width */
+}
+
+.scroll-btn {
+    background:  #ffffff;
+    color: #0b9bb8;
+    border-width: 2px;
+    border-style:solid;
+    border-color: #0b9bb8;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: 900;
+    font-size: 16px;
+    border-radius: 50%;  
+    transition: all 0.2s ease;
+    position: absolute;
+    z-index: 10;
+    opacity: 0;
+}
+
+.scroll-btn.left {
+    left: 0px;
+}
+.scroll-btn.right {
+    right: 0px;
+}
+
+.scroll-btn:active {
+    transform: scale(0.9);
+}
+
+/* Smooth hide effect */
+.scroll-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #controls-container {
+        flex-direction: column;
+        gap: 0px;
+        padding: 00px;
+    }
+
+    #slider-container {
+        max-width: 100%;
+        padding: 12px 20px;
+    }
+
+    #traffic-slider {
+        width: 180px;
+    }
+
+    #city-chips-container {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .city-chip {
+        padding: 8px 16px;
+    }
+
+    .scroll-btn {
+        display: none;
+    }
+
+    #chips-wrapper {
+        justify-content: center;
+        width: 100%;
+        padding: 0px;
+    }
+}
