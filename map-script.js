@@ -73,17 +73,15 @@ async function initializeMap() {
     map.on("movestart", onMapMoveStart);
     map.on("moveend", onMapMoveEnd);
 }
-
-async function fetchData(bounds) {
+async function fetchData(bounds, retryCount = 0) {
     if (currentRequestController) {
-        currentRequestController.abort(); // Cancel previous request
+        currentRequestController.abort();
     }
-
     currentRequestController = new AbortController();
     const { signal } = currentRequestController;
 
     let bbox = `${bounds.getSouth()},${bounds.getWest()},${bounds.getNorth()},${bounds.getEast()}`;
-    console.log("Start fetching data for bbox:", bbox);
+    console.log("Fetching data for bbox:", bbox);
 
     const buildingsQuery = `
         [out:json][timeout:25];
@@ -99,7 +97,8 @@ async function fetchData(bounds) {
             node["tourism"~"museum|attraction|gallery"](${bbox});
             node["leisure"~"park|garden"](${bbox});
             node[railway~"station|subway_entrance"](${bbox});
-            node[amenity~"restaurant|cafe|fast_food|pub|bar|marketplace|school|university|cinema|theatre|pharmacy|supermarket|mall|bank|bureau_de_change"](${bbox});                );
+            node[amenity~"restaurant|cafe|fast_food|pub|bar|marketplace|school|university|cinema|theatre|pharmacy|supermarket|mall|bank|bureau_de_change"](${bbox});
+        );
         out body;
     `;
 
@@ -110,8 +109,8 @@ async function fetchData(bounds) {
         loadingIndicator.style.display = 'block';
 
         const [buildingsResponse, businessesResponse] = await Promise.all([
-            fetch(buildingsUrl, { signal }).then(res => res.json()),
-            fetch(businessesUrl, { signal }).then(res => res.json())
+            fetch(buildingsUrl, { signal }).then(res => handleResponse(res, bounds, retryCount)),
+            fetch(businessesUrl, { signal }).then(res => handleResponse(res, bounds, retryCount))
         ]);
 
         buildingsLayer.clearLayers();
@@ -127,22 +126,40 @@ async function fetchData(bounds) {
         if (!foundBuildings) {
             console.warn("No buildings with sufficient business density found.");
         }
-        loadingIndicator.style.display = 'none'; // Hide loading indicator once fetching completes
+        loadingIndicator.style.display = 'none';
     } catch (error) {
-        if (error.name !== "AbortError") {
-            console.error("Error fetching data:", error);
-        } else {
-            console.error("AbortError");
+        if (error.name === "AbortError") {
+            console.log("Request aborted successfully.");
+            return;
         }
+        console.error("Error fetching data:", error);
     }
 }
 
-const debouncedFetchData = debounce(fetchData, 500);
+async function handleResponse(response, bounds, retryCount) {
+    if (response.status === 429) {
+        let waitTime = Math.pow(2, retryCount) * 1000; // Exponential backoff: 2^retryCount seconds
+        console.warn(`429 Too Many Requests - Retrying in ${waitTime / 1000} seconds...`);
+        await new Promise(resolve => setTimeout(resolve, waitTime));
+        
+        if (retryCount < 5) { // Limit retries to prevent infinite loops
+            return fetchData(bounds, retryCount + 1);
+        } else {
+            console.error("Maximum retry limit reached. Giving up.");
+            throw new Error("Too many requests. Please try again later.");
+        }
+    }
+    return response.json();
+}
+
+
+const debouncedFetchData = debounce(fetchData, 3000); // Increase debounce to 3 sec
 
 function onMapMoveStart() {
     loadingIndicator.style.display = 'block';
     if (currentRequestController) {
         currentRequestController.abort();
+        currentRequestController = null; // Reset the controller to avoid conflicts
     }
 }
 
