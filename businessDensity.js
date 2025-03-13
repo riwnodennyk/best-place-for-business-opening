@@ -1,4 +1,5 @@
 import { translate } from './foot_traffic_translation.js';
+import { trackSliderChange } from './scripts/tracking.js';
 
 const AT_75_DENSITY = 55;
 const AT_50_DENSITY = 40;
@@ -102,14 +103,6 @@ function updateMapVisibility() {
     });
 }
 
-function trackSliderChange(value) {
-    gtag('event', 'slider_change', {
-        'event_category': 'User Interaction',
-        'event_label': 'Traffic Slider',
-        'value': value
-    });
-    console.log("Slider changed to:", value); // Debugging in console
-}
 
 document.addEventListener("DOMContentLoaded", () => {
     const slider = document.getElementById("traffic-slider");
@@ -120,9 +113,8 @@ document.addEventListener("DOMContentLoaded", () => {
         sliderValue.textContent = minThreshold;
         updateMapVisibility();
     });
-    slider.addEventListener("change", (event) =>{
-        let finalSliderValue = event.target.value;
-        trackSliderChange(finalSliderValue);
+    slider.addEventListener("change", (event) => {
+        trackSliderChange(event.target.value);
     });
 });
 

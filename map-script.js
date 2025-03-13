@@ -2,6 +2,7 @@
 import { calculateArea } from './calculateArea.js';
 import { processBuildingData } from './businessDensity.js';
 import { translate } from './foot_traffic_translation.js';
+import { trackSliderChange, trackCityChipSelected } from './scripts/tracking.js';
 
 let map, buildingsLayer, lastBounds = null, currentRequestController = null;
 let loadingIndicator = document.getElementById('loading');
@@ -211,6 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const lat = parseFloat(chip.dataset.lat);
             const lon = parseFloat(chip.dataset.lon);
             panToCity(lat, lon);
+            trackCityChipSelected(chip.dataset.translate);
         });
     });
 
