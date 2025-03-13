@@ -178,7 +178,7 @@ initializeMap(); // Start the map initialization
 
 function panToCity(lat, lon) {
     if (map) {
-        map.setView([lat, lon], 15);
+        map.setView([lat, lon], 16);
     }
 }
 
