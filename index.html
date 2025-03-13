@@ -56,22 +56,26 @@
           }
     </script>
 
-    <!-- Google Analytics Tracking - Disabled on Localhost -->
     <script>
         if (window.location.hostname !== "localhost" && !window.location.hostname.startsWith("127.")) {
-            (function () {
-                var gtagScript = document.createElement("script");
-                gtagScript.async = true;
-                gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-KBDFV0C6KF";
-                document.head.appendChild(gtagScript);
-
-                window.dataLayer = window.dataLayer || [];
-                function gtag() { dataLayer.push(arguments); }
+            // Load GA4 script dynamically
+            var gtagScript = document.createElement("script");
+            gtagScript.async = true;
+            gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-KBDFV0C6KF";
+            document.head.appendChild(gtagScript);
+    
+            // Ensure gtag is globally available
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function() { dataLayer.push(arguments); };
+    
+            // Wait for GA4 script to load before calling config
+            gtagScript.onload = function() {
                 gtag('js', new Date());
                 gtag('config', 'G-KBDFV0C6KF');
-            })();
+            };
         } else {
             console.log("Google Analytics tracking is disabled on localhost.");
+            window.gtag = function() { console.warn("GA4 disabled, event skipped."); };
         }
     </script>
 

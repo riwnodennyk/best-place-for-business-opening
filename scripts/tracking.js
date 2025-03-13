@@ -1,5 +1,3 @@
-window.gtag = window.gtag || function() { console.warn("Google Analytics not loaded, event skipped."); };
-
 function trackSliderChange(value) {
     gtag('event', 'pedestrian_filter_changed', {
         'slider_value': value, // Custom parameter in GA4
