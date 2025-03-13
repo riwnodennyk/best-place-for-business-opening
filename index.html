@@ -55,14 +55,23 @@
           }
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KBDFV0C6KF"></script>
+    <!-- Google Analytics Tracking - Disabled on Localhost -->
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+        if (window.location.hostname !== "localhost" && !window.location.hostname.startsWith("127.")) {
+            (function () {
+                var gtagScript = document.createElement("script");
+                gtagScript.async = true;
+                gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-KBDFV0C6KF";
+                document.head.appendChild(gtagScript);
 
-        gtag('config', 'G-KBDFV0C6KF');
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-KBDFV0C6KF');
+            })();
+        } else {
+            console.log("Google Analytics tracking is disabled on localhost.");
+        }
     </script>
 
     <!-- ✅ External Stylesheets -->
