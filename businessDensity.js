@@ -102,6 +102,15 @@ function updateMapVisibility() {
     });
 }
 
+function trackSliderChange(value) {
+    gtag('event', 'slider_change', {
+        'event_category': 'User Interaction',
+        'event_label': 'Traffic Slider',
+        'value': value
+    });
+    console.log("Slider changed to:", value); // Debugging in console
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const slider = document.getElementById("traffic-slider");
     const sliderValue = document.getElementById("slider-value");
@@ -110,6 +119,10 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("threshold ", minThreshold);
         sliderValue.textContent = minThreshold;
         updateMapVisibility();
+    });
+    slider.addEventListener("change", (event) =>{
+        let finalSliderValue = event.target.value;
+        trackSliderChange(finalSliderValue);
     });
 });
 
