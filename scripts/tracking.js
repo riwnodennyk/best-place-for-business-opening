@@ -6,7 +6,6 @@ function trackSliderChange(value) {
     console.log("Slider changed to:", value);
 }
 
-
 function trackCityChipSelected(value) {
     gtag('event', 'city_chip_selected', {
         'city': value
