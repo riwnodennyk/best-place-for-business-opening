@@ -2,7 +2,7 @@
 import { calculateArea } from './calculateArea.js';
 import { processBuildingData } from './businessDensity.js';
 import { translate } from './foot_traffic_translation.js';
-import { trackSliderChange, trackCityChipSelected } from './scripts/tracking.js';
+import { trackMapPanned, trackMapZoomed, trackCityChipSelected } from './scripts/tracking.js';
 
 let map, buildingsLayer, lastBounds = null, currentRequestController = null;
 let loadingIndicator = document.getElementById('loading');
@@ -73,6 +73,14 @@ async function initializeMap() {
 
     map.on("movestart", onMapMoveStart);
     map.on("moveend", onMapMoveEnd);
+
+    map.on('zoomend', function () {
+        trackMapZoomed(map.getZoom());
+    });
+
+    map.on('moveend', function () {
+        trackMapPanned();
+    });
 }
 async function fetchData(bounds, retryCount = 0) {
     if (currentRequestController) {
