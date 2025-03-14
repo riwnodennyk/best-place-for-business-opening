@@ -25,4 +25,12 @@ function trackMapZoomed(zoomValue) {
     console.log("Map Zoomed:", zoomValue);
 }
 
-export { trackSliderChange, trackCityChipSelected, trackMapPanned, trackMapZoomed }
+function trackLoadedBuildings(secondsPassed) {
+    gtag('event', 'loaded_buildings', {
+        'seconds': secondsPassed
+    });
+    console.log("Loaded Buildings in seconds:", secondsPassed);
+}
+
+
+export { trackSliderChange, trackCityChipSelected, trackMapPanned, trackMapZoomed, trackLoadedBuildings }

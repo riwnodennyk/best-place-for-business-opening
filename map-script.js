@@ -1,11 +1,11 @@
-
 import { calculateArea } from './calculateArea.js';
 import { processBuildingData } from './businessDensity.js';
 import { translate } from './foot_traffic_translation.js';
-import { trackMapPanned, trackMapZoomed, trackCityChipSelected } from './scripts/tracking.js';
+import { trackMapPanned, trackMapZoomed, trackCityChipSelected, trackLoadedBuildings } from './scripts/tracking.js';
 
 let map, buildingsLayer, lastBounds = null, currentRequestController = null;
 let loadingIndicator = document.getElementById('loading');
+let loadingStartTime = null; // Track loading start time
 
 function debounce(func, delay) {
     let timer;
@@ -14,6 +14,7 @@ function debounce(func, delay) {
         timer = setTimeout(() => func.apply(this, args), delay);
     };
 }
+
 async function getUserLocation() {
     // return {lat: 50.177,lon:  30.318}; // Vasylkiv
     // return {lat: 50.079,lon:  29.909}; // Fastiv
@@ -31,7 +32,6 @@ async function getUserLocation() {
     try {
         const response = await fetch("https://geolocation-db.com/json/");
         const data = await response.json();
-
         console.log("User Location: ", data.latitude, data.longitude);
         return { lat: data.latitude, lon: data.longitude };
     } catch (error) {
@@ -64,8 +64,7 @@ async function initializeMap() {
         locateOptions: {
             enableHighAccuracy: true
         },
-        icon: 'fa fa-crosshairs' // Explicitly define the icon
-
+        icon: 'fa fa-crosshairs'
     }).addTo(map);
 
     buildingsLayer = L.geoJSON(null).addTo(map);
@@ -82,6 +81,7 @@ async function initializeMap() {
         trackMapPanned();
     });
 }
+
 async function fetchData(bounds, retryCount = 0) {
     if (currentRequestController) {
         currentRequestController.abort();
@@ -135,6 +135,8 @@ async function fetchData(bounds, retryCount = 0) {
         if (!foundBuildings) {
             console.warn("No buildings with sufficient business density found.");
         }
+        const loadingDuration = Math.round((performance.now() - loadingStartTime) / 1000);
+        trackLoadedBuildings(loadingDuration);
         loadingIndicator.style.display = 'none';
     } catch (error) {
         if (error.name === "AbortError") {
@@ -147,11 +149,11 @@ async function fetchData(bounds, retryCount = 0) {
 
 async function handleResponse(response, bounds, retryCount) {
     if (response.status === 429) {
-        let waitTime = Math.pow(2, retryCount) * 1000; // Exponential backoff: 2^retryCount seconds
+        let waitTime = Math.pow(2, retryCount) * 1000; // Exponential backoff
         console.warn(`429 Too Many Requests - Retrying in ${waitTime / 1000} seconds...`);
         await new Promise(resolve => setTimeout(resolve, waitTime));
-        
-        if (retryCount < 5) { // Limit retries to prevent infinite loops
+
+        if (retryCount < 5) {
             return fetchData(bounds, retryCount + 1);
         } else {
             console.error("Maximum retry limit reached. Giving up.");
@@ -161,14 +163,13 @@ async function handleResponse(response, bounds, retryCount) {
     return response.json();
 }
 
-
-const debouncedFetchData = debounce(fetchData, 3000); // Increase debounce to 3 sec
+const debouncedFetchData = debounce(fetchData, 1000);
 
 function onMapMoveStart() {
     loadingIndicator.style.display = 'block';
     if (currentRequestController) {
         currentRequestController.abort();
-        currentRequestController = null; // Reset the controller to avoid conflicts
+        currentRequestController = null;
     }
 }
 
@@ -177,13 +178,14 @@ function onMapMoveEnd() {
     const currentBoundsString = bounds.toBBoxString();
 
     if (lastBounds !== currentBoundsString) {
+
+        loadingStartTime = performance.now(); // Start tracking loading duration
         lastBounds = currentBoundsString;
         debouncedFetchData(bounds);
     }
 }
 
-initializeMap(); // Start the map initialization
-
+initializeMap();
 
 function panToCity(lat, lon) {
     if (map) {
@@ -199,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
         titleBlock.classList.add("hide-title");
         setTimeout(() => {
             titleBlock.style.display = "none";
-        }, 500); // Matches fade-out duration
+        }, 500);
     }
 
     mapElement.addEventListener("click", hideTitleBlock, { once: true });
@@ -207,12 +209,9 @@ document.addEventListener("DOMContentLoaded", () => {
     mapElement.addEventListener("wheel", hideTitleBlock, { once: true });
     mapElement.addEventListener("mousedown", hideTitleBlock, { once: true });
 
-
     document.querySelectorAll("[data-translate]").forEach(element => {
         const key = element.dataset.translate;
-
         element.textContent = translate(key);
-
     });
 
     document.querySelectorAll(".city-chip").forEach(chip => {
@@ -224,44 +223,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-
     const chipsContainer = document.getElementById("city-chips-container");
     const scrollLeftBtn = document.getElementById("scroll-left");
     const scrollRightBtn = document.getElementById("scroll-right");
 
-
     function checkScrollButtons() {
-         // Check if scrolled to the leftmost position
-         if (chipsContainer.scrollLeft <= 0) {
-            scrollLeftBtn.style.opacity = "0"; // Hide left button
-            scrollLeftBtn.style.pointerEvents = "none"; // Disable interactions
-        } else {
-            scrollLeftBtn.style.opacity = "1"; // Show left button
-            scrollLeftBtn.style.pointerEvents = "auto"; // Enable interactions
-        }
+        scrollLeftBtn.style.opacity = chipsContainer.scrollLeft <= 0 ? "0" : "1";
+        scrollLeftBtn.style.pointerEvents = chipsContainer.scrollLeft <= 0 ? "none" : "auto";
 
-        // Check if scrolled to the rightmost position
-        if (chipsContainer.scrollLeft + chipsContainer.clientWidth >= chipsContainer.scrollWidth) {
-            scrollRightBtn.style.opacity = "0"; // Hide right button
-            scrollRightBtn.style.pointerEvents = "none"; // Disable interactions
-        } else {
-            scrollRightBtn.style.opacity = "1"; // Show right button
-            scrollRightBtn.style.pointerEvents = "auto"; // Enable interactions
-        }
+        scrollRightBtn.style.opacity = chipsContainer.scrollLeft + chipsContainer.clientWidth >= chipsContainer.scrollWidth ? "0" : "1";
+        scrollRightBtn.style.pointerEvents = chipsContainer.scrollLeft + chipsContainer.clientWidth >= chipsContainer.scrollWidth ? "none" : "auto";
     }
 
-    // Scroll buttons functionality
-    scrollLeftBtn.addEventListener("click", () => {
-        chipsContainer.scrollBy({ left: -150, behavior: "smooth" });
-    });
+    scrollLeftBtn.addEventListener("click", () => chipsContainer.scrollBy({ left: -150, behavior: "smooth" }));
+    scrollRightBtn.addEventListener("click", () => chipsContainer.scrollBy({ left: 150, behavior: "smooth" }));
 
-    scrollRightBtn.addEventListener("click", () => {
-        chipsContainer.scrollBy({ left: 150, behavior: "smooth" });
-    });
-
-    // Listen for scroll event and update button visibility
     chipsContainer.addEventListener("scroll", checkScrollButtons);
-
-    // Run once on page load to check initial state
     checkScrollButtons();
 });
