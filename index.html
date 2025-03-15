@@ -63,19 +63,19 @@
             gtagScript.async = true;
             gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-KBDFV0C6KF";
             document.head.appendChild(gtagScript);
-    
+
             // Ensure gtag is globally available
             window.dataLayer = window.dataLayer || [];
-            window.gtag = function() { dataLayer.push(arguments); };
-    
+            window.gtag = function () { dataLayer.push(arguments); };
+
             // Wait for GA4 script to load before calling config
-            gtagScript.onload = function() {
+            gtagScript.onload = function () {
                 gtag('js', new Date());
                 gtag('config', 'G-KBDFV0C6KF');
             };
         } else {
             console.log("Google Analytics tracking is disabled on localhost.");
-            window.gtag = function() { console.warn("GA4 disabled, event skipped."); };
+            window.gtag = function () { console.warn("GA4 disabled, event skipped."); };
         }
     </script>
 
@@ -87,9 +87,13 @@
 
 
     <!-- ✅ Preload Google Fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap"
-        as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap"></noscript>
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap">
+    </noscript>
 
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="header.css" />
@@ -118,9 +122,11 @@
         <div id="chips-wrapper">
             <button id="scroll-left" class="scroll-btn left" aria-label="Scroll Left">&lt;</button>
             <div id="city-chips-container" role="listbox">
+                <button class="city-chip" data-lat="51.5074" data-lon="-0.1278" data-translate="london"
+                    role="option"></button>
                 <button class="city-chip" data-lat="40.7128" data-lon="-74.0060" data-translate="newYork"
                     role="option"></button>
-                <button class="city-chip" data-lat="51.5074" data-lon="-0.1278" data-translate="london"
+                <button class="city-chip" data-lat="-6.8196329" data-lon="39.2833227" data-translate="darEsSalam"
                     role="option"></button>
                 <button class="city-chip" data-lat="23.595555" data-lon="58.431094" data-translate="muscat"
                     role="option"></button>

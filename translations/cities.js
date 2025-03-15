@@ -12,12 +12,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapore",
-        "muscat": "Muscat"
+        "muscat": "Muscat",
+        "darEsSalam": "Dar es Salaam"
     },
     "zh": {
         "newYork": "纽约",
-        "kyiv": "基辅", // Added: Kyiv
-        "lviv": "利沃夫", // Added: Lviv
+        "kyiv": "基辅",
+        "lviv": "利沃夫",
         "london": "伦敦",
         "tokyo": "东京",
         "paris": "巴黎",
@@ -27,12 +28,13 @@ export const cities = {
         "toronto": "多伦多",
         "losAngeles": "洛杉矶",
         "singapore": "新加坡",
-        "muscat": "马斯喀特" // Added: Muscat
+        "muscat": "马斯喀特",
+        "darEsSalam": "达累斯萨拉姆" // Added: Dar es Salaam
     },
     "es": {
         "newYork": "Nueva York",
-        "kyiv": "Kiev", // Added: Kyiv
-        "lviv": "Leópolis", // Added: Lviv
+        "kyiv": "Kiev",
+        "lviv": "Leópolis",
         "london": "Londres",
         "tokyo": "Tokio",
         "paris": "París",
@@ -42,12 +44,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Ángeles",
         "singapore": "Singapur",
-        "muscat": "Mascate" // Added: Muscat
+        "muscat": "Mascate",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Spanish)
     },
     "ar": {
         "newYork": "نيويورك",
-        "kyiv": "كييف", // Added: Kyiv
-        "lviv": "لفيف", // Added: Lviv
+        "kyiv": "كييف",
+        "lviv": "لفيف",
         "london": "لندن",
         "tokyo": "طوكيو",
         "paris": "باريس",
@@ -57,12 +60,13 @@ export const cities = {
         "toronto": "تورونتو",
         "losAngeles": "لوس أنجلوس",
         "singapore": "سنغافورة",
-        "muscat": "مسقط" // Added: Muscat
+        "muscat": "مسقط",
+        "darEsSalam": "دار السلام" // Added: Dar es Salaam (Arabic translation)
     },
     "id": {
         "newYork": "New York",
-        "kyiv": "Kyiv", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kyiv",
+        "lviv": "Lviv",
         "london": "London",
         "tokyo": "Tokyo",
         "paris": "Paris",
@@ -72,12 +76,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapura",
-        "muscat": "Muskat" // Added: Muscat
+        "muscat": "Muskat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Indonesian)
     },
     "ms": {
         "newYork": "New York",
-        "kyiv": "Kyiv", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kyiv",
+        "lviv": "Lviv",
         "london": "London",
         "tokyo": "Tokyo",
         "paris": "Paris",
@@ -87,12 +92,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapura",
-        "muscat": "Muskat" // Added: Muscat
+        "muscat": "Muskat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Malay)
     },
     "pt": {
         "newYork": "Nova Iorque",
-        "kyiv": "Kiev", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kiev",
+        "lviv": "Lviv",
         "london": "Londres",
         "tokyo": "Tóquio",
         "paris": "Paris",
@@ -102,12 +108,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapura",
-        "muscat": "Mascate" // Added: Muscat
+        "muscat": "Mascate",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Portuguese)
     },
     "fr": {
         "newYork": "New York",
-        "kyiv": "Kiev", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kiev",
+        "lviv": "Lviv",
         "london": "Londres",
         "tokyo": "Tokyo",
         "paris": "Paris",
@@ -117,12 +124,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapour",
-        "muscat": "Mascate" // Added: Muscat
+        "muscat": "Mascate",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in French)
     },
     "ja": {
         "newYork": "ニューヨーク",
-        "kyiv": "キエフ", // Added: Kyiv
-        "lviv": "リヴィウ", // Added: Lviv
+        "kyiv": "キエフ",
+        "lviv": "リヴィウ",
         "london": "ロンドン",
         "tokyo": "東京",
         "paris": "パリ",
@@ -132,12 +140,13 @@ export const cities = {
         "toronto": "トロント",
         "losAngeles": "ロサンゼルス",
         "singapore": "シンガポール",
-        "muscat": "マスク" // Added: Muscat
+        "muscat": "マスク",
+        "darEsSalam": "ダルエスサラーム" // Added: Dar es Salaam
     },
     "ru": {
         "newYork": "Нью-Йорк",
-        "kyiv": "Киев", // Added: Kyiv
-        "lviv": "Львов", // Added: Lviv
+        "kyiv": "Киев",
+        "lviv": "Львов",
         "london": "Лондон",
         "tokyo": "Токио",
         "paris": "Париж",
@@ -147,12 +156,13 @@ export const cities = {
         "toronto": "Торонто",
         "losAngeles": "Лос-Анджелес",
         "singapore": "Сингапур",
-        "muscat": "Маскат" // Added: Muscat
+        "muscat": "Маскат",
+        "darEsSalam": "Дар-эс-Салам" // Added: Dar es Salaam
     },
     "de": {
         "newYork": "New York",
-        "kyiv": "Kiew", // Added: Kyiv
-        "lviv": "Lwiw", // Added: Lviv
+        "kyiv": "Kiew",
+        "lviv": "Lwiw",
         "london": "London",
         "tokyo": "Tokio",
         "paris": "Paris",
@@ -162,12 +172,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapur",
-        "muscat": "Maskat" // Added: Muscat
+        "muscat": "Maskat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in German)
     },
     "bn": {
         "newYork": "নিউ ইয়র্ক",
-        "kyiv": "কিয়েভ", // Added: Kyiv
-        "lviv": "লভিভ", // Added: Lviv
+        "kyiv": "কিয়েভ",
+        "lviv": "লভিভ",
         "london": "লন্ডন",
         "tokyo": "টোকিও",
         "paris": "প্যারিস",
@@ -177,12 +188,13 @@ export const cities = {
         "toronto": "টরন্টো",
         "losAngeles": "লস অ্যাঞ্জেলেস",
         "singapore": "সিঙ্গাপুর",
-        "muscat": "মাসকাট" // Added: Muscat
+        "muscat": "মাসকাট",
+        "darEsSalam": "দার এস সালাম" // Added: Dar es Salaam
     },
     "hi": {
         "newYork": "न्यूयॉर्क",
-        "kyiv": "कीव", // Added: Kyiv
-        "lviv": "ल्विव", // Added: Lviv
+        "kyiv": "कीव",
+        "lviv": "ल्विव",
         "london": "लंदन",
         "tokyo": "टोक्यो",
         "paris": "पेरिस",
@@ -192,12 +204,13 @@ export const cities = {
         "toronto": "टोरंटो",
         "losAngeles": "लॉस एंजेलिस",
         "singapore": "सिंगापुर",
-        "muscat": "मस्कट" // Added: Muscat
+        "muscat": "मस्कट",
+        "darEsSalam": "दार अस सलाम" // Added: Dar es Salaam
     },
     "ko": {
         "newYork": "뉴욕",
-        "kyiv": "키이우", // Added: Kyiv
-        "lviv": "리비우", // Added: Lviv
+        "kyiv": "키이우",
+        "lviv": "리비우",
         "london": "런던",
         "tokyo": "도쿄",
         "paris": "파리",
@@ -207,12 +220,13 @@ export const cities = {
         "toronto": "토론토",
         "losAngeles": "로스앤젤레스",
         "singapore": "싱가포르",
-        "muscat": "무스카트" // Added: Muscat
+        "muscat": "무스카트",
+        "darEsSalam": "다르에스살람" // Added: Dar es Salaam
     },
     "it": {
         "newYork": "New York",
-        "kyiv": "Kiev", // Added: Kyiv
-        "lviv": "Leopoli", // Added: Lviv
+        "kyiv": "Kiev",
+        "lviv": "Leopoli",
         "london": "Londra",
         "tokyo": "Tokyo",
         "paris": "Parigi",
@@ -222,12 +236,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapore",
-        "muscat": "Mascate" // Added: Muscat
+        "muscat": "Mascate",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Italian)
     },
     "tr": {
         "newYork": "New York",
-        "kyiv": "Kiev", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kiev",
+        "lviv": "Lviv",
         "london": "Londra",
         "tokyo": "Tokyo",
         "paris": "Paris",
@@ -237,12 +252,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapur",
-        "muscat": "Maskat" // Added: Muscat
+        "muscat": "Maskat",
+        "darEsSalam": "Darüsselam" // Added: Dar es Salaam (Turkish transliteration)
     },
     "vi": {
         "newYork": "New York",
-        "kyiv": "Kyiv", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kyiv",
+        "lviv": "Lviv",
         "london": "London",
         "tokyo": "Tokyo",
         "paris": "Paris",
@@ -252,12 +268,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapore",
-        "muscat": "Muscat" // Added: Muscat
+        "muscat": "Muscat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Vietnamese)
     },
     "fa": {
         "newYork": "نیویورک",
-        "kyiv": "کی‌یف", // Added: Kyiv
-        "lviv": "لویو", // Added: Lviv
+        "kyiv": "کی‌یف",
+        "lviv": "لویو",
         "london": "لندن",
         "tokyo": "توکیو",
         "paris": "پاریس",
@@ -267,12 +284,13 @@ export const cities = {
         "toronto": "تورنتو",
         "losAngeles": "لس آنجلس",
         "singapore": "سنگاپور",
-        "muscat": "مسقط" // Added: Muscat
+        "muscat": "مسقط",
+        "darEsSalam": "دارالسلام" // Added: Dar es Salaam (Persian translation)
     },
     "th": {
         "newYork": "นิวยอร์ก",
-        "kyiv": "เคียฟ", // Added: Kyiv
-        "lviv": "ลวีว", // Added: Lviv
+        "kyiv": "เคียฟ",
+        "lviv": "ลวีว",
         "london": "ลอนดอน",
         "tokyo": "โตเกียว",
         "paris": "ปารีส",
@@ -282,12 +300,13 @@ export const cities = {
         "toronto": "โตรอนโต",
         "losAngeles": "ลอสแอนเจลิส",
         "singapore": "สิงคโปร์",
-        "muscat": "มัสกัต" // Added: Muscat
+        "muscat": "มัสกัต",
+        "darEsSalam": "ดาร์เอสซาลาม" // Added: Dar es Salaam
     },
     "ur": {
         "newYork": "نیو یارک",
-        "kyiv": "کیف", // Added: Kyiv
-        "lviv": "لویو", // Added: Lviv
+        "kyiv": "کیف",
+        "lviv": "لویو",
         "london": "لندن",
         "tokyo": "ٹوکیو",
         "paris": "پیرس",
@@ -297,12 +316,13 @@ export const cities = {
         "toronto": "ٹورنٹو",
         "losAngeles": "لاس اینجلس",
         "singapore": "سنگاپور",
-        "muscat": "مسقط" // Added: Muscat
+        "muscat": "مسقط",
+        "darEsSalam": "دارالسلام" // Added: Dar es Salaam (Urdu translation)
     },
     "pl": {
         "newYork": "Nowy Jork",
-        "kyiv": "Kijów", // Added: Kyiv
-        "lviv": "Lwów", // Added: Lviv
+        "kyiv": "Kijów",
+        "lviv": "Lwów",
         "london": "Londyn",
         "tokyo": "Tokio",
         "paris": "Paryż",
@@ -312,12 +332,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapur",
-        "muscat": "Maskat" // Added: Muscat
+        "muscat": "Maskat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Polish)
     },
     "nl": {
         "newYork": "New York",
-        "kyiv": "Kiev", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kiev",
+        "lviv": "Lviv",
         "london": "Londen",
         "tokyo": "Tokio",
         "paris": "Parijs",
@@ -327,12 +348,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapore",
-        "muscat": "Muscat" // Added: Muscat
+        "muscat": "Muscat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Dutch)
     },
     "fil": {
         "newYork": "New York",
-        "kyiv": "Kyiv", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kyiv",
+        "lviv": "Lviv",
         "london": "London",
         "tokyo": "Tokyo",
         "paris": "Paris",
@@ -342,12 +364,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapore",
-        "muscat": "Muscat" // Added: Muscat
+        "muscat": "Muscat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Filipino)
     },
     "ro": {
         "newYork": "New York",
-        "kyiv": "Kiev", // Added: Kyiv
-        "lviv": "Liov", // Added: Lviv
+        "kyiv": "Kiev",
+        "lviv": "Liov",
         "london": "Londra",
         "tokyo": "Tokyo",
         "paris": "Paris",
@@ -357,12 +380,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapore",
-        "muscat": "Muscat" // Added: Muscat
+        "muscat": "Muscat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Romanian)
     },
     "uk": {
         "newYork": "Нью-Йорк",
-        "kyiv": "Київ", // Already present in "en" but added for consistency
-        "lviv": "Львів", // Already present in "en" but added for consistency
+        "kyiv": "Київ",
+        "lviv": "Львів",
         "london": "Лондон",
         "tokyo": "Токіо",
         "paris": "Париж",
@@ -372,12 +396,13 @@ export const cities = {
         "toronto": "Торонто",
         "losAngeles": "Лос-Анджелес",
         "singapore": "Сінгапур",
-        "muscat": "Маскат" // Added: Muscat
+        "muscat": "Маскат",
+        "darEsSalam": "Дар-ес-Салам" // Added: Dar es Salaam
     },
     "el": {
         "newYork": "Νέα Υόρκη",
-        "kyiv": "Κίεβο", // Added: Kyiv
-        "lviv": "Λβιβ", // Added: Lviv
+        "kyiv": "Κίεβο",
+        "lviv": "Λβιβ",
         "london": "Λονδίνο",
         "tokyo": "Τόκιο",
         "paris": "Παρίσι",
@@ -387,12 +412,13 @@ export const cities = {
         "toronto": "Τορόντο",
         "losAngeles": "Λος Άντζελες",
         "singapore": "Σιγκαπούρη",
-        "muscat": "Μασκάτ" // Added: Muscat
+        "muscat": "Μασκάτ",
+        "darEsSalam": "Νταρ ες Σαλάμ" // Added: Dar es Salaam
     },
     "cs": {
         "newYork": "New York",
-        "kyiv": "Kyjev", // Added: Kyiv
-        "lviv": "Lvov", // Added: Lviv
+        "kyiv": "Kyjev",
+        "lviv": "Lvov",
         "london": "Londýn",
         "tokyo": "Tokio",
         "paris": "Paříž",
@@ -402,12 +428,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapur",
-        "muscat": "Maskat" // Added: Muscat
+        "muscat": "Maskat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Czech)
     },
     "hu": {
         "newYork": "New York",
-        "kyiv": "Kijev", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kijev",
+        "lviv": "Lviv",
         "london": "London",
         "tokyo": "Tokió",
         "paris": "Párizs",
@@ -417,12 +444,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Szingapúr",
-        "muscat": "Maszkat" // Added: Muscat
+        "muscat": "Maszkat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Hungarian)
     },
     "sv": {
         "newYork": "New York",
-        "kyiv": "Kiev", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kiev",
+        "lviv": "Lviv",
         "london": "London",
         "tokyo": "Tokyo",
         "paris": "Paris",
@@ -432,12 +460,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapore",
-        "muscat": "Muscat" // Added: Muscat
+        "muscat": "Muscat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Swedish)
     },
     "he": {
         "newYork": "ניו יורק",
-        "kyiv": "קייב", // Added: Kyiv
-        "lviv": "לבוב", // Added: Lviv
+        "kyiv": "קייב",
+        "lviv": "לבוב",
         "london": "לונדון",
         "tokyo": "טוקיו",
         "paris": "פריז",
@@ -447,12 +476,13 @@ export const cities = {
         "toronto": "טורונטו",
         "losAngeles": "לוס אנג'לס",
         "singapore": "סינגפור",
-        "muscat": "מוסקט" // Added: Muscat
+        "muscat": "מוסקט",
+        "darEsSalam": "דר א-סלאם" // Added: Dar es Salaam
     },
     "da": {
         "newYork": "New York",
-        "kyiv": "Kiev", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kiev",
+        "lviv": "Lviv",
         "london": "London",
         "tokyo": "Tokyo",
         "paris": "Paris",
@@ -462,12 +492,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapore",
-        "muscat": "Muscat" // Added: Muscat
+        "muscat": "Muscat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Danish)
     },
     "fi": {
         "newYork": "New York",
-        "kyiv": "Kiova", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kiova",
+        "lviv": "Lviv",
         "london": "Lontoo",
         "tokyo": "Tokio",
         "paris": "Pariisi",
@@ -477,12 +508,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapore",
-        "muscat": "Muscat" // Added: Muscat
+        "muscat": "Muscat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Finnish)
     },
     "no": {
         "newYork": "New York",
-        "kyiv": "Kyiv", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kyiv",
+        "lviv": "Lviv",
         "london": "London",
         "tokyo": "Tokyo",
         "paris": "Paris",
@@ -492,12 +524,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapore",
-        "muscat": "Muscat" // Added: Muscat
+        "muscat": "Muscat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Norwegian)
     },
     "bg": {
         "newYork": "Ню Йорк",
-        "kyiv": "Киев", // Added: Kyiv
-        "lviv": "Лвов", // Added: Lviv
+        "kyiv": "Киев",
+        "lviv": "Лвов",
         "london": "Лондон",
         "tokyo": "Токио",
         "paris": "Париж",
@@ -507,12 +540,13 @@ export const cities = {
         "toronto": "Торонто",
         "losAngeles": "Лос Анджелис",
         "singapore": "Сингапур",
-        "muscat": "Мускат" // Added: Muscat
+        "muscat": "Мускат",
+        "darEsSalam": "Дар ес Салаам" // Added: Dar es Salaam
     },
     "sk": {
         "newYork": "New York",
-        "kyiv": "Kyjev", // Added: Kyiv
-        "lviv": "Ľvov", // Added: Lviv
+        "kyiv": "Kyjev",
+        "lviv": "Ľvov",
         "london": "Londýn",
         "tokyo": "Tokio",
         "paris": "Paríž",
@@ -522,12 +556,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapur",
-        "muscat": "Maskat" // Added: Muscat
+        "muscat": "Maskat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Slovak)
     },
     "hr": {
         "newYork": "New York",
-        "kyiv": "Kijev", // Added: Kyiv
-        "lviv": "Lavov", // Added: Lviv
+        "kyiv": "Kijev",
+        "lviv": "Lavov",
         "london": "London",
         "tokyo": "Tokio",
         "paris": "Pariz",
@@ -537,12 +572,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapur",
-        "muscat": "Muskat" // Added: Muscat
+        "muscat": "Muskat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Croatian)
     },
     "sr": {
         "newYork": "Њујорк",
-        "kyiv": "Кијев", // Added: Kyiv
-        "lviv": "Лавов", // Added: Lviv
+        "kyiv": "Кијев",
+        "lviv": "Лавов",
         "london": "Лондон",
         "tokyo": "Токио",
         "paris": "Париз",
@@ -552,12 +588,13 @@ export const cities = {
         "toronto": "Торонто",
         "losAngeles": "Лос Анђелес",
         "singapore": "Сингапур",
-        "muscat": "Мускат" // Added: Muscat
+        "muscat": "Мускат",
+        "darEsSalam": "Дар ес Салам" // Added: Dar es Salaam
     },
     "lt": {
         "newYork": "Niujorkas",
-        "kyiv": "Kijevas", // Added: Kyiv
-        "lviv": "Lvovas", // Added: Lviv
+        "kyiv": "Kijevas",
+        "lviv": "Lvovas",
         "london": "Londonas",
         "tokyo": "Tokijas",
         "paris": "Paryžius",
@@ -567,12 +604,13 @@ export const cities = {
         "toronto": "Torontas",
         "losAngeles": "Los Andželas",
         "singapore": "Singapūras",
-        "muscat": "Maskatas" // Added: Muscat
+        "muscat": "Maskatas",
+        "darEsSalam": "Dar es Salamas" // Added: Dar es Salaam (Lithuanian transliteration)
     },
     "sl": {
         "newYork": "New York",
-        "kyiv": "Kijev", // Added: Kyiv
-        "lviv": "Lvov", // Added: Lviv
+        "kyiv": "Kijev",
+        "lviv": "Lvov",
         "london": "London",
         "tokyo": "Tokio",
         "paris": "Pariz",
@@ -582,12 +620,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapur",
-        "muscat": "Maskat" // Added: Muscat
+        "muscat": "Maskat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Slovenian)
     },
     "lv": {
         "newYork": "Ņujorka",
-        "kyiv": "Kijeva", // Added: Kyiv
-        "lviv": "Ļvova", // Added: Lviv
+        "kyiv": "Kijeva",
+        "lviv": "Ļvova",
         "london": "Londona",
         "tokyo": "Tokija",
         "paris": "Parīze",
@@ -597,12 +636,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Losandželosa",
         "singapore": "Singapūra",
-        "muscat": "Maskata" // Added: Muscat
+        "muscat": "Maskata",
+        "darEsSalam": "Dāresalāma" // Added: Dar es Salaam (Latvian transliteration)
     },
     "et": {
         "newYork": "New York",
-        "kyiv": "Kiiev", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kiiev",
+        "lviv": "Lviv",
         "london": "London",
         "tokyo": "Tōkyō",
         "paris": "Pariis",
@@ -612,12 +652,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapur",
-        "muscat": "Muscat" // Added: Muscat
+        "muscat": "Muscat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Estonian)
     },
     "hy": {
         "newYork": "Նյու Յորք",
-        "kyiv": "Կիև", // Added: Kyiv
-        "lviv": "Լվով", // Added: Lviv
+        "kyiv": "Կիև",
+        "lviv": "Լվով",
         "london": "Լոնդոն",
         "tokyo": "Տոկիո",
         "paris": "Փարիզ",
@@ -627,12 +668,13 @@ export const cities = {
         "toronto": "Տորոնտո",
         "losAngeles": "Լոս Անջելես",
         "singapore": "Սինգապուր",
-        "muscat": "Մասկատ" // Added: Muscat
+        "muscat": "Մասկատ",
+        "darEsSalam": "Դար ես Սալամ" // Added: Dar es Salaam
     },
     "az": {
         "newYork": "Nyu York",
-        "kyiv": "Kiyev", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kiyev",
+        "lviv": "Lviv",
         "london": "London",
         "tokyo": "Tokio",
         "paris": "Paris",
@@ -642,12 +684,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Anceles",
         "singapore": "Sinqapur",
-        "muscat": "Muskat" // Added: Muscat
+        "muscat": "Muskat",
+        "darEsSalam": "Dar es Salam" // Added: Dar es Salaam (Azerbaijani transliteration)
     },
     "ka": {
         "newYork": "ნიუ-იორკი",
-        "kyiv": "კიევი", // Added: Kyiv
-        "lviv": "ლვოვი", // Added: Lviv
+        "kyiv": "კიევი",
+        "lviv": "ლვოვი",
         "london": "ლონდონი",
         "tokyo": "ტოკიო",
         "paris": "პარიზი",
@@ -657,12 +700,13 @@ export const cities = {
         "toronto": "ტორონტო",
         "losAngeles": "ლოს-ანჯელესი",
         "singapore": "სინგაპური",
-        "muscat": "მასკატი" // Added: Muscat
+        "muscat": "მასკატი",
+        "darEsSalam": "დარ-ეს-სალამი" // Added: Dar es Salaam
     },
     "sq": {
         "newYork": "New York",
-        "kyiv": "Kiev", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kiev",
+        "lviv": "Lviv",
         "london": "Londër",
         "tokyo": "Tokio",
         "paris": "Paris",
@@ -672,12 +716,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapor",
-        "muscat": "Muskat" // Added: Muscat
+        "muscat": "Muskat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Albanian)
     },
     "mk": {
         "newYork": "Њујорк",
-        "kyiv": "Киев", // Added: Kyiv
-        "lviv": "Лавов", // Added: Lviv
+        "kyiv": "Киев",
+        "lviv": "Лавов",
         "london": "Лондон",
         "tokyo": "Токио",
         "paris": "Париз",
@@ -687,12 +732,13 @@ export const cities = {
         "toronto": "Торонто",
         "losAngeles": "Лос Анџелес",
         "singapore": "Сингапур",
-        "muscat": "Мускат" // Added: Muscat
+        "muscat": "Мускат",
+        "darEsSalam": "Дар ес Салам" // Added: Dar es Salaam
     },
     "bs": {
         "newYork": "New York",
-        "kyiv": "Kijev", // Added: Kyiv
-        "lviv": "Lavov", // Added: Lviv
+        "kyiv": "Kijev",
+        "lviv": "Lavov",
         "london": "London",
         "tokyo": "Tokio",
         "paris": "Pariz",
@@ -702,12 +748,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapur",
-        "muscat": "Muskat" // Added: Muscat
+        "muscat": "Muskat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Bosnian)
     },
     "mt": {
         "newYork": "New York",
-        "kyiv": "Kiev", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kiev",
+        "lviv": "Lviv",
         "london": "Londra",
         "tokyo": "Tokjo",
         "paris": "Pariġi",
@@ -717,12 +764,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapor",
-        "muscat": "Muscat" // Added: Muscat
+        "muscat": "Muscat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Maltese)
     },
     "is": {
         "newYork": "New York",
-        "kyiv": "Kíev", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kíev",
+        "lviv": "Lviv",
         "london": "London",
         "tokyo": "Tókýó",
         "paris": "París",
@@ -732,12 +780,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapúr",
-        "muscat": "Muskat" // Added: Muscat
+        "muscat": "Muskat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Icelandic)
     },
     "lb": {
         "newYork": "New York",
-        "kyiv": "Kiew", // Added: Kyiv
-        "lviv": "Lwiw", // Added: Lviv
+        "kyiv": "Kiew",
+        "lviv": "Lwiw",
         "london": "London",
         "tokyo": "Tokio",
         "paris": "Paräis",
@@ -747,12 +796,13 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapur",
-        "muscat": "Maskat" // Added: Muscat
+        "muscat": "Maskat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Luxembourgish)
     },
     "fo": {
         "newYork": "New York",
-        "kyiv": "Kyiv", // Added: Kyiv
-        "lviv": "Lviv", // Added: Lviv
+        "kyiv": "Kyiv",
+        "lviv": "Lviv",
         "london": "London",
         "tokyo": "Tokio",
         "paris": "Paris",
@@ -762,6 +812,7 @@ export const cities = {
         "toronto": "Toronto",
         "losAngeles": "Los Angeles",
         "singapore": "Singapor",
-        "muscat": "Muscat" // Added: Muscat
+        "muscat": "Muscat",
+        "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Faroese)
     }
 };
