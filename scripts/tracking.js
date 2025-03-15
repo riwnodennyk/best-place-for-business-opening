@@ -25,11 +25,12 @@ function trackMapZoomed(zoomValue) {
     console.log("Map Zoomed:", zoomValue);
 }
 
-function trackLoadedBuildings(secondsPassed) {
+function trackLoadedBuildings(location, secondsPassed) {
     gtag('event', 'loaded_buildings', {
-        'seconds': secondsPassed
+        'location': location,
+        'seconds': secondsPassed,
     });
-    console.log("Loaded Buildings in seconds:", secondsPassed);
+    console.log("Loaded Buildings in:",location," for seconds: ", secondsPassed );
 }
 
 

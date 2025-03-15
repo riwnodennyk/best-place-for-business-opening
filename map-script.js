@@ -136,7 +136,7 @@ async function fetchData(bounds, retryCount = 0) {
             console.warn("No buildings with sufficient business density found.");
         }
         const loadingDuration = Math.round((performance.now() - loadingStartTime) / 1000);
-        trackLoadedBuildings(loadingDuration);
+        trackLoadedBuildings(map.getCenter(), loadingDuration);
         loadingIndicator.style.display = 'none';
     } catch (error) {
         if (error.name === "AbortError") {
