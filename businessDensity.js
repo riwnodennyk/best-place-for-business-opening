@@ -1,5 +1,5 @@
 import { translate } from './foot_traffic_translation.js';
-import { trackSliderChange } from './scripts/tracking.js';
+import { trackSliderChange, trackClickedBuilding } from './scripts/tracking.js';
 
 const AT_75_DENSITY = 55;
 const AT_50_DENSITY = 40;
@@ -87,6 +87,12 @@ async function processBuildingData(building, businessesResponse, calculateArea, 
             <b>${peoplePassingByTranslated}:</b> ${peoplePassingBy} <br>
              ${address ? `${address} <br>` : ""}
         `);
+
+        // ✅ Track GA4 Event When Popup Opens
+        polygon.on("popupopen", () => {
+            trackClickedBuilding(polygonCenter, peoplePassingBy);
+        });
+
         buildingsLayer.addLayer(polygon);
         return true;
     }

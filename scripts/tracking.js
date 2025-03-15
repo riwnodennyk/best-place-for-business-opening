@@ -33,5 +33,13 @@ function trackLoadedBuildings(location, secondsPassed) {
     console.log("Loaded Buildings in:", location.lat, location.lng, " for seconds: ", secondsPassed);
 }
 
+function trackClickedBuilding(location, pedestrians) {
+    gtag('event', 'clicked_building', {
+        'location': location.lat + ',' + location.lng,
+        'pedestrians': pedestrians,
+    });
+    console.log("Building clicked at:", location.lat, location.lng, " with pedestrians: ", pedestrians);
+}
 
-export { trackSliderChange, trackCityChipSelected, trackMapPanned, trackMapZoomed, trackLoadedBuildings }
+
+export { trackSliderChange, trackCityChipSelected, trackMapPanned, trackMapZoomed, trackLoadedBuildings, trackClickedBuilding }
