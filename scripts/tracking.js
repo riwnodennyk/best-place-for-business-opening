@@ -25,13 +25,25 @@ function trackMapZoomed(zoomValue) {
     console.log("Map Zoomed:", zoomValue);
 }
 
-function trackLoadedBuildings(location, secondsPassed) {
+function trackLoadedBuildings(location, secondsPassed, howManyBuildings) {
     gtag('event', 'loaded_buildings', {
         'location': location.lat + ',' + location.lng,
         'seconds': secondsPassed,
+        'how_many': howManyBuildings,
     });
-    console.log("Loaded Buildings in:", location.lat, location.lng, " for seconds: ", secondsPassed);
+    console.log("Loaded Buildings in:", location.lat, location.lng, " for seconds: ", secondsPassed,
+        "and loaded ", howManyBuildings, "buildings"
+    );
+
+    if (howManyBuildings == 0) {
+        gtag('event', 'no_loaded_buildings_error', {
+            'location': location.lat + ',' + location.lng,
+            'seconds': secondsPassed
+        });
+        console.warn("No buildings with sufficient business density found.");
+    }
 }
+
 
 function trackClickedBuilding(location, pedestrians) {
     gtag('event', 'clicked_building', {
@@ -41,5 +53,14 @@ function trackClickedBuilding(location, pedestrians) {
     console.log("Building clicked at:", location.lat, location.lng, " with pedestrians: ", pedestrians);
 }
 
+function trackTooManyRequestsError() {
+    gtag('event', 'too_many_requests_error');
+}
 
-export { trackSliderChange, trackCityChipSelected, trackMapPanned, trackMapZoomed, trackLoadedBuildings, trackClickedBuilding }
+export {
+    trackSliderChange,
+    trackCityChipSelected,
+    trackMapPanned,
+    trackMapZoomed, trackTooManyRequestsError,
+    trackLoadedBuildings, trackClickedBuilding
+}

@@ -1,7 +1,11 @@
 import { calculateArea } from './calculateArea.js';
 import { processBuildingData } from './businessDensity.js';
 import { translate } from './foot_traffic_translation.js';
-import { trackMapPanned, trackMapZoomed, trackCityChipSelected, trackLoadedBuildings } from './scripts/tracking.js';
+import {
+    trackMapPanned, trackTooManyRequestsError,
+    trackMapZoomed, trackCityChipSelected,
+    trackLoadedBuildings
+} from './scripts/tracking.js';
 
 let map, buildingsLayer, lastBounds = null, currentRequestController = null;
 let loadingIndicator = document.getElementById('loading');
@@ -123,20 +127,19 @@ async function fetchData(bounds, retryCount = 0) {
         ]);
 
         buildingsLayer.clearLayers();
-        let foundBuildings = false;
+        let foundBuildings = 0;
 
-        buildingsResponse.elements.forEach(building => {
+        for (const building of buildingsResponse.elements) {
             if (building.type === "way" && building.geometry) {
-                const isBuildingProcessed = processBuildingData(building, businessesResponse, calculateArea, buildingsLayer);
-                if (isBuildingProcessed) foundBuildings = true;
+                const isBuildingProcessed = await processBuildingData(building, businessesResponse, calculateArea, buildingsLayer);
+                if (isBuildingProcessed === true) {
+                    foundBuildings++;
+                }
             }
-        });
-
-        if (!foundBuildings) {
-            console.warn("No buildings with sufficient business density found.");
         }
+
         const loadingDuration = Math.round((performance.now() - loadingStartTime) / 1000);
-        trackLoadedBuildings(map.getCenter(), loadingDuration);
+        trackLoadedBuildings(map.getCenter(), loadingDuration, foundBuildings);
         loadingIndicator.style.display = 'none';
     } catch (error) {
         if (error.name === "AbortError") {
@@ -151,6 +154,7 @@ async function handleResponse(response, bounds, retryCount) {
     if (response.status === 429) {
         let waitTime = Math.pow(2, retryCount) * 1000; // Exponential backoff
         console.warn(`429 Too Many Requests - Retrying in ${waitTime / 1000} seconds...`);
+        trackTooManyRequestsError();
         await new Promise(resolve => setTimeout(resolve, waitTime));
 
         if (retryCount < 5) {
