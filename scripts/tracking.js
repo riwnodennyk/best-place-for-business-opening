@@ -27,7 +27,7 @@ function trackMapZoomed(zoomValue) {
 
 function trackLoadedBuildings(location, secondsPassed, howManyBuildings) {
     gtag('event', 'loaded_buildings', {
-        'location': location.lat + ',' + location.lng,
+        'map_location': location.lat + ',' + location.lng,
         'seconds': secondsPassed,
         'how_many': howManyBuildings,
     });
@@ -37,7 +37,7 @@ function trackLoadedBuildings(location, secondsPassed, howManyBuildings) {
 
     if (howManyBuildings == 0) {
         gtag('event', 'no_loaded_buildings_error', {
-            'location': location.lat + ',' + location.lng,
+            'map_location': location.lat + ',' + location.lng,
             'seconds': secondsPassed
         });
         console.warn("No buildings with sufficient business density found.");
@@ -47,7 +47,7 @@ function trackLoadedBuildings(location, secondsPassed, howManyBuildings) {
 
 function trackClickedBuilding(location, pedestrians) {
     gtag('event', 'clicked_building', {
-        'location': location.lat + ',' + location.lng,
+        'map_location': location.lat + ',' + location.lng,
         'pedestrians': pedestrians,
     });
     console.log("Building clicked at:", location.lat, location.lng, " with pedestrians: ", pedestrians);
