@@ -57,10 +57,25 @@ function trackTooManyRequestsError() {
     gtag('event', 'too_many_requests_error');
 }
 
+function trackLocationDetected(data) {
+    gtag('event', 'user_location_detected', {
+        'user_location': data.latitude + ',' + data.longitude,
+    });
+    console.log("User Location Detected: ", data.latitude, data.longitude);
+}
+
+function trackNoUserLocationDetectedError(error) {
+    gtag('event', 'no_user_location_detected_error', {
+    });
+    console.warn("Could not fetch user location, using default:", error);
+}
+
 export {
     trackSliderChange,
     trackCityChipSelected,
     trackMapPanned,
+    trackLocationDetected,
+    trackNoUserLocationDetectedError,
     trackMapZoomed, trackTooManyRequestsError,
     trackLoadedBuildings, trackClickedBuilding
 }

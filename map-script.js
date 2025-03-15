@@ -4,6 +4,8 @@ import { translate } from './foot_traffic_translation.js';
 import {
     trackMapPanned, trackTooManyRequestsError,
     trackMapZoomed, trackCityChipSelected,
+    trackNoUserLocationDetectedError,
+    trackLocationDetected,
     trackLoadedBuildings
 } from './scripts/tracking.js';
 
@@ -36,10 +38,10 @@ async function getUserLocation() {
     try {
         const response = await fetch("https://geolocation-db.com/json/");
         const data = await response.json();
-        console.log("User Location: ", data.latitude, data.longitude);
+        trackLocationDetected(data)
         return { lat: data.latitude, lon: data.longitude };
     } catch (error) {
-        console.warn("Could not fetch user location, using default:", error);
+        trackNoUserLocationDetectedError(error);
         return { lat: 51.508, lon: -0.128 }; // fallback
     }
 }
