@@ -27,8 +27,10 @@ function trackMapZoomed(zoomValue) {
 
 function trackLoadedBuildings(location, secondsPassed) {
     gtag('event', 'loaded_buildings', {
-        'lat': location.lat,
-        'lng': location.lng,
+        'location': {
+            'lat': location.lat,
+            'lng': location.lng
+        },
         'seconds': secondsPassed,
     });
     console.log("Loaded Buildings in:", location.lat, location.lng, " for seconds: ", secondsPassed);
