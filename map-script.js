@@ -54,7 +54,7 @@ async function initializeMap() {
     map = L.map('map', {
         center: [userLocation.lat, userLocation.lon],
         zoom: 16,
-        minZoom: 6,
+        minZoom: 15,
         maxZoom: 18
     });
 
@@ -67,10 +67,11 @@ async function initializeMap() {
         setView: 'always',
         flyTo: true,
         drawCircle: true,
-        keepCurrentZoomLevel: true,
+        keepCurrentZoomLevel: false,
         showPopup: false,
         locateOptions: {
             enableHighAccuracy: false,
+            timeout: 10000,           // Fail after 10 seconds
             maxZoom: 16
         },
         icon: 'fa fa-crosshairs'
