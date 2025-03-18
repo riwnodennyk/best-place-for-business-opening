@@ -6,6 +6,7 @@ import {
     trackMapZoomed, trackCityChipSelected,
     trackNoUserLocationDetectedError,
     trackLocationDetected,
+    trackClickedMyLocation,
     trackLoadedBuildings
 } from './scripts/tracking.js';
 
@@ -200,11 +201,13 @@ initializeMap();
 
 // Locate function
 function locateUser(retry) {
+    trackClickedMyLocation();
     navigator.geolocation.getCurrentPosition(
         (position) => {
             console.log("Latitude:", position.coords.latitude);
             console.log("Longitude:", position.coords.longitude);
-            panToCity(position.coords.latitude, position.coords.longitude);
+            // panToCity(position.coords.latitude, position.coords.longitude);
+            map.locate({ setView: true, maxZoom: 16 });
         },
         (error) => {
             if (!retry) {
@@ -217,6 +220,7 @@ function locateUser(retry) {
             } else {
                 alert("Geolocation error: " + error.message);
             }
+            //todo remove alerts
 
             if (error.message.includes("kCLErrorLocationUnknown")) {
             }

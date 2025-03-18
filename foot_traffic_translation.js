@@ -12,7 +12,6 @@ const translations = Object.fromEntries(
 );
 
 function translate(key) {
-    console.log("translate ", key);
     return translation[key] || translations["en"][key];
 }
 

@@ -70,9 +70,15 @@ function trackNoUserLocationDetectedError(error) {
     console.warn("Could not fetch user location, using default:", error);
 }
 
+function trackClickedMyLocation() {
+    gtag('event', 'my_location_clicked'); 
+    console.log("clicked my location");
+}
+
 export {
     trackSliderChange,
     trackCityChipSelected,
+    trackClickedMyLocation,
     trackMapPanned,
     trackLocationDetected,
     trackNoUserLocationDetectedError,
