@@ -11,6 +11,7 @@ import {
 } from './scripts/tracking.js';
 
 let map, buildingsLayer, lastBounds = null, currentRequestController = null;
+let locateControl = null;
 let loadingIndicator = document.getElementById('loading');
 let loadingStartTime = null; // Track loading start time
 
@@ -61,15 +62,16 @@ async function initializeMap() {
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    L.control.locate({
+    locateControl = L.control.locate({
         position: 'topright',
         setView: 'always',
         flyTo: true,
         drawCircle: true,
-        keepCurrentZoomLevel: false,
+        keepCurrentZoomLevel: true,
         showPopup: false,
         locateOptions: {
-            enableHighAccuracy: true
+            enableHighAccuracy: false,
+            maxZoom: 16
         },
         icon: 'fa fa-crosshairs'
     }).addTo(map);
@@ -202,35 +204,37 @@ initializeMap();
 // Locate function
 function locateUser(retry) {
     trackClickedMyLocation();
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-            console.log("Latitude:", position.coords.latitude);
-            console.log("Longitude:", position.coords.longitude);
-            // panToCity(position.coords.latitude, position.coords.longitude);
-            map.locate({ setView: true, maxZoom: 16 });
-        },
-        (error) => {
-            if (!retry) {
-                //  setTimeout(locateUser(true), 20 * 1000); // Retry after 5 seconds
-            }
-            console.error("Error getting location:", error, error.code);
-            map.setView([map.getCenter().lat, map.getCenter().lng], 6);
-            if (error.message.includes("kCLErrorLocationUnknown")) {
-                alert("Couldn’t find your location right now—try again in a moment!");
-            } else {
-                alert("Geolocation error: " + error.message);
-            }
-            //todo remove alerts
+    locateControl.start(); // Starts the locate process
 
-            if (error.message.includes("kCLErrorLocationUnknown")) {
-            }
-        }
-        , {
-            enableHighAccuracy: false,  // Use GPS if available (may drain battery)
-            timeout: 5000,             // Wait a max of 5 seconds
-            maximumAge: 600000              // Do not use cached location
-        }
-    );
+    // navigator.geolocation.getCurrentPosition(
+    //     (position) => {
+    //         console.log("Latitude:", position.coords.latitude);
+    //         console.log("Longitude:", position.coords.longitude);
+    //         // panToCity(position.coords.latitude, position.coords.longitude);
+    //         map.locate({ setView: true, maxZoom: 16 });
+    //     },
+    //     (error) => {
+    //         if (!retry) {
+    //             //  setTimeout(locateUser(true), 20 * 1000); // Retry after 5 seconds
+    //         }
+    //         console.error("Error getting location:", error, error.code);
+    //         map.setView([map.getCenter().lat, map.getCenter().lng], 6);
+    //         if (error.message.includes("kCLErrorLocationUnknown")) {
+    //             alert("Couldn’t find your location right now—try again in a moment!");
+    //         } else {
+    //             alert("Geolocation error: " + error.message);
+    //         }
+    //         //todo remove alerts
+
+    //         if (error.message.includes("kCLErrorLocationUnknown")) {
+    //         }
+    //     }
+    //     , {
+    //         enableHighAccuracy: false,  // Use GPS if available (may drain battery)
+    //         timeout: 5000,             // Wait a max of 5 seconds
+    //         maximumAge: 600000              // Do not use cached location
+    //     }
+    // );
 }
 
 function panToCity(lat, lon) {
