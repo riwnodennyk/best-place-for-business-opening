@@ -208,7 +208,7 @@ function locateUser(retry) {
         },
         (error) => {
             if (!retry) {
-           //  setTimeout(locateUser(true), 20 * 1000); // Retry after 5 seconds
+                //  setTimeout(locateUser(true), 20 * 1000); // Retry after 5 seconds
             }
             console.error("Error getting location:", error, error.code);
             map.setView([map.getCenter().lat, map.getCenter().lng], 6);
