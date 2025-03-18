@@ -1,5 +1,6 @@
 export const generalUI = {
     "en": {
+        "myLocation": "My location",
         "peoplePassingBy": "People passing by"
     },
     "zh": {

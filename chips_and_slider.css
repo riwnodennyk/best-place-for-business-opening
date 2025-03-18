@@ -126,7 +126,7 @@
 }
 
 /* Custom City Chips */
-.city-chip {
+.city-chip, .my-loction-chip {
     padding: 10px 20px;
     border: none;
     border-radius: 25px;

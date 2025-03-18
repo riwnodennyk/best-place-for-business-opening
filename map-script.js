@@ -52,7 +52,7 @@ async function initializeMap() {
     map = L.map('map', {
         center: [userLocation.lat, userLocation.lon],
         zoom: 16,
-        minZoom: 15,
+        minZoom: 6,
         maxZoom: 18
     });
 
@@ -184,14 +184,50 @@ function onMapMoveEnd() {
     const currentBoundsString = bounds.toBBoxString();
 
     if (lastBounds !== currentBoundsString) {
-
         loadingStartTime = performance.now(); // Start tracking loading duration
         lastBounds = currentBoundsString;
-        debouncedFetchData(bounds);
+        if (map.getZoom() >= 15) {
+            debouncedFetchData(bounds);
+        }
+        else {
+            //todo show that user needs to zoom in
+            loadingIndicator.style.display = 'block';
+        }
     }
 }
 
 initializeMap();
+
+// Locate function
+function locateUser(retry) {
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            console.log("Latitude:", position.coords.latitude);
+            console.log("Longitude:", position.coords.longitude);
+            panToCity(position.coords.latitude, position.coords.longitude);
+        },
+        (error) => {
+            if (!retry) {
+           //  setTimeout(locateUser(true), 20 * 1000); // Retry after 5 seconds
+            }
+            console.error("Error getting location:", error, error.code);
+            map.setView([map.getCenter().lat, map.getCenter().lng], 6);
+            if (error.message.includes("kCLErrorLocationUnknown")) {
+                alert("Couldn’t find your location right now—try again in a moment!");
+            } else {
+                alert("Geolocation error: " + error.message);
+            }
+
+            if (error.message.includes("kCLErrorLocationUnknown")) {
+            }
+        }
+        , {
+            enableHighAccuracy: false,  // Use GPS if available (may drain battery)
+            timeout: 5000,             // Wait a max of 5 seconds
+            maximumAge: 600000              // Do not use cached location
+        }
+    );
+}
 
 function panToCity(lat, lon) {
     if (map) {
@@ -218,6 +254,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("[data-translate]").forEach(element => {
         const key = element.dataset.translate;
         element.textContent = translate(key);
+    });
+
+    document.querySelector('.my-loction-chip').addEventListener('click', function () {
+        locateUser(false);
     });
 
     document.querySelectorAll(".city-chip").forEach(chip => {
