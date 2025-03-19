@@ -202,5 +202,9 @@ export const generalUI = {
     "fo": {
         "myLocation": "Mín staðseting",
         "peoplePassingBy": "Fólk sum gongur framvið"
+    },
+    "km": {
+        "myLocation": "ទីតាំងរបស់ខ្ញុំ",
+        "peoplePassingBy": "មនុស្សដែលឆ្លងកាត់"
     }
 };

@@ -202,5 +202,9 @@ export const headerContent = {
     "fo": {
         "headerTitle": "Mat fótgangara umferð fyri fyrirtæki títt. ÓKEYPIS!",
         "headerSubtitle": "Grein fótgangara umferð og finn besta staðseting fyri handil tín, matstovu ella skrivstovu."
+    },
+    "km": {
+        "headerTitle": "ប៉ាន់ស្មានចរាចរណ៍ជើងសម្រាប់អាជីវកម្មរបស់អ្នក។ ឥតគិតថ្លៃ!",
+        "headerSubtitle": "វិភាគចរាចរណ៍ជើង និងស្វែងរកទីតាំងល្អបំផុតសម្រាប់ហាង ភោជនីយដ្ឋាន ឬការិយាល័យរបស់អ្នក។"
     }
 };

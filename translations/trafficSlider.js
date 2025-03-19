@@ -151,5 +151,8 @@ export const trafficSlider = {
     },
     "fo": {
         "trafficSliderLabel": "Hvussu nógv fólk gongur framvið í miðal:"
+    },
+    "km": {
+        "trafficSliderLabel": "មានមនុស្សប៉ុន្មាននាក់ដែលឆ្លងកាត់ជាមធ្យម:"
     }
 };

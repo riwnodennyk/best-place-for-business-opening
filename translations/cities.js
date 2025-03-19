@@ -814,5 +814,21 @@ export const cities = {
         "singapore": "Singapor",
         "muscat": "Muscat",
         "darEsSalam": "Dar es Salaam" // Added: Dar es Salaam (commonly untranslated in Faroese)
-    }
+    },
+    "km": {
+        "newYork": "ញូវយ៉ក", // New York
+        "kyiv": "កៀវ", // Kyiv
+        "lviv": "លវីវ", // Lviv
+        "london": "ឡុងដ៍", // London
+        "tokyo": "តូក្យូ", // Tokyo
+        "paris": "ប៉ារីស", // Paris
+        "berlin": "ប៊ែរឡាំង", // Berlin
+        "sydney": "ស៊ីដនី", // Sydney
+        "dubai": "ឌូបៃ", // Dubai
+        "toronto": "តូរ៉ុនតូ", // Toronto
+        "losAngeles": "ឡូស អែនជឺលីស", // Los Angeles
+        "singapore": "សិង្ហបុរី", // Singapore
+        "muscat": "មូស្កាត", // Muscat
+        "darEsSalam": "ដារ អេស សាឡាំ" // Dar es Salaam
+    },
 };

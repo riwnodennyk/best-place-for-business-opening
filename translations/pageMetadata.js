@@ -202,5 +202,9 @@ export const pageMetadata = {
     "fo": {
         "pageTitle": "Ókeypis Fótgangara Umferðar Matstæki | Skipulegg Fína Nýggja Staðseting Fyrirtækis Tíns",
         "metaDescription": "Mat fótgangara umferð fyri staðseting fyrirtækis tíns við ókeypis gagnvirkum korti okkara."
+    },
+    "km": {
+        "pageTitle": "ឧបករណ៍ប៉ាន់ស្មានចរាចរណ៍ជើងឥតគិតថ្លៃ | រៀបចំផែនការទីតាំងអាជីវកម្មថ្មីរបស់អ្នក",
+        "metaDescription": "ប៉ាន់ស្មានចរាចរណ៍ជើងសម្រាប់ទីតាំងអាជីវកម្មរបស់អ្នកដោយប្រើផែនទីអន្តរកម្មឥតគិតថ្លៃរបស់យើង។"
     }
 };

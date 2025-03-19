@@ -202,5 +202,9 @@ export const loadingStates = {
     "fo": {
         "loadingText": "Útrokning av fótgangara umferð á økinum...",
         "mapPlaceholder": "Kortið verður loðið..."
+    },
+    "km": {
+        "loadingText": "កំពុងគណនាចរាចរណ៍ជើងនៅក្នុងតំបន់...",
+        "mapPlaceholder": "កំពុងផ្ទុកផែនទី..."
     }
 };
