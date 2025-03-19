@@ -202,42 +202,6 @@ function onMapMoveEnd() {
 
 initializeMap();
 
-// Locate function
-function locateUser(retry) {
-    trackClickedMyLocation();
-    locateControl.start(); // Starts the locate process
-
-    // navigator.geolocation.getCurrentPosition(
-    //     (position) => {
-    //         console.log("Latitude:", position.coords.latitude);
-    //         console.log("Longitude:", position.coords.longitude);
-    //         // panToCity(position.coords.latitude, position.coords.longitude);
-    //         map.locate({ setView: true, maxZoom: 16 });
-    //     },
-    //     (error) => {
-    //         if (!retry) {
-    //             //  setTimeout(locateUser(true), 20 * 1000); // Retry after 5 seconds
-    //         }
-    //         console.error("Error getting location:", error, error.code);
-    //         map.setView([map.getCenter().lat, map.getCenter().lng], 6);
-    //         if (error.message.includes("kCLErrorLocationUnknown")) {
-    //             alert("Couldn’t find your location right now—try again in a moment!");
-    //         } else {
-    //             alert("Geolocation error: " + error.message);
-    //         }
-    //         //todo remove alerts
-
-    //         if (error.message.includes("kCLErrorLocationUnknown")) {
-    //         }
-    //     }
-    //     , {
-    //         enableHighAccuracy: false,  // Use GPS if available (may drain battery)
-    //         timeout: 5000,             // Wait a max of 5 seconds
-    //         maximumAge: 600000              // Do not use cached location
-    //     }
-    // );
-}
-
 function panToCity(lat, lon) {
     if (map) {
         map.setView([lat, lon], 16);
@@ -266,7 +230,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.querySelector('.my-loction-chip').addEventListener('click', function () {
-        locateUser(false);
+        trackClickedMyLocation();
+        locateControl.start();
     });
 
     document.querySelectorAll(".city-chip").forEach(chip => {
