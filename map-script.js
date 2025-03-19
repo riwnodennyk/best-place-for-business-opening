@@ -36,7 +36,6 @@ async function getUserLocation() {
     // return {lat: 51.508, lon: -0.128}; // london
     // return {lat: 40.7552275, lon: -73.9787606}; // new york
 
-
     try {
         const response = await fetch("https://geolocation-db.com/json/");
         const data = await response.json();
@@ -53,7 +52,7 @@ async function initializeMap() {
 
     map = L.map('map', {
         center: [userLocation.lat, userLocation.lon],
-        zoom: 16,
+        zoom: 15,
         minZoom: 15,
         maxZoom: 18
     });
@@ -72,7 +71,7 @@ async function initializeMap() {
         locateOptions: {
             enableHighAccuracy: false,
             timeout: 6000,
-            maxZoom: 16
+            maxZoom: 15
         },
         icon: 'fa fa-crosshairs'
     }).addTo(map);
@@ -204,7 +203,7 @@ initializeMap();
 
 function panToCity(lat, lon) {
     if (map) {
-        map.setView([lat, lon], 16);
+        map.setView([lat, lon], 15);
     }
 }
 
