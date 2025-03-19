@@ -71,7 +71,7 @@ async function initializeMap() {
         showPopup: false,
         locateOptions: {
             enableHighAccuracy: false,
-            timeout: 10000,           // Fail after 10 seconds
+            timeout: 6000,
             maxZoom: 16
         },
         icon: 'fa fa-crosshairs'
