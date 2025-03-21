@@ -1,7 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+   xmlns:xhtml="http://www.w3.org/1999/xhtml">
    <url>
       <loc>https://foottraffic.site/</loc>
+      <xhtml:link rel="alternate" hreflang="x-default" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="en" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="zh" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="es" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="ar" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="id" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="ms" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="pt" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="fr" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="ja" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="ru" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="de" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="bn" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="hi" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="ko" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="it" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="tr" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="vi" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="fa" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="th" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="ur" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="pl" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="nl" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="fil" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="ro" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="uk" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="el" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="cs" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="hu" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="sv" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="he" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="da" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="fi" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="no" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="bg" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="sk" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="hr" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="sr" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="lt" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="sl" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="lv" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="et" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="hy" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="az" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="ka" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="sq" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="mk" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="bs" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="mt" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="is" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="lb" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="fo" href="https://foottraffic.site/" />
+      <xhtml:link rel="alternate" hreflang="km" href="https://foottraffic.site/" />
       <lastmod>2025-03-21</lastmod>
       <changefreq>daily</changefreq>
       <priority>1.0</priority>
