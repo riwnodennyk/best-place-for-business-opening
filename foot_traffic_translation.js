@@ -18,6 +18,8 @@ function translate(key) {
 const userLang = navigator.language.substring(0, 2);
 let translation = translations[userLang] || translations["en"];
 
+document.documentElement.setAttribute("lang", translate("hreflang"));
+
 document.querySelector('meta[name="description"]').setAttribute("content", translate("metaDescription"));
 document.querySelector('meta[name="keywords"]').setAttribute("content", translate("keywords"));
 document.querySelector('meta[property="og:title"]').setAttribute("content", translate("og_title"));

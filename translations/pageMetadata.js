@@ -6,7 +6,8 @@ export const pageMetadata = {
         "og_title": "Best Place for Business Opening | Foot Traffic Estimator",
         "og_description": "Discover the best locations for your business with our foot traffic estimation tool",
         "twitter_title": "Best Place for Business Opening",
-        "twitter_description": "Plan your new business with foot traffic analysis."
+        "twitter_description": "Plan your new business with foot traffic analysis.",
+        "hreflang": "en"
     },
     "zh": {
         "pageTitle": "免费人流量估算器 | 规划您的新商铺位置",
@@ -15,7 +16,8 @@ export const pageMetadata = {
         "og_title": "开设商业的最佳地点 | 人流量估算器",
         "og_description": "使用我们的人流量估算工具发现您商业的最佳位置",
         "twitter_title": "开设商业的最佳地点",
-        "twitter_description": "通过人流量分析规划您的新商业。"
+        "twitter_description": "通过人流量分析规划您的新商业。",
+        "hreflang": "zh"
     },
     "es": {
         "pageTitle": "Estimador de Tráfico Peatonal Gratis | Planifique su Ubicación Comercial",
@@ -24,7 +26,8 @@ export const pageMetadata = {
         "og_title": "Mejor Lugar para Apertura de Negocios | Estimador de Tráfico Peatonal",
         "og_description": "Descubra las mejores ubicaciones para su negocio con nuestra herramienta de estimación de tráfico peatonal",
         "twitter_title": "Mejor Lugar para Apertura de Negocios",
-        "twitter_description": "Planifique su nuevo negocio con análisis de tráfico peatonal."
+        "twitter_description": "Planifique su nuevo negocio con análisis de tráfico peatonal.",
+        "hreflang": "es"
     },
     "ar": {
         "pageTitle": "مقدر حركة المشاة المجاني | خطط لموقع عملك الجديد",
@@ -33,7 +36,8 @@ export const pageMetadata = {
         "og_title": "أفضل مكان لفتح الأعمال | مقدر حركة المشاة",
         "og_description": "اكتشف أفضل المواقع لعملك باستخدام أداة تقدير حركة المشاة الخاصة بنا",
         "twitter_title": "أفضل مكان لفتح الأعمال",
-        "twitter_description": "خطط لعملك الجديد مع تحليل حركة المشاة."
+        "twitter_description": "خطط لعملك الجديد مع تحليل حركة المشاة.",
+        "hreflang": "ar"
     },
     "id": {
         "pageTitle": "Perkiraan Lalu Lintas Pejalan Kaki Gratis | Rencanakan Lokasi Bisnis Baru Anda",
@@ -42,7 +46,8 @@ export const pageMetadata = {
         "og_title": "Tempat Terbaik untuk Pembukaan Bisnis | Perkiraan Lalu Lintas Pejalan Kaki",
         "og_description": "Temukan lokasi terbaik untuk bisnis Anda dengan alat perkiraan lalu lintas pejalan kaki kami",
         "twitter_title": "Tempat Terbaik untuk Pembukaan Bisnis",
-        "twitter_description": "Rencanakan bisnis baru Anda dengan analisis lalu lintas pejalan kaki."
+        "twitter_description": "Rencanakan bisnis baru Anda dengan analisis lalu lintas pejalan kaki.",
+        "hreflang": "id"
     },
     "ms": {
         "pageTitle": "Anggaran Lalu Lintas Pejalan Kaki Percuma | Rancang Lokasi Perniagaan Baru Anda",
@@ -51,7 +56,8 @@ export const pageMetadata = {
         "og_title": "Tempat Terbaik untuk Pembukaan Perniagaan | Anggaran Lalu Lintas Pejalan Kaki",
         "og_description": "Temui lokasi terbaik untuk perniagaan anda dengan alat anggaran lalu lintas pejalan kaki kami",
         "twitter_title": "Tempat Terbaik untuk Pembukaan Perniagaan",
-        "twitter_description": "Rancang perniagaan baru anda dengan analisis lalu lintas pejalan kaki."
+        "twitter_description": "Rancang perniagaan baru anda dengan analisis lalu lintas pejalan kaki.",
+        "hreflang": "ms"
     },
     "pt": {
         "pageTitle": "Estimador de Tráfego de Pedestres Grátis | Planeje Sua Nova Localização Comercial",
@@ -60,7 +66,8 @@ export const pageMetadata = {
         "og_title": "Melhor Lugar para Abertura de Negócios | Estimador de Tráfego de Pedestres",
         "og_description": "Descubra os melhores locais para o seu negócio com nossa ferramenta de estimativa de tráfego de pedestres",
         "twitter_title": "Melhor Lugar para Abertura de Negócios",
-        "twitter_description": "Planeje seu novo negócio com análise de tráfego de pedestres."
+        "twitter_description": "Planeje seu novo negócio com análise de tráfego de pedestres.",
+        "hreflang": "pt"
     },
     "fr": {
         "pageTitle": "Estimateur de Trafic Piéton Gratuit | Planifiez Votre Nouvel Emplacement Commercial",
@@ -69,7 +76,8 @@ export const pageMetadata = {
         "og_title": "Meilleur Endroit pour l'Ouverture d'une Entreprise | Estimateur de Trafic Piéton",
         "og_description": "Découvrez les meilleurs emplacements pour votre entreprise avec notre outil d'estimation du trafic piéton",
         "twitter_title": "Meilleur Endroit pour l'Ouverture d'une Entreprise",
-        "twitter_description": "Planifiez votre nouvelle entreprise avec une analyse du trafic piéton."
+        "twitter_description": "Planifiez votre nouvelle entreprise avec une analyse du trafic piéton.",
+        "hreflang": "fr"
     },
     "ja": {
         "pageTitle": "無料の歩行者交通量推定ツール | 新しいビジネスの場所を計画",
@@ -78,7 +86,8 @@ export const pageMetadata = {
         "og_title": "ビジネス開業に最適な場所 | 歩行者交通量推定ツール",
         "og_description": "歩行者交通量推定ツールであなたのビジネスに最適な場所を見つけてください",
         "twitter_title": "ビジネス開業に最適な場所",
-        "twitter_description": "歩行者交通分析で新しいビジネスを計画します。"
+        "twitter_description": "歩行者交通分析で新しいビジネスを計画します。",
+        "hreflang": "ja"
     },
     "ru": {
         "pageTitle": "Бесплатный Оценщик Потока Людей | Планируйте Посещаемость Вашего Бизнеса",
@@ -87,7 +96,8 @@ export const pageMetadata = {
         "og_title": "Лучшее Место для Открытия Бизнеса | Оценщик Потока Людей",
         "og_description": "Откройте для себя лучшие места для вашего бизнеса с помощью нашего инструмента оценки потока людей",
         "twitter_title": "Лучшее Место для Открытия Бизнеса",
-        "twitter_description": "Планируйте свой новый бизнес с анализом потока пешеходов."
+        "twitter_description": "Планируйте свой новый бизнес с анализом потока пешеходов.",
+        "hreflang": "ru"
     },
     "de": {
         "pageTitle": "Kostenloser Fußgängertraffic-Schätzer | Planen Sie Ihren neuen Geschäftsstandort",
@@ -96,7 +106,8 @@ export const pageMetadata = {
         "og_title": "Bester Ort für Geschäftseröffnung | Fußgängertraffic-Schätzer",
         "og_description": "Entdecken Sie die besten Standorte für Ihr Geschäft mit unserem Fußgängertraffic-Schätzungstool",
         "twitter_title": "Bester Ort für Geschäftseröffnung",
-        "twitter_description": "Planen Sie Ihr neues Geschäft mit Fußgängertraffic-Analyse."
+        "twitter_description": "Planen Sie Ihr neues Geschäft mit Fußgängertraffic-Analyse.",
+        "hreflang": "de"
     },
     "bn": {
         "pageTitle": "বিনামূল্যে পথচারী ট্র্যাফিক অনুমানকারী | আপনার নতুন ব্যবসার স্থান পরিকল্পনা করুন",
@@ -105,7 +116,8 @@ export const pageMetadata = {
         "og_title": "ব্যবসা খোলার জন্য সেরা জায়গা | পথচারী ট্র্যাফিক অনুমানকারী",
         "og_description": "আমাদের পথচারী ট্র্যাফিক অনুমান সরঞ্জাম দিয়ে আপনার ব্যবসার জন্য সেরা স্থানগুলি আবিষ্কার করুন",
         "twitter_title": "ব্যবসা খোলার জন্য সেরা জায়গা",
-        "twitter_description": "পথচারী ট্র্যাফিক বিশ্লেষণের সাথে আপনার নতুন ব্যবসার পরিকল্পনা করুন।"
+        "twitter_description": "পথচারী ট্র্যাফিক বিশ্লেষণের সাথে আপনার নতুন ব্যবসার পরিকল্পনা করুন।",
+        "hreflang": "bn"
     },
     "hi": {
         "pageTitle": "मुफ्त पैदल यातायात अनुमानक | अपने नए व्यवसाय स्थान की योजना बनाएं",
@@ -114,7 +126,8 @@ export const pageMetadata = {
         "og_title": "व्यवसाय शुरू करने के लिए सबसे अच्छी जगह | पैदल यातायात अनुमानक",
         "og_description": "हमारे पैदल यातायात अनुमान उपकरण के साथ अपने व्यवसाय के लिए सबसे अच्छे स्थान खोजें",
         "twitter_title": "व्यवसाय शुरू करने के लिए सबसे अच्छी जगह",
-        "twitter_description": "पैदल यातायात विश्लेषण के साथ अपने नए व्यवसाय की योजना बनाएं।"
+        "twitter_description": "पैदल यातायात विश्लेषण के साथ अपने नए व्यवसाय की योजना बनाएं।",
+        "hreflang": "hi"
     },
     "ko": {
         "pageTitle": "무료 보행자 교통 추정기 | 새로운 비즈니스 위치 계획",
@@ -123,7 +136,8 @@ export const pageMetadata = {
         "og_title": "비즈니스 개업에 최적의 장소 | 보행자 교통 추정기",
         "og_description": "보행자 교통 추정 도구로 비즈니스에 최적의 위치를 찾아보세요",
         "twitter_title": "비즈니스 개업에 최적의 장소",
-        "twitter_description": "보행자 교통 분석으로 새로운 비즈니스를 계획하세요."
+        "twitter_description": "보행자 교통 분석으로 새로운 비즈니스를 계획하세요.",
+        "hreflang": "ko"
     },
     "it": {
         "pageTitle": "Stimatore di Traffico Pedonale Gratuito | Pianifica la Tua Nuova Posizione Commerciale",
@@ -132,7 +146,8 @@ export const pageMetadata = {
         "og_title": "Miglior Posto per l'Apertura di un'Attività | Stimatore di Traffico Pedonale",
         "og_description": "Scopri le migliori posizioni per la tua attività con il nostro strumento di stima del traffico pedonale",
         "twitter_title": "Miglior Posto per l'Apertura di un'Attività",
-        "twitter_description": "Pianifica la tua nuova attività con l'analisi del traffico pedonale."
+        "twitter_description": "Pianifica la tua nuova attività con l'analisi del traffico pedonale.",
+        "hreflang": "it"
     },
     "tr": {
         "pageTitle": "Ücretsiz Yaya Trafiği Tahmin Aracı | Yeni İş Yerinizin Konumunu Planlayın",
@@ -141,7 +156,8 @@ export const pageMetadata = {
         "og_title": "İş Açılışı için En İyi Yer | Yaya Trafiği Tahmin Aracı",
         "og_description": "Yaya trafiği tahmin aracımızla işiniz için en iyi konumları keşfedin",
         "twitter_title": "İş Açılışı için En İyi Yer",
-        "twitter_description": "Yaya trafiği analizi ile yeni iş yerinizi planlayın."
+        "twitter_description": "Yaya trafiği analizi ile yeni iş yerinizi planlayın.",
+        "hreflang": "tr"
     },
     "vi": {
         "pageTitle": "Công cụ Ước lượng Lưu lượng Người đi bộ Miễn phí | Lập kế hoạch Địa điểm Kinh doanh Mới của Bạn",
@@ -150,7 +166,8 @@ export const pageMetadata = {
         "og_title": "Nơi Tốt Nhất để Mở Doanh Nghiệp | Công cụ Ước lượng Lưu lượng Người đi bộ",
         "og_description": "Khám phá các địa điểm tốt nhất cho doanh nghiệp của bạn với công cụ ước lượng lưu lượng người đi bộ của chúng tôi",
         "twitter_title": "Nơi Tốt Nhất để Mở Doanh Nghiệp",
-        "twitter_description": "Lập kế hoạch doanh nghiệp mới của bạn với phân tích lưu lượng người đi bộ."
+        "twitter_description": "Lập kế hoạch doanh nghiệp mới của bạn với phân tích lưu lượng người đi bộ.",
+        "hreflang": "vi"
     },
     "fa": {
         "pageTitle": "ابزار تخمین رایگان ترافیک عابران پیاده | مکان جدید کسب‌وکار خود را برنامه‌ریزی کنید",
@@ -159,7 +176,8 @@ export const pageMetadata = {
         "og_title": "بهترین مکان برای افتتاح کسب‌وکار | ابزار تخمین ترافیک عابران پیاده",
         "og_description": "با ابزار تخمین ترافیک عابران پیاده ما بهترین مکان‌ها را برای کسب‌وکارتان کشف کنید",
         "twitter_title": "بهترین مکان برای افتتاح کسب‌وکار",
-        "twitter_description": "کسب‌وکار جدید خود را با تحلیل ترافیک عابران پیاده برنامه‌ریزی کنید."
+        "twitter_description": "کسب‌وکار جدید خود را با تحلیل ترافیک عابران پیاده برنامه‌ریزی کنید.",
+        "hreflang": "fa"
     },
     "th": {
         "pageTitle": "เครื่องมือประเมินการจราจรเท้าเดินฟรี | วางแผนสถานที่ตั้งธุรกิจใหม่ของคุณ",
@@ -168,7 +186,8 @@ export const pageMetadata = {
         "og_title": "สถานที่ที่ดีที่สุดสำหรับการเปิดธุรกิจ | เครื่องมือประเมินการจราจรเท้าเดิน",
         "og_description": "ค้นพบสถานที่ที่ดีที่สุดสำหรับธุรกิจของคุณด้วยเครื่องมือประเมินการจราจรเท้าเดินของเรา",
         "twitter_title": "สถานที่ที่ดีที่สุดสำหรับการเปิดธุรกิจ",
-        "twitter_description": "วางแผนธุรกิจใหม่ของคุณด้วยการวิเคราะห์การจราจรเท้าเดิน"
+        "twitter_description": "วางแผนธุรกิจใหม่ของคุณด้วยการวิเคราะห์การจราจรเท้าเดิน",
+        "hreflang": "th"
     },
     "ur": {
         "pageTitle": "مفت پیدل ٹریفک تخمینہ لگانے والا | اپنے نئے کاروبار کے مقام کی منصوبہ بندی کریں",
@@ -177,7 +196,8 @@ export const pageMetadata = {
         "og_title": "کاروبار کھولنے کے لئے بہترین جگہ | پیدل ٹریفک تخمینہ لگانے والا",
         "og_description": "ہمارے پیدل ٹریفک تخمینہ آلے کے ساتھ اپنے کاروبار کے لئے بہترین مقامات دریافت کریں",
         "twitter_title": "کاروبار کھولنے کے لئے بہترین جگہ",
-        "twitter_description": "پیدل ٹریفک تجزیہ کے ساتھ اپنے نئے کاروبار کی منصوبہ بندی کریں۔"
+        "twitter_description": "پیدل ٹریفک تجزیہ کے ساتھ اپنے نئے کاروبار کی منصوبہ بندی کریں۔",
+        "hreflang": "ur"
     },
     "pl": {
         "pageTitle": "Darmowy Estymator Ruchu Pieszego | Zaplanuj Nową Lokalizację Biznesową",
@@ -186,7 +206,8 @@ export const pageMetadata = {
         "og_title": "Najlepsze Miejsce na Otwarcie Biznesu | Estymator Ruchu Pieszego",
         "og_description": "Odkryj najlepsze lokalizacje dla swojego biznesu dzięki naszemu narzędziu do estymacji ruchu pieszego",
         "twitter_title": "Najlepsze Miejsce na Otwarcie Biznesu",
-        "twitter_description": "Zaplanuj swój nowy biznes z analizą ruchu pieszego."
+        "twitter_description": "Zaplanuj swój nowy biznes z analizą ruchu pieszego.",
+        "hreflang": "pl"
     },
     "nl": {
         "pageTitle": "Gratis Voetgangersverkeer Schatter | Plan Uw Nieuwe Bedrijfslocatie",
@@ -195,7 +216,8 @@ export const pageMetadata = {
         "og_title": "Beste Plek voor Bedrijfsopening | Voetgangersverkeer Schatter",
         "og_description": "Ontdek de beste locaties voor uw bedrijf met ons voetgangersverkeer schattingshulpmiddel",
         "twitter_title": "Beste Plek voor Bedrijfsopening",
-        "twitter_description": "Plan uw nieuwe bedrijf met voetgangersverkeer analyse."
+        "twitter_description": "Plan uw nieuwe bedrijf met voetgangersverkeer analyse.",
+        "hreflang": "nl"
     },
     "fil": {
         "pageTitle": "Libreng Estimador ng Trapikong Pang-paa | Planuhin ang Bagong Lokasyon ng Iyong Negosyo",
@@ -204,7 +226,8 @@ export const pageMetadata = {
         "og_title": "Pinakamagandang Lugar para sa Pagbubukas ng Negosyo | Estimador ng Trapikong Pang-paa",
         "og_description": "Tuklasin ang pinakamahusay na mga lokasyon para sa iyong negosyo gamit ang aming kasangkapan sa pagtatantya ng trapikong pang-paa",
         "twitter_title": "Pinakamagandang Lugar para sa Pagbubukas ng Negosyo",
-        "twitter_description": "Planuhin ang iyong bagong negosyo gamit ang pagsusuri ng trapikong pang-paa."
+        "twitter_description": "Planuhin ang iyong bagong negosyo gamit ang pagsusuri ng trapikong pang-paa.",
+        "hreflang": "fil"
     },
     "ro": {
         "pageTitle": "Estimator Gratuit al Traficului Pietonal | Planificați Noua Locație a Afacerii",
@@ -213,7 +236,8 @@ export const pageMetadata = {
         "og_title": "Cel Mai Bun Loc pentru Deschiderea unei Afaceri | Estimator al Traficului Pietonal",
         "og_description": "Descoperiți cele mai bune locații pentru afacerea dvs. cu instrumentul nostru de estimare a traficului pietonal",
         "twitter_title": "Cel Mai Bun Loc pentru Deschiderea unei Afaceri",
-        "twitter_description": "Planificați noua dvs. afacere cu analiza traficului pietonal."
+        "twitter_description": "Planificați noua dvs. afacere cu analiza traficului pietonal.",
+        "hreflang": "ro"
     },
     "uk": {
         "pageTitle": "Безкоштовний оцінювач пішохідного трафіку | Плануйте своє бізнес-місце",
@@ -222,7 +246,8 @@ export const pageMetadata = {
         "og_title": "Найкраще місце для відкриття бізнесу | Оцінювач пішохідного трафіку",
         "og_description": "Відкрийте для себе найкращі місця для вашого бізнесу за допомогою нашого інструменту оцінки пішохідного трафіку",
         "twitter_title": "Найкраще місце для відкриття бізнесу",
-        "twitter_description": "Плануйте свій новий бізнес з аналізом пішохідного трафіку."
+        "twitter_description": "Плануйте свій новий бізнес з аналізом пішохідного трафіку.",
+        "hreflang": "uk"
     },
     "el": {
         "pageTitle": "Δωρεάν Εκτιμητής Κυκλοφορίας Πεζών | Σχεδιάστε τη Νέα Τοποθεσία της Επιχείρησής σας",
@@ -231,7 +256,8 @@ export const pageMetadata = {
         "og_title": "Η Καλύτερη Τοποθεσία για Άνοιγμα Επιχείρησης | Εκτιμητής Κυκλοφορίας Πεζών",
         "og_description": "Ανακαλύψτε τις καλύτερες τοποθεσίες για την επιχείρησή σας με το εργαλείο εκτίμησης κυκλοφορίας πεζών μας",
         "twitter_title": "Η Καλύτερη Τοποθεσία για Άνοιγμα Επιχείρησης",
-        "twitter_description": "Σχεδιάστε τη νέα σας επιχείρηση με ανάλυση κυκλοφορίας πεζών."
+        "twitter_description": "Σχεδιάστε τη νέα σας επιχείρηση με ανάλυση κυκλοφορίας πεζών.",
+        "hreflang": "el"
     },
     "cs": {
         "pageTitle": "Bezplatný Odhadovač Pěšího Provozu | Naplánujte Nové Umístění Vašeho Podniku",
@@ -240,7 +266,8 @@ export const pageMetadata = {
         "og_title": "Nejlepší Místo pro Otevření Podniku | Odhadovač Pěšího Provozu",
         "og_description": "Objevte nejlepší umístění pro váš podnik s naším nástrojem pro odhad pěšího provozu",
         "twitter_title": "Nejlepší Místo pro Otevření Podniku",
-        "twitter_description": "Naplánujte svůj nový podnik s analýzou pěšího provozu."
+        "twitter_description": "Naplánujte svůj nový podnik s analýzou pěšího provozu.",
+        "hreflang": "cs"
     },
     "hu": {
         "pageTitle": "Ingyenes Gyalogos Forgalom Becslő | Tervezze Meg Új Üzleti Helyét",
@@ -249,7 +276,8 @@ export const pageMetadata = {
         "og_title": "Legjobb Hely Üzleti Nyitásra | Gyalogos Forgalom Becslő",
         "og_description": "Fedezze fel a legjobb helyszíneket üzlete számára gyalogos forgalom becslő eszközünkkel",
         "twitter_title": "Legjobb Hely Üzleti Nyitásra",
-        "twitter_description": "Tervezze meg új üzletét gyalogos forgalom elemzéssel."
+        "twitter_description": "Tervezze meg új üzletét gyalogos forgalom elemzéssel.",
+        "hreflang": "hu"
     },
     "sv": {
         "pageTitle": "Gratis Fottrafikskalkylator | Planera Din Nya Affärslokation",
@@ -258,7 +286,8 @@ export const pageMetadata = {
         "og_title": "Bästa Platsen för Affärsöppning | Fottrafikskalkylator",
         "og_description": "Upptäck de bästa platserna för din affär med vårt verktyg för uppskattning av fottrafik",
         "twitter_title": "Bästa Platsen för Affärsöppning",
-        "twitter_description": "Planera din nya affär med analys av fottrafik."
+        "twitter_description": "Planera din nya affär med analys av fottrafik.",
+        "hreflang": "sv"
     },
     "he": {
         "pageTitle": "מחשבון תנועת רגליים חינמי | תכנן את מיקום העסק החדש שלך",
@@ -267,7 +296,8 @@ export const pageMetadata = {
         "og_title": "המקום הטוב ביותר לפתיחת עסק | מחשבון תנועת רגליים",
         "og_description": "גלה את המיקומים הטובים ביותר לעסק שלך עם כלי ההערכה של תנועת הרגליים שלנו",
         "twitter_title": "המקום הטוב ביותר לפתיחת עסק",
-        "twitter_description": "תכנן את העסק החדש שלך עם ניתוח תנועת רגליים."
+        "twitter_description": "תכנן את העסק החדש שלך עם ניתוח תנועת רגליים.",
+        "hreflang": "he"
     },
     "da": {
         "pageTitle": "Gratis Fodgængertrafik Estimator | Planlæg Din Nye Forretningslokation",
@@ -276,7 +306,8 @@ export const pageMetadata = {
         "og_title": "Bedste Sted for Forretningsåbning | Fodgængertrafik Estimator",
         "og_description": "Udforsk de bedste lokationer til din forretning med vores værktøj til estimering af fodgængertrafik",
         "twitter_title": "Bedste Sted for Forretningsåbning",
-        "twitter_description": "Planlæg din nye forretning med analyse af fodgængertrafik."
+        "twitter_description": "Planlæg din nye forretning med analyse af fodgængertrafik.",
+        "hreflang": "da"
     },
     "fi": {
         "pageTitle": "Ilmainen Jalankulkuliikenteen Arvioija | Suunnittele Uusi Liiketilasi Sijainti",
@@ -285,7 +316,8 @@ export const pageMetadata = {
         "og_title": "Paras Paikka Liiketoiminnan Avaamiseen | Jalankulkuliikenteen Arvioija",
         "og_description": "Löydä parhaat sijainnit liiketoiminnallesi jalankulkuliikenteen arviointityökalullamme",
         "twitter_title": "Paras Paikka Liiketoiminnan Avaamiseen",
-        "twitter_description": "Suunnittele uusi liiketoimintasi jalankulkuliikenneanalyysillä."
+        "twitter_description": "Suunnittele uusi liiketoimintasi jalankulkuliikenneanalyysillä.",
+        "hreflang": "fi"
     },
     "no": {
         "pageTitle": "Gratis Fottrafikkestimator | Planlegg Din Nye Forretningslokasjon",
@@ -294,7 +326,8 @@ export const pageMetadata = {
         "og_title": "Beste Sted for Forretningsåpning | Fottrafikkestimator",
         "og_description": "Oppdag de beste lokasjonene for din forretning med vårt verktøy for estimering av fottrafikk",
         "twitter_title": "Beste Sted for Forretningsåpning",
-        "twitter_description": "Planlegg din nye forretning med analyse av fottrafikk."
+        "twitter_description": "Planlegg din nye forretning med analyse av fottrafikk.",
+        "hreflang": "no"
     },
     "bg": {
         "pageTitle": "Безплатен Оценител на Пешеходния Трафик | Планирайте Новото си Бизнес Място",
@@ -303,7 +336,8 @@ export const pageMetadata = {
         "og_title": "Най-доброто Място за Отваряне на Бизнес | Оценител на Пешеходния Трафик",
         "og_description": "Открийте най-добрите местоположения за вашия бизнес с нашия инструмент за оценка на пешеходния трафик",
         "twitter_title": "Най-доброто Място за Отваряне на Бизнес",
-        "twitter_description": "Планирайте новия си бизнес с анализ на пешеходния трафик."
+        "twitter_description": "Планирайте новия си бизнес с анализ на пешеходния трафик.",
+        "hreflang": "bg"
     },
     "sk": {
         "pageTitle": "Bezplatný Odhadovač Pešej Premávky | Naplánujte Nové Umiestnenie Vášho Podniku",
@@ -312,7 +346,8 @@ export const pageMetadata = {
         "og_title": "Najlepšie Miesto na Otvorenie Podniku | Odhadovač Pešej Premávky",
         "og_description": "Objavte najlepšie umiestnenia pre váš podnik s naším nástrojom na odhad pešej premávky",
         "twitter_title": "Najlepšie Miesto na Otvorenie Podniku",
-        "twitter_description": "Naplánujte svoj nový podnik s analýzou pešej premávky."
+        "twitter_description": "Naplánujte svoj nový podnik s analýzou pešej premávky.",
+        "hreflang": "sk"
     },
     "hr": {
         "pageTitle": "Besplatni Procjenitelj Pješačkog Prometa | Planirajte Novu Lokaciju Svog Posla",
@@ -321,7 +356,8 @@ export const pageMetadata = {
         "og_title": "Najbolje Mjesto za Otvaranje Posla | Procjenitelj Pješačkog Prometa",
         "og_description": "Otkrijte najbolje lokacije za vaše poslovanje s našim alatom za procjenu pješačkog prometa",
         "twitter_title": "Najbolje Mjesto za Otvaranje Posla",
-        "twitter_description": "Planirajte svoje novo poslovanje s analizom pješačkog prometa."
+        "twitter_description": "Planirajte svoje novo poslovanje s analizom pješačkog prometa.",
+        "hreflang": "hr"
     },
     "sr": {
         "pageTitle": "Бесплатни Процењивач Пешачког Саобраћаја | Планирајте Нову Локацију Свог Посла",
@@ -330,7 +366,8 @@ export const pageMetadata = {
         "og_title": "Најбоље Место за Отварање Посла | Процењивач Пешачког Саобраћаја",
         "og_description": "Откријте најбоље локације за ваш посао са нашим алатом за процену пешачког саобраћаја",
         "twitter_title": "Најбоље Место за Отварање Посла",
-        "twitter_description": "Планирајте свој нови посао са анализом пешачког саобраћаја."
+        "twitter_description": "Планирајте свој нови посао са анализом пешачког саобраћаја.",
+        "hreflang": "sr"
     },
     "lt": {
         "pageTitle": "Nemokamas Pėsčiųjų Eismo Vertintojas | Planuokite Naują Verslo Vietą",
@@ -339,7 +376,8 @@ export const pageMetadata = {
         "og_title": "Geriausia Vieta Verslo Atidarymui | Pėsčiųjų Eismo Vertintojas",
         "og_description": "Atraskite geriausias vietas savo verslui su mūsų pėsčiųjų eismo vertinimo įrankiu",
         "twitter_title": "Geriausia Vieta Verslo Atidarymui",
-        "twitter_description": "Planuokite savo naują verslą su pėsčiųjų eismo analize."
+        "twitter_description": "Planuokite savo naują verslą su pėsčiųjų eismo analize.",
+        "hreflang": "lt"
     },
     "sl": {
         "pageTitle": "Brezplačni Ocenjevalec Peš Prometa | Načrtujte Novo Lokacijo Vašega Posla",
@@ -348,7 +386,8 @@ export const pageMetadata = {
         "og_title": "Najboljša Lokacija za Odprtje Posla | Ocenjevalec Peš Prometa",
         "og_description": "Odkrijte najboljše lokacije za vaše poslovanje z našim orodjem za oceno peš prometa",
         "twitter_title": "Najboljša Lokacija za Odprtje Posla",
-        "twitter_description": "Načrtujte svoje novo poslovanje z analizo peš prometa."
+        "twitter_description": "Načrtujte svoje novo poslovanje z analizo peš prometa.",
+        "hreflang": "sl"
     },
     "lv": {
         "pageTitle": "Bezmaksas Gājēju Plūsmas Novērtētājs | Plānojiet Jaunu Biznesa Vietu",
@@ -357,7 +396,8 @@ export const pageMetadata = {
         "og_title": "Labākā Vieta Biznesa Atvēršanai | Gājēju Plūsmas Novērtētājs",
         "og_description": "Atklājiet labākās vietas savam biznesam ar mūsu gājēju plūsmas novērtēšanas rīku",
         "twitter_title": "Labākā Vieta Biznesa Atvēršanai",
-        "twitter_description": "Plānojiet savu jauno biznesu ar gājēju plūsmas analīzi."
+        "twitter_description": "Plānojiet savu jauno biznesu ar gājēju plūsmas analīzi.",
+        "hreflang": "lv"
     },
     "et": {
         "pageTitle": "Tasuta Jalakäijate Liikluse Hindaja | Planeerige Oma Uus Ärikoht",
@@ -366,7 +406,8 @@ export const pageMetadata = {
         "og_title": "Parim Koht Äri Avamiseks | Jalakäijate Liikluse Hindaja",
         "og_description": "Avastage oma äri jaoks parimad kohad meie jalakäijate liikluse hindamise tööriistaga",
         "twitter_title": "Parim Koht Äri Avamiseks",
-        "twitter_description": "Planeerige oma uus äri jalakäijate liikluse analüüsiga."
+        "twitter_description": "Planeerige oma uus äri jalakäijate liikluse analüüsiga.",
+        "hreflang": "et"
     },
     "hy": {
         "pageTitle": "Հաշմանդամի անվճար գնահատող | Պլանավորեք Ձեր նոր բիզնեսի գտնվելու վայրը",
@@ -375,7 +416,8 @@ export const pageMetadata = {
         "og_title": "Բիզնես բացելու լավագույն վայր | Հաշմանդամի գնահատող",
         "og_description": "Բացահայտեք Ձեր բիզնեսի համար լավագույն վայրերը մեր հետիոտնային երթևեկության գնահատման գործիքով",
         "twitter_title": "Բիզնես բացելու լավագույն վայր",
-        "twitter_description": "Պլանավորեք Ձեր նոր բիզնեսը հետիոտնային երթևեկության վերլուծությամբ:"
+        "twitter_description": "Պլանավորեք Ձեր նոր բիզնեսը հետիոտնային երթևեկության վերլուծությամբ:",
+        "hreflang": "hy"
     },
     "az": {
         "pageTitle": "Pulsuz Piyada Trafiki Təxminatçısı | Yeni Biznes Yerinizi Planlaşdırın",
@@ -384,7 +426,8 @@ export const pageMetadata = {
         "og_title": "Biznes Açılışı üçün Ən Yaxşı Yer | Piyada Trafiki Təxminatçısı",
         "og_description": "Piyada trafiki təxminatçısı alətimizlə biznesiniz üçün ən yaxşı yerləri kəşf edin",
         "twitter_title": "Biznes Açılışı üçün Ən Yaxşı Yer",
-        "twitter_description": "Yeni biznesinizi piyada trafiki təhlili ilə planlaşdırın."
+        "twitter_description": "Yeni biznesinizi piyada trafiki təhlili ilə planlaşdırın.",
+        "hreflang": "az"
     },
     "ka": {
         "pageTitle": "უფასო ფეხით მოსიარულეთა ტრაფიკის შემფასებელი | დაგეგმეთ თქვენი ახალი ბიზნესის ადგილმდებარეობა",
@@ -393,7 +436,8 @@ export const pageMetadata = {
         "og_title": "ბიზნესის გახსნის საუკეთესო ადგილი | ფეხით მოსიარულეთა ტრაფიკის შემფასებელი",
         "og_description": "აღმოაჩინეთ თქვენი ბიზნესისთვის საუკეთესო ადგილმდებარეობები ჩვენი ფეხით მოსიარულეთა ტრაფიკის შეფასების ინსტრუმენტით",
         "twitter_title": "ბიზნესის გახსნის საუკეთესო ადგილი",
-        "twitter_description": "დაგეგმეთ თქვენი ახალი ბიზნესი ფეხით მოსიარულეთა ტრაფიკის ანალიზით."
+        "twitter_description": "დაგეგმეთ თქვენი ახალი ბიზნესი ფეხით მოსიარულეთა ტრაფიკის ანალიზით.",
+        "hreflang": "ka"
     },
     "sq": {
         "pageTitle": "Vlerësues Falas i Trafikut të Këmbësorëve | Planifikoni Vendndodhjen e Re të Biznesit Tuaj",
@@ -402,7 +446,8 @@ export const pageMetadata = {
         "og_title": "Vendi më i Mirë për Hapjen e Biznesit | Vlerësues i Trafikut të Këmbësorëve",
         "og_description": "Zbuloni vendndodhjet më të mira për biznesin tuaj me mjetin tonë të vlerësimit të trafikut të këmbësorëve",
         "twitter_title": "Vendi më i Mirë për Hapjen e Biznesit",
-        "twitter_description": "Planifikoni biznesin tuaj të ri me analizën e trafikut të këmbësorëve."
+        "twitter_description": "Planifikoni biznesin tuaj të ri me analizën e trafikut të këmbësorëve.",
+        "hreflang": "sq"
     },
     "mk": {
         "pageTitle": "Бесплатен Проценувач на Пешачки Сообраќај | Планирајте ја Новата Локација на Вашиот Бизнис",
@@ -411,7 +456,8 @@ export const pageMetadata = {
         "og_title": "Најдобро Место за Отворање на Бизнис | Проценувач на Пешачки Сообраќај",
         "og_description": "Откријте ги најдобрите локации за вашиот бизнис со нашиот алат за проценка на пешачкиот сообраќај",
         "twitter_title": "Најдобро Место за Отворање на Бизнис",
-        "twitter_description": "Планирајте го вашиот нов бизнис со анализа на пешачкиот сообраќај."
+        "twitter_description": "Планирајте го вашиот нов бизнис со анализа на пешачкиот сообраќај.",
+        "hreflang": "mk"
     },
     "bs": {
         "pageTitle": "Besplatni Procjenitelj Pješačkog Saobraćaja | Planirajte Novu Lokaciju Vašeg Posla",
@@ -420,7 +466,8 @@ export const pageMetadata = {
         "og_title": "Najbolje Mjesto za Otvaranje Posla | Procjenitelj Pješačkog Saobraćaja",
         "og_description": "Otkrijte najbolje lokacije za vaše poslovanje sa našim alatom za procjenu pješačkog saobraćaja",
         "twitter_title": "Najbolje Mjesto za Otvaranje Posla",
-        "twitter_description": "Planirajte svoje novo poslovanje sa analizom pješačkog saobraćaja."
+        "twitter_description": "Planirajte svoje novo poslovanje sa analizom pješačkog saobraćaja.",
+        "hreflang": "bs"
     },
     "mt": {
         "pageTitle": "Stimatur Bla Ħlas tat-Traffiku tal-Mixi | Ippjana l-Lokazzjoni l-Ġdida tan-Negozju Tiegħek",
@@ -429,7 +476,8 @@ export const pageMetadata = {
         "og_title": "L-Aqwa Post għall-Ftuħ tan-Negozju | Stimatur tat-Traffiku tal-Mixi",
         "og_description": "Skopri l-aqwa lokazzjonijiet għan-negozju tiegħek bl-għodda tagħna ta’ stima tat-traffiku tal-mixi",
         "twitter_title": "L-Aqwa Post għall-Ftuħ tan-Negozju",
-        "twitter_description": "Ippjana n-negozju l-ġdid tiegħek b’analiżi tat-traffiku tal-mixi."
+        "twitter_description": "Ippjana n-negozju l-ġdid tiegħek b’analiżi tat-traffiku tal-mixi.",
+        "hreflang": "mt"
     },
     "is": {
         "pageTitle": "Ókeypis Fótgangandi Umferðar Matstæki | Skipuleggðu Nýja Staðsetningu Fyrirtækis Þíns",
@@ -438,7 +486,8 @@ export const pageMetadata = {
         "og_title": "Besti Staðurinn fyrir Fyrirtækisopnun | Fótgangandi Umferðar Matstæki",
         "og_description": "Uppgötvaðu bestu staðsetningar fyrir fyrirtækið þitt með matstæki okkar fyrir fótgangandi umferð",
         "twitter_title": "Besti Staðurinn fyrir Fyrirtækisopnun",
-        "twitter_description": "Skipuleggðu nýtt fyrirtæki þitt með greiningu á fótgangandi umferð."
+        "twitter_description": "Skipuleggðu nýtt fyrirtæki þitt með greiningu á fótgangandi umferð.",
+        "hreflang": "is"
     },
     "lb": {
         "pageTitle": "Gratis Foussgängertrafik Schätzer | Plangt Är Nei Geschäftsplaz",
@@ -447,7 +496,8 @@ export const pageMetadata = {
         "og_title": "Beschte Platz fer Geschäftsoffnung | Foussgängertrafik Schätzer",
         "og_description": "Entdeckt déi bescht Plaze fer Äert Geschäft mat eisem Foussgängertrafik Schätzungstool",
         "twitter_title": "Beschte Platz fer Geschäftsoffnung",
-        "twitter_description": "Plangt Äert neit Geschäft mat Foussgängertrafik Analyse."
+        "twitter_description": "Plangt Äert neit Geschäft mat Foussgängertrafik Analyse.",
+        "hreflang": "lb"
     },
     "fo": {
         "pageTitle": "Ókeypis Fótgangara Umferðar Matstæki | Skipulegg Fína Nýggja Staðseting Fyrirtækis Tíns",
@@ -456,7 +506,8 @@ export const pageMetadata = {
         "og_title": "Besti Staður fyri Fyrirtækisopnun | Fótgangara Umferðar Matstæki",
         "og_description": "Uppgötva bestu staðsetingarnar fyri fyrirtækið títt við okkara matstæki fyri fótgangara umferð",
         "twitter_title": "Besti Staður fyri Fyrirtækisopnun",
-        "twitter_description": "Skipulegg nýtt fyrirtæki títt við greining av fótgangara umferð."
+        "twitter_description": "Skipulegg nýtt fyrirtæki títt við greining av fótgangara umferð.",
+        "hreflang": "fo"
     },
     "km": {
         "pageTitle": "ឧបករណ៍ប៉ាន់ស្មានចរាចរណ៍ជើងឥតគិតថ្លៃ | រៀបចំផែនការទីតាំងអាជីវកម្មថ្មីរបស់អ្នក",
@@ -465,6 +516,7 @@ export const pageMetadata = {
         "og_title": "ទីតាំងល្អបំផុតសម្រាប់ការបើកអាជីវកម្ម | ឧបករណ៍ប៉ាន់ស្មានចរាចរណ៍ជើង",
         "og_description": "ស្វែងរកទីតាំងល្អបំផុតសម្រាប់អាជីវកម្មរបស់អ្នកជាមួយឧបករណ៍ប៉ាន់ស្មានចរាចរណ៍ជើងរបស់យើង",
         "twitter_title": "ទីតាំងល្អបំផុតសម្រាប់ការបើកអាជីវកម្ម",
-        "twitter_description": "រៀបចំផែនការអាជីវកម្មថ្មីរបស់អ្នកជាមួយការវិភាគចរាចរណ៍ជើង។"
+        "twitter_description": "រៀបចំផែនការអាជីវកម្មថ្មីរបស់អ្នកជាមួយការវិភាគចរាចរណ៍ជើង។",
+        "hreflang": "km"
     }
 };
