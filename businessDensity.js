@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     slider.addEventListener("input", (event) => {
         minThreshold = parseInt(event.target.value);
         console.log("threshold ", minThreshold);
-        sliderValue.textContent = minThreshold;
+        sliderValue.textContent = "> " + minThreshold;
         updateMapVisibility();
     });
     slider.addEventListener("change", (event) => {

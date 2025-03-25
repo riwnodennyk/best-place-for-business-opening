@@ -84,6 +84,8 @@
 }
 
 #slider-value {
+    text-align: center;
+    min-width: 50px;
     font-size: 14px;
     font-weight: 500;
     color: #30071e;
