@@ -23,7 +23,8 @@
     backdrop-filter: blur(10px);
     max-width: 400px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    flex-shrink: 0; /* Prevents it from shrinking */
+    flex-shrink: 0;
+    /* Prevents it from shrinking */
 }
 
 
@@ -98,15 +99,20 @@
     align-items: center;
     position: relative;
     padding: 0px 20px;
-    flex: 1; /* Takes only the available remaining space */
-    overflow: hidden; /* Prevents overflowing */
-    min-width: 0; /* Allows shrinking */
+    flex: 1;
+    /* Takes only the available remaining space */
+    overflow: hidden;
+    /* Prevents overflowing */
+    min-width: 0;
+    /* Allows shrinking */
 }
 
 /* City Chips Container */
 #city-chips-container {
-    flex: 1; /* Makes it expand to available space */
-    min-width: 0; /* Ensures it doesn’t push other elements */
+    flex: 1;
+    /* Makes it expand to available space */
+    min-width: 0;
+    /* Ensures it doesn’t push other elements */
     padding: 12px;
     display: flex;
     gap: 12px;
@@ -116,8 +122,10 @@
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     transition: all 0.3s ease;
-    -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
-    scrollbar-width: none; /* Hide scrollbar in Firefox */
+    -ms-overflow-style: none;
+    /* Hide scrollbar in IE/Edge */
+    scrollbar-width: none;
+    /* Hide scrollbar in Firefox */
 }
 
 /* Hide Scrollbar */
@@ -126,7 +134,7 @@
 }
 
 /* Custom City Chips */
-.city-chip, .my-loction-chip {
+.chip {
     padding: 10px 20px;
     border: none;
     border-radius: 25px;
@@ -148,13 +156,13 @@
     flex-shrink: 0;
 }
 
-.city-chip:hover {
+.chip:hover {
     background: linear-gradient(45deg, #5436cc, #00b8c9);
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(107, 72, 255, 0.5);
 }
 
-.city-chip:active {
+.chip:active {
     transform: scale(0.95);
     box-shadow: 0 2px 8px rgba(107, 72, 255, 0.3);
 }
@@ -165,20 +173,21 @@
     align-items: center;
     position: relative;
     gap: 15px;
-    max-width: 100%; /* Ensures it doesn’t exceed screen width */
+    max-width: 100%;
+    /* Ensures it doesn’t exceed screen width */
 }
 
 .scroll-btn {
-    background:  #ffffff;
+    background: #ffffff;
     color: #0b9bb8;
     border-width: 2px;
-    border-style:solid;
+    border-style: solid;
     border-color: #0b9bb8;
     padding: 10px 15px;
     cursor: pointer;
     font-weight: 900;
     font-size: 16px;
-    border-radius: 50%;  
+    border-radius: 50%;
     transition: all 0.2s ease;
     position: absolute;
     z-index: 10;
@@ -188,6 +197,7 @@
 .scroll-btn.left {
     left: 0px;
 }
+
 .scroll-btn.right {
     right: 0px;
 }
@@ -224,7 +234,7 @@
         padding: 15px;
     }
 
-    .city-chip {
+    .chip {
         padding: 8px 16px;
     }
 
