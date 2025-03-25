@@ -259,4 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     chipsContainer.addEventListener("scroll", checkScrollButtons);
     checkScrollButtons();
+
+    const myLocationChip = document.querySelector('.my-loction-chip');
+    myLocationChip.addEventListener("click", () =>  myLocationChip.classList.remove('pulsating'));
 });

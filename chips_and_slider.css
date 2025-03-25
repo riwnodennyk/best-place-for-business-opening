@@ -167,6 +167,11 @@
     box-shadow: 0 2px 8px rgba(107, 72, 255, 0.3);
 }
 
+.pulsating {
+    animation: pulse 2s infinite;
+    transition: transform 0.3s ease;
+}
+
 /* Scroll Buttons Container */
 #chips-wrapper {
     display: flex;
@@ -246,5 +251,22 @@
         justify-content: center;
         width: 100%;
         padding: 0px;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
+    }
+
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
     }
 }
