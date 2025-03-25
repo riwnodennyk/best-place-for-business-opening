@@ -93,6 +93,7 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="header.css" />
     <link rel="stylesheet" href="chips_and_slider.css" />
+    <link rel="stylesheet" href="styles/loading_states.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- ✅ External Translations File -->
@@ -166,10 +167,10 @@
     </div>
 
     <!-- ✅ Fullscreen Map -->
-    <div id="map"></div>
-
-    <!-- ✅ Loading Indicator -->
-    <div id="loading" data-translate="loadingText"></div>
+    <div id="map">
+        <!-- ✅ Loading Indicator -->
+        <div id="loading" data-translate="loadingText"></div>
+    </div>
 
     <!-- ✅ External JavaScript File -->
     <script type="module" src="map-script.js"></script>
