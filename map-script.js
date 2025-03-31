@@ -1,5 +1,5 @@
 import { calculateArea } from './calculateArea.js';
-import { processBuildingData } from './businessDensity.js';
+import { processBuildingData, updateMapVisibility } from './businessDensity.js';
 import { translate } from './foot_traffic_translation.js';
 import {
     trackMapPanned, trackTooManyRequestsError,
@@ -142,6 +142,8 @@ async function fetchData(bounds, retryCount = 0) {
                 }
             }
         }
+        
+        updateMapVisibility();
 
         const loadingDuration = Math.round((performance.now() - loadingStartTime) / 1000);
         trackLoadedBuildings(map.getCenter(), loadingDuration, foundBuildings);

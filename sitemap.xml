@@ -56,7 +56,7 @@
       <xhtml:link rel="alternate" hreflang="lb" href="https://foottraffic.site/" />
       <xhtml:link rel="alternate" hreflang="fo" href="https://foottraffic.site/" />
       <xhtml:link rel="alternate" hreflang="km" href="https://foottraffic.site/" />
-      <lastmod>2025-03-25</lastmod>
+      <lastmod>2025-03-31</lastmod>
       <changefreq>daily</changefreq>
       <priority>1.0</priority>
    </url>
@@ -64,7 +64,7 @@
    <!-- ✅ Sitemap Last Updated -->
    <url>
       <loc>https://foottraffic.site/sitemap.xml</loc>
-      <lastmod>2025-03-25</lastmod>
+      <lastmod>2025-03-31</lastmod>
       <changefreq>daily</changefreq>
       <priority>0.5</priority>
    </url>
