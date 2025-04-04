@@ -20,7 +20,8 @@ export const pageMetadata = {
         "hreflang": "zh"
     },
     "es": {
-        "pageTitle": "Calculadora Gratuita de Tráfico        "metaDescription": "Estime el tráfico peatonal para la ubicación de su negocio con nuestro mapa interactivo gratuito.",
+        "pageTitle": "Calculadora Gratuita de Tráfico",
+        "metaDescription": "Estime el tráfico peatonal para la ubicación de su negocio con nuestro mapa interactivo gratuito.",
         "keywords": "tráfico peatonal, calculadora, gratis, herramienta, ubicación de negocio, flujo de clientes, planificación de tiendas, selección de sitios minoristas, bienes raíces comerciales, restaurante, oficina, mapa interactivo, estimación, análisis, datos, plan, tienda, restaurante, oficina, datos reales",
         "og_title": "Mejor Lugar para Abrir un Negocio | Calculadora de Tráfico Peatonal",
         "og_description": "Descubra las mejores ubicaciones para su negocio con nuestra herramienta de estimación de tráfico peatonal",
