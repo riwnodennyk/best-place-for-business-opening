@@ -27,6 +27,12 @@
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
 }
 
+.header-overlay h2 {
+    font-size: 20px;
+    font-weight: 700;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+}
+
 .header-overlay p {
     font-size: 16px;
     font-weight: 400;
@@ -79,6 +85,10 @@
 
     .header-overlay h1 {
         font-size: 20px;
+    }
+
+    .header-overlay h2 {
+        font-size: 18px;
     }
 
     .header-overlay p {

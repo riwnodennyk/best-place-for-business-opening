@@ -3,4 +3,5 @@ export { trafficSlider } from './trafficSlider.js';
 export { pageMetadata } from './pageMetadata.js';
 export { headerContent } from './headerContent.js';
 export { loadingStates } from './loadingStates.js';
+export { areYouHappy } from './areYouHappy.js';
 export { generalUI } from './generalUI.js';

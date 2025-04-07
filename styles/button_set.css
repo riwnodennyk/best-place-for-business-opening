@@ -1,0 +1,38 @@
+.button-set {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.button-set button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.secondary-button {
+    background: #f4f6f8;
+    color: #6b7280;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.secondary-button:hover {
+    background: #e5e7eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .button-set {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

@@ -64,6 +64,7 @@ function trackLocationDetected(data) {
     console.log("User Location Detected: ", data.latitude, data.longitude);
 }
 
+
 function trackNoUserLocationDetectedError(error) {
     gtag('event', 'no_user_location_detected_error', {
     });
@@ -84,4 +85,21 @@ export {
     trackNoUserLocationDetectedError,
     trackMapZoomed, trackTooManyRequestsError,
     trackLoadedBuildings, trackClickedBuilding
+}
+
+export function trackEligibleToBuy() {
+    gtag('event', 'eligible_to_buy');
+    console.log("Eligible to buy");
+}
+
+export function trackBuyButtonClicked() {
+    gtag('event', 'buy_button_clicked');
+    console.log("Buy button clicked");
+}
+
+export function trackSurveyveSent(feedback) {
+    gtag('event', 'feedback', {
+        'feedback_text': feedback
+    });
+    console.log("Feedback Sent:", feedback);
 }

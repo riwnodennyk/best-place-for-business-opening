@@ -2,19 +2,27 @@ import { calculateArea } from './calculateArea.js';
 import { processBuildingData, updateMapVisibility } from './businessDensity.js';
 import { translate } from './foot_traffic_translation.js';
 import {
-    trackMapPanned, trackTooManyRequestsError,
-    trackMapZoomed, trackCityChipSelected,
-    trackNoUserLocationDetectedError,
-    trackLocationDetected,
-    trackClickedMyLocation,
-    trackLoadedBuildings
-} from './scripts/tracking.js';
+    trackMapPanned, trackTooManyRequestsError, trackMapZoomed, trackCityChipSelected,
+    trackNoUserLocationDetectedError, trackLocationDetected, trackClickedMyLocation,
+    trackLoadedBuildings, trackEligibleToBuy} from './scripts/tracking.js';
+import { setupPurchasePromo } from './scripts/activeUserPurchasePromo.js';
 
+// Global variables
+export let areYouHappy = document.getElementById("are-you-happy-block");
+export let surveyContainer;
 let map, buildingsLayer, lastBounds = null, currentRequestController = null;
 let locateControl = null;
 let loadingIndicator = document.getElementById('loading');
-let loadingStartTime = null; // Track loading start time
+let loadingStartTime = null;
+let pageLoadTime = null;
+let panCount = 0;
 
+// Initialize happyBlockShown from localStorage
+let happyBlockShown = localStorage.getItem('happyBlockShown') === 'true';
+
+/**
+ * Utility function to debounce a function call.
+ */
 function debounce(func, delay) {
     let timer;
     return function (...args) {
@@ -23,8 +31,11 @@ function debounce(func, delay) {
     };
 }
 
+/**
+ * Fetch the user's location using an external API.
+ */
 async function getUserLocation() {
-    // return {lat: 50.177,lon:  30.318}; // Vasylkiv
+// return {lat: 50.177,lon:  30.318}; // Vasylkiv
     // return {lat: 50.079,lon:  29.909}; // Fastiv
     // return {lat: 50.398,lon: 30.619}; // osokorky
     // return {lat: 50.398, lon: 30.630}; // pozniaky
@@ -39,15 +50,19 @@ async function getUserLocation() {
     try {
         const response = await fetch("https://geolocation-db.com/json/");
         const data = await response.json();
-        trackLocationDetected(data)
+        trackLocationDetected(data);
         return { lat: data.latitude, lon: data.longitude };
     } catch (error) {
         trackNoUserLocationDetectedError(error);
-        return { lat: 51.508, lon: -0.128 }; // fallback
+        return { lat: 51.508, lon: -0.128 }; // Fallback to London
     }
 }
 
+/**
+ * Initialize the map and its components.
+ */
 async function initializeMap() {
+    pageLoadTime = performance.now();
     const userLocation = await getUserLocation();
 
     map = L.map('map', {
@@ -57,10 +72,27 @@ async function initializeMap() {
         maxZoom: 18
     });
 
+    setupTileLayer();
+    setupLocateControl();
+    setupEventListeners();
+
+    buildingsLayer = L.geoJSON(null).addTo(map);
+    map.whenReady(() => fetchData(map.getBounds()));
+}
+
+/**
+ * Setup the map's tile layer.
+ */
+function setupTileLayer() {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
+}
 
+/**
+ * Setup the locate control for the map.
+ */
+function setupLocateControl() {
     locateControl = L.control.locate({
         position: 'topright',
         setView: 'always',
@@ -75,22 +107,51 @@ async function initializeMap() {
         },
         icon: 'fa fa-crosshairs'
     }).addTo(map);
-
-    buildingsLayer = L.geoJSON(null).addTo(map);
-    map.whenReady(() => fetchData(map.getBounds()));
-
-    map.on("movestart", onMapMoveStart);
-    map.on("moveend", onMapMoveEnd);
-
-    map.on('zoomend', function () {
-        trackMapZoomed(map.getZoom());
-    });
-
-    map.on('moveend', function () {
-        trackMapPanned();
-    });
 }
 
+/**
+ * Setup event listeners for the map.
+ */
+function setupEventListeners() {
+    map.on("movestart", onMapMoveStart);
+    map.on("moveend", onMapMoveEnd);
+    map.on('zoomend', () => trackMapZoomed(map.getZoom()));
+    map.on('moveend', handleMapPan);
+}
+
+/**
+ * Handle map panning events.
+ */
+function handleMapPan() {
+    trackMapPanned();
+    if (!happyBlockShown) {
+        panCount++;
+        checkHappyBlockCondition();
+    }
+}
+
+/**
+ * Check if the "Are You Happy" block should be displayed.
+ */
+function checkHappyBlockCondition() {
+    const timeSpent = (performance.now() - pageLoadTime) / 1000;
+
+    if (timeSpent >= 15 && panCount >= 3 && !happyBlockShown) {
+        if (areYouHappy) {
+            areYouHappy.style.display = "block";
+        }
+        happyBlockShown = true;
+
+        // Store happyBlockShown in localStorage
+        localStorage.setItem('happyBlockShown', 'true');
+
+        trackEligibleToBuy();
+    }
+}
+
+/**
+ * Fetch data for the current map bounds.
+ */
 async function fetchData(bounds, retryCount = 0) {
     if (currentRequestController) {
         currentRequestController.abort();
@@ -98,15 +159,28 @@ async function fetchData(bounds, retryCount = 0) {
     currentRequestController = new AbortController();
     const { signal } = currentRequestController;
 
-    let bbox = `${bounds.getSouth()},${bounds.getWest()},${bounds.getNorth()},${bounds.getEast()}`;
+    const bbox = `${bounds.getSouth()},${bounds.getWest()},${bounds.getNorth()},${bounds.getEast()}`;
     console.log("Fetching data for bbox:", bbox);
 
+    try {
+        loadingIndicator.style.display = 'block';
+        const [buildingsResponse, businessesResponse] = await fetchOverpassData(bbox, signal, bounds, retryCount);
+
+        processFetchedData(buildingsResponse, businessesResponse);
+    } catch (error) {
+        handleFetchError(error, bounds, retryCount);
+    }
+}
+
+/**
+ * Fetch data from the Overpass API.
+ */
+async function fetchOverpassData(bbox, signal, bounds, retryCount) {
     const buildingsQuery = `
         [out:json][timeout:25];
         way["building"](${bbox});
         out body geom;
     `;
-
     const businessesQuery = `
         [out:json][timeout:25];
         (
@@ -123,55 +197,70 @@ async function fetchData(bounds, retryCount = 0) {
     const buildingsUrl = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(buildingsQuery)}`;
     const businessesUrl = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(businessesQuery)}`;
 
-    try {
-        loadingIndicator.style.display = 'block';
+    return Promise.all([
+        fetch(buildingsUrl, { signal }).then(res => handleResponse(res, bounds, retryCount)),
+        fetch(businessesUrl, { signal }).then(res => handleResponse(res, bounds, retryCount))
+    ]);
+}
 
-        const [buildingsResponse, businessesResponse] = await Promise.all([
-            fetch(buildingsUrl, { signal }).then(res => handleResponse(res, bounds, retryCount)),
-            fetch(businessesUrl, { signal }).then(res => handleResponse(res, bounds, retryCount))
-        ]);
+/**
+ * Process fetched data and update the map.
+ */
+async function processFetchedData(buildingsResponse, businessesResponse) {
+    buildingsLayer.clearLayers();
+    let foundBuildings = 0;
 
-        buildingsLayer.clearLayers();
-        let foundBuildings = 0;
-
-        for (const building of buildingsResponse.elements) {
-            if (building.type === "way" && building.geometry) {
-                const isBuildingProcessed = await processBuildingData(building, businessesResponse, calculateArea, buildingsLayer);
-                if (isBuildingProcessed === true) {
-                    foundBuildings++;
-                }
+    for (const building of buildingsResponse.elements) {
+        if (building.type === "way" && building.geometry) {
+            const isBuildingProcessed = await processBuildingData(building, businessesResponse, calculateArea, buildingsLayer);
+            if (isBuildingProcessed) {
+                foundBuildings++;
             }
         }
-        
-        updateMapVisibility();
-
-        const loadingDuration = Math.round((performance.now() - loadingStartTime) / 1000);
-        trackLoadedBuildings(map.getCenter(), loadingDuration, foundBuildings);
-        loadingIndicator.style.display = 'none';
-    } catch (error) {
-        if (error.name === "AbortError") {
-            console.log("Request aborted successfully.");
-            return;
-        }
-        console.error("Error fetching data:", error);
     }
+
+    updateMapVisibility();
+    trackLoadedBuildings(map.getCenter(), calculateLoadingDuration(), foundBuildings);
+    loadingIndicator.style.display = 'none';
+}
+
+/**
+ * Calculate the loading duration for data fetching.
+ */
+function calculateLoadingDuration() {
+    return Math.round((performance.now() - loadingStartTime) / 1000);
+}
+
+/**
+ * Handle errors during data fetching.
+ */
+function handleFetchError(error, bounds, retryCount) {
+    if (error.name === "AbortError") {
+        console.log("Request aborted successfully.");
+        return;
+    }
+    console.error("Error fetching data:", error);
 }
 
 async function handleResponse(response, bounds, retryCount) {
     if (response.status === 429) {
-        let waitTime = Math.pow(2, retryCount) * 1000; // Exponential backoff
-        console.warn(`429 Too Many Requests - Retrying in ${waitTime / 1000} seconds...`);
-        trackTooManyRequestsError();
-        await new Promise(resolve => setTimeout(resolve, waitTime));
-
-        if (retryCount < 5) {
-            return fetchData(bounds, retryCount + 1);
-        } else {
-            console.error("Maximum retry limit reached. Giving up.");
-            throw new Error("Too many requests. Please try again later.");
-        }
+        await handleTooManyRequests(bounds, retryCount);
     }
     return response.json();
+}
+
+async function handleTooManyRequests(bounds, retryCount) {
+    const waitTime = Math.pow(2, retryCount) * 1000;
+    console.warn(`429 Too Many Requests - Retrying in ${waitTime / 1000} seconds...`);
+    trackTooManyRequestsError();
+    await new Promise(resolve => setTimeout(resolve, waitTime));
+
+    if (retryCount < 5) {
+        return fetchData(bounds, retryCount + 1);
+    } else {
+        console.error("Maximum retry limit reached. Giving up.");
+        throw new Error("Too many requests. Please try again later.");
+    }
 }
 
 const debouncedFetchData = debounce(fetchData, 1000);
@@ -184,34 +273,44 @@ function onMapMoveStart() {
     }
 }
 
+/**
+ * Handle the end of a map move event.
+ */
 function onMapMoveEnd() {
     const bounds = map.getBounds();
     const currentBoundsString = bounds.toBBoxString();
 
     if (lastBounds !== currentBoundsString) {
-        loadingStartTime = performance.now(); // Start tracking loading duration
+        loadingStartTime = performance.now();
         lastBounds = currentBoundsString;
         if (map.getZoom() >= 15) {
             debouncedFetchData(bounds);
-        }
-        else {
-            //todo show that user needs to zoom in
+        } else {
             loadingIndicator.style.display = 'block';
         }
     }
 }
 
-initializeMap();
-
+/**
+ * Pan the map to a specific city.
+ */
 function panToCity(lat, lon) {
     if (map) {
         map.setView([lat, lon], 15);
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    let titleBlock = document.getElementById("title-block");
-    let mapElement = document.getElementById("map");
+/**
+ * Setup UI interactions for the page.
+ */
+function setupUIInteractions() {
+    areYouHappy = document.getElementById("are-you-happy-block");
+    const titleBlock = document.getElementById("title-block");
+    const mapElement = document.getElementById("map");
+
+    areYouHappy.style.display = "none";
+    surveyContainer = document.getElementById("survey-block");
+    surveyContainer.style.display = "none";
 
     function hideTitleBlock() {
         titleBlock.classList.add("hide-title");
@@ -225,12 +324,29 @@ document.addEventListener("DOMContentLoaded", () => {
     mapElement.addEventListener("wheel", hideTitleBlock, { once: true });
     mapElement.addEventListener("mousedown", hideTitleBlock, { once: true });
 
+    setupCityChips();
+    const myLocationChip = document.querySelector('.my-loction-chip');
+    myLocationChip.addEventListener("click", () => myLocationChip.classList.remove('pulsating'));
+
+    setupPurchasePromo();
+    setupTranslation();
+}
+
+/**
+ * Setup translations for the page.
+ */
+function setupTranslation() {
     document.querySelectorAll("[data-translate]").forEach(element => {
         const key = element.dataset.translate;
         element.textContent = translate(key);
     });
+}
 
-    document.querySelector('.my-loction-chip').addEventListener('click', function () {
+/**
+ * Setup city chips for quick navigation.
+ */
+function setupCityChips() {
+    document.querySelector('.my-loction-chip').addEventListener('click', () => {
         trackClickedMyLocation();
         locateControl.start();
     });
@@ -244,6 +360,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    setupChipScrolling();
+}
+
+/**
+ * Setup scrolling for city chips.
+ */
+function setupChipScrolling() {
     const chipsContainer = document.getElementById("city-chips-container");
     const scrollLeftBtn = document.getElementById("scroll-left");
     const scrollRightBtn = document.getElementById("scroll-right");
@@ -261,7 +384,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     chipsContainer.addEventListener("scroll", checkScrollButtons);
     checkScrollButtons();
+}
 
-    const myLocationChip = document.querySelector('.my-loction-chip');
-    myLocationChip.addEventListener("click", () =>  myLocationChip.classList.remove('pulsating'));
+// Initialize the application
+document.addEventListener("DOMContentLoaded", () => {
+    setupUIInteractions();
+    initializeMap();
 });

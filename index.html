@@ -92,8 +92,10 @@
 
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="header.css" />
-    <link rel="stylesheet" href="chips_and_slider.css" />
+    <link rel="stylesheet" href="styles/are_you_happy.css" />
+    <link rel="stylesheet" href="styles/chips_and_slider.css" />
     <link rel="stylesheet" href="styles/loading_states.css" />
+    <link rel="stylesheet" href="styles/button_set.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- ✅ External Translations File -->
@@ -121,6 +123,7 @@
         <h1 data-translate="headerTitle"></h1>
         <p data-translate="headerSubtitle"></p>
     </header>
+
     <div id="controls-container">
         <!-- Foot Traffic Threshold Slider -->
         <div id="slider-container">
@@ -170,6 +173,30 @@
     <div id="map">
         <!-- ✅ Loading Indicator -->
         <div id="loading" data-translate="loadingText"></div>
+    </div>
+
+    <div class="header-overlay" id="are-you-happy-block">
+        <h2 data-translate="areYouHappyTitle"></h2>
+        <div class="button-set">
+            <button id="not-interested-button" class="secondary-button" data-translate="noThanksButton">
+            </button>
+            <button id="buy-button" data-translate="buyButton">
+            </button>
+        </div>
+    </div>
+
+    <div class="header-overlay" id="survey-block">
+        <h2 data-translate="surveyQuestion"></h2>
+        <div class="textarea-wrapper">
+            <textarea id="improvement-feedback" rows="4" cols="50"></textarea>
+            <span class="textarea-placeholder" data-translate="surveyTextAreaPlaceholder"></span>
+        </div>
+        <div class="button-set">
+            <button id="submit-feedback-button" data-translate="submitSurveyButton">
+            </button>
+            <button id="close-survey-button" class="secondary-button" data-translate="skip">
+            </button>
+        </div>
     </div>
 
     <!-- ✅ External JavaScript File -->

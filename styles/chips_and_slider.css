@@ -136,7 +136,7 @@
 }
 
 /* Custom City Chips */
-.chip {
+button, .chip {
     padding: 10px 20px;
     border: none;
     border-radius: 25px;

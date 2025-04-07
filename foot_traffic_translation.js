@@ -1,4 +1,5 @@
-import { cities, generalUI, pageMetadata, trafficSlider, headerContent,loadingStates } from "./translations/index.js";
+import { cities, generalUI, pageMetadata, trafficSlider, headerContent,
+    areYouHappy,loadingStates } from "./translations/index.js";
 
 const translations = Object.fromEntries(
     Object.keys(pageMetadata).map(lang => [lang, {
@@ -7,6 +8,7 @@ const translations = Object.fromEntries(
         ...pageMetadata[lang],
         ...headerContent[lang],
         ...loadingStates[lang],
+        ...areYouHappy[lang],
         ...generalUI[lang]
     }])
 );
